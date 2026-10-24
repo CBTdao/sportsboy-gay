@@ -51,4 +51,33 @@
       navigator.serviceWorker.register("/sw.js", { scope: "/" }).catch(function () {});
     });
   }
+
+  /* 语言菜单：地球按钮 + 下拉（中文主场，其余语言收起） */
+  var langToggle = document.querySelector(".lang-toggle");
+  var langMenu = document.getElementById("langMenu");
+  if (langToggle && langMenu) {
+    function closeLangMenu() {
+      langMenu.setAttribute("hidden", "");
+      langToggle.setAttribute("aria-expanded", "false");
+    }
+    langToggle.addEventListener("click", function (event) {
+      event.stopPropagation();
+      var willOpen = langMenu.hasAttribute("hidden");
+      if (willOpen) {
+        langMenu.removeAttribute("hidden");
+      } else {
+        langMenu.setAttribute("hidden", "");
+      }
+      langToggle.setAttribute("aria-expanded", willOpen ? "true" : "false");
+    });
+    document.addEventListener("click", function (event) {
+      if (!langMenu.contains(event.target) && !langToggle.contains(event.target)) closeLangMenu();
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") closeLangMenu();
+    });
+    langMenu.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", closeLangMenu);
+    });
+  }
 })();

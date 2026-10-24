@@ -29,17 +29,26 @@
 
 <header class="site-header is-solid" id="siteHeader">
   <div class="container nav-inner">
-    <a class="brand" href="/ja/">SPORTSBOY<span class="brand-tld">.gay</span></a>
+    <a class="brand" href="/ja">SPORTSBOY<span class="brand-tld">.gay</span></a>
     <nav class="nav-links">
       <a href="/ja/">ホーム</a>
       <a class="btn btn-primary btn-sm" href="/ja/#join">demo公開通知</a>
     </nav>
     <div class="nav-side">
-      <div class="lang-switch" role="group" aria-label="Language">
-        <a class="lang-btn" href="/quiz" hreflang="zh-CN" lang="zh-CN">中文</a>
-        <a class="lang-btn" href="/en/quiz" hreflang="en" lang="en">EN</a>
-        <a class="lang-btn is-active" href="/ja/quiz" hreflang="ja" lang="ja" aria-current="true">JA</a>
-        <a class="lang-btn" href="/ko/quiz" hreflang="ko" lang="ko">KO</a>
+      <div class="lang-menu-wrap">
+        <button class="lang-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/><path d="M3 12h18"/>
+            <path d="M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/>
+          </svg>
+          <span>日本語</span>
+        </button>
+        <div class="lang-menu" id="langMenu" hidden>
+          <a class="lang-opt" href="/quiz" hreflang="zh-CN" lang="zh-CN">中文<span class="lang-opt-tag">ZH</span></a>
+          <a class="lang-opt" href="/en/quiz" hreflang="en" lang="en">English<span class="lang-opt-tag">EN</span></a>
+          <a class="lang-opt is-active" href="/ja/quiz" hreflang="ja" lang="ja" aria-current="true">日本語<span class="lang-opt-tag">JA</span></a>
+          <a class="lang-opt" href="/ko/quiz" hreflang="ko" lang="ko">한국어<span class="lang-opt-tag">KO</span></a>
+        </div>
       </div>
     </div>
   </div>

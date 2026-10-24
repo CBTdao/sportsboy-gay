@@ -54,11 +54,20 @@
       <a class="btn btn-primary btn-sm" href="#join">demo公開通知</a>
     </nav>
     <div class="nav-side">
-      <div class="lang-switch" role="group" aria-label="Language">
-        <a class="lang-btn" href="/" hreflang="zh-CN" lang="zh-CN">中文</a>
-        <a class="lang-btn" href="/en" hreflang="en" lang="en">EN</a>
-        <a class="lang-btn is-active" href="/ja" hreflang="ja" lang="ja" aria-current="true">JA</a>
-        <a class="lang-btn" href="/ko" hreflang="ko" lang="ko">KO</a>
+      <div class="lang-menu-wrap">
+        <button class="lang-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/><path d="M3 12h18"/>
+            <path d="M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/>
+          </svg>
+          <span>日本語</span>
+        </button>
+        <div class="lang-menu" id="langMenu" hidden>
+          <a class="lang-opt" href="/" hreflang="zh-CN" lang="zh-CN">中文<span class="lang-opt-tag">ZH</span></a>
+          <a class="lang-opt" href="/en" hreflang="en" lang="en">English<span class="lang-opt-tag">EN</span></a>
+          <a class="lang-opt is-active" href="/ja" hreflang="ja" lang="ja" aria-current="true">日本語<span class="lang-opt-tag">JA</span></a>
+          <a class="lang-opt" href="/ko" hreflang="ko" lang="ko">한국어<span class="lang-opt-tag">KO</span></a>
+        </div>
       </div>
       <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="navLinks">
         <span></span><span></span><span></span>
