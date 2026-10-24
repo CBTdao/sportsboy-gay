@@ -75,7 +75,7 @@ def make_banner():
     w_word = d.textlength("SPORTSBOY", font=f_word)
     d.text((tx + w_word + 10, 560), ".gay", font=f_tld, fill=CORAL)
     d.text((tx, 830), "汗水、肌肉与骄傲，光明正大。", font=f_cn, fill=TEXT)
-    d.text((tx + 4, 930), "全球亚裔体育生文化总部 · 每周三更新", font=f_small, fill=MUTED)
+    d.text((tx + 4, 930), "全球体育生文化总部 · 每周三更新", font=f_small, fill=MUTED)
     # 顶部珊瑚条 + 底部细条，圈出品牌区
     bar = Image.new("RGBA", (W, 14), CORAL + (255,))
     base.alpha_composite(bar, (0, 0))

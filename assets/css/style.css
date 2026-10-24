@@ -226,6 +226,10 @@ img { display: block; max-width: 100%; }
   letter-spacing: .12em; margin-left: .8em; vertical-align: middle;
   text-transform: uppercase;
 }
+.work-origin {
+  font-size: .52em; font-weight: 700; color: var(--muted);
+  margin-left: .6em; vertical-align: middle; letter-spacing: .02em;
+}
 .work-info .section-index { margin-bottom: .8rem; }
 .work-desc { color: var(--muted); margin: 1.4rem 0 1.8rem; max-width: 32em; }
 .spec-list { list-style: none; margin-bottom: 1.8rem; }
