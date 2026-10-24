@@ -66,20 +66,34 @@ img { display: block; max-width: 100%; }
 }
 .nav-toggle span { width: 24px; height: 2px; background: var(--text); transition: transform .3s, opacity .3s; }
 
-/* ---------- language switch ---------- */
-.lang-switch {
-  display: flex; align-items: center; gap: 2px;
+/* ---------- language menu（中文主场：地球图标 + 下拉） ---------- */
+.lang-menu-wrap { position: relative; }
+.lang-toggle {
+  display: inline-flex; align-items: center; gap: .45em;
   border: 1px solid var(--line); border-radius: 999px;
-  padding: 3px; background: rgba(27, 24, 19, .55);
-}
-.lang-btn {
+  background: rgba(27, 24, 19, .55); color: var(--muted);
   font-family: var(--font-body); font-size: .72rem; font-weight: 700;
-  letter-spacing: .04em; color: var(--muted);
-  padding: .34em .72em; border-radius: 999px;
-  transition: color .2s, background .2s;
+  letter-spacing: .04em; padding: .38em .8em; cursor: pointer;
+  transition: color .2s, border-color .2s;
 }
-.lang-btn:hover { color: var(--text); }
-.lang-btn.is-active { background: var(--coral); color: var(--coral-ink); }
+.lang-toggle:hover { color: var(--text); border-color: var(--coral-deep); }
+.lang-toggle svg { flex-shrink: 0; }
+.lang-menu {
+  position: absolute; top: calc(100% + .6rem); right: 0; min-width: 10rem;
+  background: rgba(20, 18, 15, .97); backdrop-filter: blur(14px);
+  border: 1px solid var(--line); border-radius: 14px; padding: .4rem;
+  display: grid; gap: 2px; z-index: 60;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .45);
+}
+.lang-menu[hidden] { display: none; }
+.lang-opt {
+  display: flex; align-items: center; justify-content: space-between; gap: 1em;
+  font-size: .85rem; color: var(--muted); padding: .55em .8em; border-radius: 9px;
+  transition: background .15s, color .15s;
+}
+.lang-opt:hover { background: var(--surface-2); color: var(--text); }
+.lang-opt.is-active { color: var(--coral); font-weight: 700; }
+.lang-opt .lang-opt-tag { font-size: .66rem; letter-spacing: .08em; opacity: .75; }
 
 /* ---------- buttons ---------- */
 .btn {
@@ -372,7 +386,7 @@ img { display: block; max-width: 100%; }
 }
 @media (max-width: 860px) {
   .nav-toggle { display: flex; }
-  .lang-btn { font-size: .66rem; padding: .3em .55em; }
+  .lang-toggle { font-size: .68rem; padding: .34em .65em; }
   .nav-links {
     position: fixed; inset: 72px 0 auto 0;
     flex-direction: column; align-items: stretch; gap: 0;

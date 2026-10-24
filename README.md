@@ -35,7 +35,7 @@ git push -u origin main
 ## 上线前待办（替换占位链接）
 
 - [ ] `index.html` 等页中所有 `data-todo` 占位链接：爱发电主页、itch.io（demo 上线后）、TikTok / X 账号
-- [ ] 角色预告图 `assets/img/teaser.webp`：正式立绘出来后替换（当前为 AI 测试图）
+- [ ] 角色预告图 `assets/img/teaser.webp`：正式立绘出来后替换（母版 `teaser-src.jpg`，去水印已完成）
 - [ ] 爱发电三档赞助金额确认后更新首页文案
 
 ## 图片资产
