@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>스포츠맨 농도 테스트 — SportsBoy.gay</title>
+<meta name="description" content="6문제 30초, 스포츠맨 농도를 측정하고 전용 도감 항목을 생성하세요.">
+<meta property="og:title" content="내 스포츠맨 농도 테스트 — SportsBoy.gay">
+<meta property="og:description" content="6문제 30초, 전용 스포츠맨 도감 항목 생성.">
+<meta property="og:image" content="https://www.sportsboy.gay/assets/img/og.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.sportsboy.gay/ko/quiz">
+<meta name="theme-color" content="#0E0D0B">
+<link rel="icon" href="/assets/img/icon-512.png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="https://www.sportsboy.gay/ko/quiz">
+<link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/quiz">
+<link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/quiz">
+<link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/quiz">
+<link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/quiz">
+<link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/quiz">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="page-quiz">
+
+<header class="site-header is-solid" id="siteHeader">
+  <div class="container nav-inner">
+    <a class="brand" href="/ko/">SPORTSBOY<span class="brand-tld">.gay</span></a>
+    <nav class="nav-links">
+      <a href="/ko/">홈</a>
+      <a class="btn btn-primary btn-sm" href="/ko/#join">아쥐발전 팔로우</a>
+    </nav>
+    <div class="nav-side">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <a class="lang-btn" href="/quiz" hreflang="zh-CN" lang="zh-CN">中文</a>
+        <a class="lang-btn" href="/en/quiz" hreflang="en" lang="en">EN</a>
+        <a class="lang-btn" href="/ja/quiz" hreflang="ja" lang="ja">JA</a>
+        <a class="lang-btn is-active" href="/ko/quiz" hreflang="ko" lang="ko" aria-current="true">KO</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="quiz-main">
+  <div class="container quiz-shell">
+
+    <section class="quiz-panel is-active" id="quizStart">
+      <p class="kicker">호르몬 편집실 제작</p>
+      <h1 class="quiz-title">스포츠맨 농도 테스트</h1>
+      <p class="quiz-lead">6문제 30초. 정답은 없고 농도만 있다.<br>결과 공유 가능 — 팀원을 끌어들여 대입해봐.</p>
+      <div class="quiz-types-preview">
+        <span>수영부 스포츠맨</span><span>농구부 스포츠맨</span><span>헬스 스포츠맨</span><span>만능 스포츠맨</span>
+      </div>
+      <button class="btn btn-primary btn-lg" id="startBtn" type="button">시작</button>
+    </section>
+
+    <section class="quiz-panel" id="quizPlay" hidden>
+      <div class="quiz-progress"><div class="quiz-progress-bar" id="progressBar"></div></div>
+      <p class="quiz-step" id="quizStep">1 / 6 번째 문제</p>
+      <h2 class="quiz-question" id="questionText"></h2>
+      <div class="quiz-options" id="optionsBox"></div>
+    </section>
+
+    <section class="quiz-panel" id="quizResult" hidden>
+      <p class="kicker">테스트 결과</p>
+      <h1 class="quiz-result-title" id="resultTitle"></h1>
+      <p class="quiz-result-desc" id="resultDesc"></p>
+      <div class="quiz-bars" id="resultBars"></div>
+      <div class="quiz-share">
+        <p class="quiz-share-label">공유 문구 (클릭 복사)</p>
+        <button class="quiz-share-text" id="shareText" type="button"></button>
+        <p class="quiz-share-hint" id="shareHint" hidden>복사 완료, 팀원한테 보내</p>
+      </div>
+      <div class="quiz-actions">
+        <a class="btn btn-primary" href="/ko/#join">아쥐발전 팔로우, 『스포츠맨』 demo 대기</a>
+        <button class="btn btn-ghost" id="retryBtn" type="button">다시 테스트</button>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <p>© <span id="year">2026</span> SportsBoy.gay</p>
+      <p>BL 콘텐츠 · 캐릭터 전원 성인 설정</p>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "name": "SportsBoy.gay — 汗水、肌肉与骄傲",
+  "short_name": "SPORTSBOY",
+  "description": "全球体育生文化总部：图鉴、直男观察、视觉小说与 AI 陪伴。",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0E0D0B",
+  "theme_color": "#FF5C2B",
+  "lang": "zh-CN",
+  "icons": [
+    {
+      "src": "/assets/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/img/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

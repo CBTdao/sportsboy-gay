@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>体育生濃度テスト — SportsBoy.gay</title>
+<meta name="description" content="6問30秒、体育生濃度を測って専用図鑑エントリーを生成。">
+<meta property="og:title" content="私の体育生濃度テスト — SportsBoy.gay">
+<meta property="og:description" content="6問30秒、専用の体育生図鑑エントリーを生成。">
+<meta property="og:image" content="https://www.sportsboy.gay/assets/img/og.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.sportsboy.gay/ja/quiz">
+<meta name="theme-color" content="#0E0D0B">
+<link rel="icon" href="/assets/img/icon-512.png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="https://www.sportsboy.gay/ja/quiz">
+<link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/quiz">
+<link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/quiz">
+<link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/quiz">
+<link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/quiz">
+<link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/quiz">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="page-quiz">
+
+<header class="site-header is-solid" id="siteHeader">
+  <div class="container nav-inner">
+    <a class="brand" href="/ja/">SPORTSBOY<span class="brand-tld">.gay</span></a>
+    <nav class="nav-links">
+      <a href="/ja/">ホーム</a>
+      <a class="btn btn-primary btn-sm" href="/ja/#join">爱发电をフォロー</a>
+    </nav>
+    <div class="nav-side">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <a class="lang-btn" href="/quiz" hreflang="zh-CN" lang="zh-CN">中文</a>
+        <a class="lang-btn" href="/en/quiz" hreflang="en" lang="en">EN</a>
+        <a class="lang-btn is-active" href="/ja/quiz" hreflang="ja" lang="ja" aria-current="true">JA</a>
+        <a class="lang-btn" href="/ko/quiz" hreflang="ko" lang="ko">KO</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="quiz-main">
+  <div class="container quiz-shell">
+
+    <section class="quiz-panel is-active" id="quizStart">
+      <p class="kicker">ホルモン編集部製</p>
+      <h1 class="quiz-title">体育生濃度テスト</h1>
+      <p class="quiz-lead">6問30秒。正解はない、濃度の高低だけ。<br>結果は共有可能——チームメイトを誘って対号入座。</p>
+      <div class="quiz-types-preview">
+        <span>水泳部体育生</span><span>バスケ体育生</span><span>ジム体育生</span><span>万能体育生</span>
+      </div>
+      <button class="btn btn-primary btn-lg" id="startBtn" type="button">スタート</button>
+    </section>
+
+    <section class="quiz-panel" id="quizPlay" hidden>
+      <div class="quiz-progress"><div class="quiz-progress-bar" id="progressBar"></div></div>
+      <p class="quiz-step" id="quizStep">第 1 / 6 问</p>
+      <h2 class="quiz-question" id="questionText"></h2>
+      <div class="quiz-options" id="optionsBox"></div>
+    </section>
+
+    <section class="quiz-panel" id="quizResult" hidden>
+      <p class="kicker">テスト結果</p>
+      <h1 class="quiz-result-title" id="resultTitle"></h1>
+      <p class="quiz-result-desc" id="resultDesc"></p>
+      <div class="quiz-bars" id="resultBars"></div>
+      <div class="quiz-share">
+        <p class="quiz-share-label">共有文（クリックでコピー）</p>
+        <button class="quiz-share-text" id="shareText" type="button"></button>
+        <p class="quiz-share-hint" id="shareHint" hidden>コピー完了、チームメイトに送ろう</p>
+      </div>
+      <div class="quiz-actions">
+        <a class="btn btn-primary" href="/ja/#join">爱发电をフォロー、『体育生』demoを待つ</a>
+        <button class="btn btn-ghost" id="retryBtn" type="button">もう一度</button>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <p>© <span id="year">2026</span> SportsBoy.gay</p>
+      <p>BLコンテンツ · キャラ全員成年設定</p>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/quiz.js"></script>
+</body>
+</html>

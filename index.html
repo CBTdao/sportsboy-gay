@@ -6,23 +6,46 @@
 <title>SportsBoy.gay — 汗水、肌肉与骄傲，光明正大</title>
 <meta name="description" content="全球华语体育生文化总部：体育生图鉴、直男观察、视觉小说与 AI 陪伴。首部视觉小说《体育生》制作中。">
 <meta property="og:title" content="SportsBoy.gay — 汗水、肌肉与骄傲，光明正大">
-<meta property="og:description" content="全球华语体育生文化总部。首部视觉小说《体育生》制作中，全 AI 制作。">
-<meta property="og:image" content="assets/img/hero.png">
+<meta property="og:description" content="全球华语体育生文化总部。首部视觉小说《体育生》制作中。">
+<meta property="og:image" content="https://www.sportsboy.gay/assets/img/og.jpg">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FF5C2B'/%3E%3Ctext x='32' y='45' font-family='Arial Black,sans-serif' font-size='34' font-weight='900' text-anchor='middle' fill='%230E0D0B'%3ES%3C/text%3E%3C/svg%3E">
+<meta property="og:url" content="https://www.sportsboy.gay/">
+<meta name="theme-color" content="#0E0D0B">
+<link rel="icon" href="/assets/img/icon-512.png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="https://www.sportsboy.gay/">
+<link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/">
+<link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en">
+<link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja">
+<link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko">
+<link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/">
+<link rel="preload" as="image" href="/assets/img/hero.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "SportsBoy.gay",
+  "url": "https://www.sportsboy.gay/",
+  "inLanguage": "zh-CN",
+  "description": "全球华语体育生文化总部：体育生图鉴、直男观察、视觉小说与 AI 陪伴。",
+  "publisher": {
+    "@type": "Organization",
+    "name": "SportsBoy.gay",
+    "url": "https://www.sportsboy.gay/"
+  }
+}
+</script>
 </head>
 <body>
 
 <header class="site-header" id="siteHeader">
   <div class="container nav-inner">
     <a class="brand" href="/">SPORTSBOY<span class="brand-tld">.gay</span></a>
-    <button class="nav-toggle" aria-label="打开菜单" aria-expanded="false" aria-controls="navLinks">
-      <span></span><span></span><span></span>
-    </button>
     <nav class="nav-links" id="navLinks">
       <a href="#columns">王牌栏目</a>
       <a href="#work">首部作品</a>
@@ -30,6 +53,17 @@
       <a href="/quiz">浓度测试</a>
       <a class="btn btn-primary btn-sm" href="#join">关注爱发电</a>
     </nav>
+    <div class="nav-side">
+      <div class="lang-switch" role="group" aria-label="语言 / Language">
+        <a class="lang-btn is-active" href="/" hreflang="zh-CN" lang="zh-CN" aria-current="true">中文</a>
+        <a class="lang-btn" href="/en/" hreflang="en" lang="en">EN</a>
+        <a class="lang-btn" href="/ja/" hreflang="ja" lang="ja">JA</a>
+        <a class="lang-btn" href="/ko/" hreflang="ko" lang="ko">KO</a>
+      </div>
+      <button class="nav-toggle" aria-label="打开菜单" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -37,13 +71,16 @@
 
 <section class="hero">
   <div class="hero-bg" aria-hidden="true">
-    <img src="assets/img/hero.png" alt="" loading="eager">
+    <picture>
+      <source srcset="/assets/img/hero.webp" type="image/webp">
+      <img src="/assets/img/hero.jpg" alt="" width="1536" height="1024" loading="eager" fetchpriority="high" decoding="async">
+    </picture>
   </div>
   <div class="container hero-content">
     <p class="kicker">荷尔蒙编辑部 · THE HORMONE DESK</p>
     <h1 class="wordmark">SPORTSBOY<span class="tld">.gay</span></h1>
     <p class="slogan">汗水、肌肉与骄傲，光明正大。</p>
-    <p class="hero-sub">全球华语体育生文化总部——图鉴、观察、视觉小说与 AI 陪伴，都从这里长出来。首部视觉小说《体育生》正在制作，全 AI 流水线，0 预算立项。</p>
+    <p class="hero-sub">全球华语体育生文化总部——图鉴、观察、视觉小说与 AI 陪伴，都从这里长出来。首部视觉小说《体育生》正在制作。</p>
     <div class="hero-ctas">
       <a class="btn btn-primary" href="/quiz">测测你的体育生浓度</a>
       <a class="btn btn-ghost" href="#work">看看首部作品</a>
@@ -99,7 +136,10 @@
 <section class="block block-alt" id="work">
   <div class="container work-grid">
     <div class="work-visual reveal">
-      <img src="assets/img/teaser.png" alt="《体育生》视觉小说角色预告图：泳队体育生">
+      <picture>
+        <source srcset="/assets/img/teaser.webp" type="image/webp">
+        <img src="/assets/img/teaser.jpg" alt="《体育生》视觉小说角色预告图：泳队体育生" width="900" height="900" loading="lazy" decoding="async">
+      </picture>
       <p class="work-caption">角色预告 · 泳队线 CG（AI 生成，立绘测试阶段）</p>
     </div>
     <div class="work-info reveal">
@@ -110,7 +150,7 @@
         <li>流程 <b>2-3 小时</b>，一条主线 + 分支结局</li>
         <li>引擎 <b>Ren'Py</b>，可攻略角色 <b>2 名</b></li>
         <li>角色<b>全部成年</b>设定，BL 分区明确</li>
-        <li>制作 <b>全 AI 流水线</b>，0 预算立项</li>
+        <li>模式 <b>免费 demo</b> + 完整版</li>
       </ul>
       <p class="status"><span class="status-dot" aria-hidden="true"></span>M1 · 剧本与角色定妆进行中</p>
       <a class="btn btn-primary" href="#join">关注制作进度</a>
@@ -151,7 +191,7 @@
   <div class="container join-inner reveal">
     <p class="section-index">04 / 加入</p>
     <h2>成为第一批读者</h2>
-    <p class="join-desc">demo 上线、新章节更新、浓度测试新人格——第一时间知道。¥15 / ¥30 / ¥66 三档赞助，陪我们用 0 预算把《体育生》做完。</p>
+    <p class="join-desc">demo 上线、新章节更新、浓度测试新人格——第一时间知道。¥15 / ¥30 / ¥66 三档赞助，陪我们把《体育生》做完。</p>
     <div class="hero-ctas">
       <a class="btn btn-primary" href="#" data-todo="爱发电主页链接待配置">前往爱发电</a>
       <a class="btn btn-ghost" href="/quiz">先测个浓度</a>
@@ -193,6 +233,6 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js"></script>
+<script src="/assets/js/main.js"></script>
 </body>
 </html>
