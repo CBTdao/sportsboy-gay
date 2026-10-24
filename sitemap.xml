@@ -3,33 +3,33 @@
   <url>
     <loc>https://www.sportsboy.gay/</loc>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/"/>
   </url>
   <url>
-    <loc>https://www.sportsboy.gay/en/</loc>
+    <loc>https://www.sportsboy.gay/en</loc>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/"/>
   </url>
   <url>
-    <loc>https://www.sportsboy.gay/ja/</loc>
+    <loc>https://www.sportsboy.gay/ja</loc>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/"/>
   </url>
   <url>
-    <loc>https://www.sportsboy.gay/ko/</loc>
+    <loc>https://www.sportsboy.gay/ko</loc>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/"/>
   </url>
   <url>
@@ -63,5 +63,133 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/quiz"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/quiz"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/quiz"/>
+  </url>
+  <url>
+    <loc>https://www.sportsboy.gay/quiz/result/swim</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/quiz/result/swim"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/quiz/result/swim"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/quiz/result/swim"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/quiz/result/swim"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/quiz/result/swim"/>
+  </url>
+  <url>
+    <loc>https://www.sportsboy.gay/quiz/result/basketball</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/quiz/result/basketball"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/quiz/result/basketball"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/quiz/result/basketball"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/quiz/result/basketball"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/quiz/result/basketball"/>
+  </url>
+  <url>
+    <loc>https://www.sportsboy.gay/quiz/result/gym</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/quiz/result/gym"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/quiz/result/gym"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/quiz/result/gym"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/quiz/result/gym"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/quiz/result/gym"/>
+  </url>
+  <url>
+    <loc>https://www.sportsboy.gay/quiz/result/allround</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/quiz/result/allround"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/quiz/result/allround"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/quiz/result/allround"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/quiz/result/allround"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/quiz/result/allround"/>
+  </url>
+  <url>
+    <loc>https://www.sportsboy.gay/en/quiz/result/swim</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/quiz/result/swim"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/quiz/result/swim"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/quiz/result/swim"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/quiz/result/swim"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/quiz/result/swim"/>
+  </url>
+  <url>
+    <loc>https://www.sportsboy.gay/en/quiz/result/basketball</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/quiz/result/basketball"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/quiz/result/basketball"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/quiz/result/basketball"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/quiz/result/basketball"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/quiz/result/basketball"/>
+  </url>
+  <url>
+    <loc>https://www.sportsboy.gay/en/quiz/result/gym</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/quiz/result/gym"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/quiz/result/gym"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/quiz/result/gym"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/quiz/result/gym"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/quiz/result/gym"/>
+  </url>
+  <url>
+    <loc>https://www.sportsboy.gay/en/quiz/result/allround</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/quiz/result/allround"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/quiz/result/allround"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/quiz/result/allround"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/quiz/result/allround"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/quiz/result/allround"/>
+  </url>
+  <url>
+    <loc>https://www.sportsboy.gay/ja/quiz/result/swim</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/quiz/result/swim"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/quiz/result/swim"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/quiz/result/swim"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/quiz/result/swim"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/quiz/result/swim"/>
+  </url>
+  <url>
+    <loc>https://www.sportsboy.gay/ja/quiz/result/basketball</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/quiz/result/basketball"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/quiz/result/basketball"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/quiz/result/basketball"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/quiz/result/basketball"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/quiz/result/basketball"/>
+  </url>
+  <url>
+    <loc>https://www.sportsboy.gay/ja/quiz/result/gym</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/quiz/result/gym"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/quiz/result/gym"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/quiz/result/gym"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/quiz/result/gym"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/quiz/result/gym"/>
+  </url>
+  <url>
+    <loc>https://www.sportsboy.gay/ja/quiz/result/allround</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/quiz/result/allround"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/quiz/result/allround"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/quiz/result/allround"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/quiz/result/allround"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/quiz/result/allround"/>
+  </url>
+  <url>
+    <loc>https://www.sportsboy.gay/ko/quiz/result/swim</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/quiz/result/swim"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/quiz/result/swim"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/quiz/result/swim"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/quiz/result/swim"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/quiz/result/swim"/>
+  </url>
+  <url>
+    <loc>https://www.sportsboy.gay/ko/quiz/result/basketball</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/quiz/result/basketball"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/quiz/result/basketball"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/quiz/result/basketball"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/quiz/result/basketball"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/quiz/result/basketball"/>
+  </url>
+  <url>
+    <loc>https://www.sportsboy.gay/ko/quiz/result/gym</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/quiz/result/gym"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/quiz/result/gym"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/quiz/result/gym"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/quiz/result/gym"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/quiz/result/gym"/>
+  </url>
+  <url>
+    <loc>https://www.sportsboy.gay/ko/quiz/result/allround</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/quiz/result/allround"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/quiz/result/allround"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/quiz/result/allround"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/quiz/result/allround"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/quiz/result/allround"/>
   </url>
 </urlset>

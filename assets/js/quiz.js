@@ -2,6 +2,14 @@
   /* 语言从 <html lang> 读取：zh-CN / en / ja / ko */
   var lang = (document.documentElement.lang || "zh-CN").split("-")[0].toLowerCase();
 
+  /* 人格结果分享页（程序化获客页，由 tools/gen_result_pages.py 生成） */
+  var RESULT_BASE = {
+    zh: "/quiz/result/",
+    en: "/en/quiz/result/",
+    ja: "/ja/quiz/result/",
+    ko: "/ko/quiz/result/"
+  };
+
   var I18N = {
     zh: {
       types: {
@@ -80,7 +88,8 @@
       ],
       step: "第 {n} / {total} 题",
       resultTitle: "{name} · 浓度 {p}%",
-      share: "我的体育生浓度测试结果：{name}，浓度 {p}% —— 来 SportsBoy.gay 测测你的",
+      share: "我的体育生浓度测试结果：{name}，浓度 {p}% —— 来 SportsBoy.gay 测测你的 {url}",
+      resultPageLink: "打开你的结果页（分享给队友）",
       barValue: "{v}/6"
     },
 
@@ -161,7 +170,8 @@
       ],
       step: "Question {n} / {total}",
       resultTitle: "{name} · {p}% Concentration",
-      share: "My jock concentration result: {name}, {p}% concentration — take the test at SportsBoy.gay",
+      share: "My jock concentration result: {name}, {p}% concentration — take the test at SportsBoy.gay {url}",
+      resultPageLink: "Open your shareable result page",
       barValue: "{v}/6"
     },
 
@@ -242,7 +252,8 @@
       ],
       step: "第 {n} / {total} 问",
       resultTitle: "{name} · 浓度 {p}%",
-      share: "私の体育生浓度テスト结果：{name}、浓度 {p}% —— SportsBoy.gay で测ってみて",
+      share: "私の体育生浓度テスト结果：{name}、浓度 {p}% —— SportsBoy.gay で测ってみて {url}",
+      resultPageLink: "结果ページを開く（チームメイトに共有）",
       barValue: "{v}/6"
     },
 
@@ -323,7 +334,8 @@
       ],
       step: "{n} / {total} 번째 문제",
       resultTitle: "{name} · 농도 {p}%",
-      share: "내 스포츠맨 농도 테스트 결과: {name}, 농도 {p}% — SportsBoy.gay 에서 너도 측정해봐",
+      share: "내 스포츠맨 농도 테스트 결과: {name}, 농도 {p}% — SportsBoy.gay 에서 너도 측정해봐 {url}",
+      resultPageLink: "결과 페이지 열기 (팀원에게 공유)",
       barValue: "{v}/6"
     }
   };
@@ -350,6 +362,7 @@
   var resultBars = document.getElementById("resultBars");
   var shareTextBtn = document.getElementById("shareText");
   var shareHint = document.getElementById("shareHint");
+  var resultPageLink = document.getElementById("resultPageLink");
 
   function show(panel) {
     [startPanel, playPanel, resultPanel].forEach(function (p) { p.hidden = p !== panel; });
@@ -416,7 +429,13 @@
       });
     });
 
-    shareTextBtn.textContent = fmt(T.share, { name: top.name, p: displayPercent });
+    var resultUrl = "https://www.sportsboy.gay" + (RESULT_BASE[lang] || RESULT_BASE.zh) + top.key;
+    shareTextBtn.textContent = fmt(T.share, { name: top.name, p: displayPercent, url: resultUrl });
+    if (resultPageLink) {
+      resultPageLink.textContent = T.resultPageLink;
+      resultPageLink.href = resultUrl;
+      resultPageLink.hidden = false;
+    }
     shareHint.hidden = true;
     show(resultPanel);
   }

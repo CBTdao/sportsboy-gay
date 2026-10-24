@@ -378,6 +378,14 @@ img { display: block; max-width: 100%; }
 }
 .quiz-share-text:hover { border-color: var(--coral); color: var(--text); }
 .quiz-share-hint { margin-top: .6rem; font-size: .82rem; color: var(--coral); font-weight: 700; }
+.quiz-bars-title { font-size: .8rem; color: var(--muted); margin: -1rem auto .8rem; max-width: 26rem; text-align: left; }
+.quiz-result-page-link {
+  display: inline-block; margin-bottom: 2.2rem; font-size: .88rem; font-weight: 700;
+  color: var(--coral); text-decoration: none; border-bottom: 1px dashed var(--coral);
+  padding-bottom: 2px; transition: opacity .2s;
+}
+.quiz-result-page-link:hover { opacity: .75; }
+.quiz-result-page-link[hidden] { display: none; }
 .quiz-actions { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
 
 /* ---------- responsive ---------- */

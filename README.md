@@ -10,8 +10,9 @@
 | `/quiz` | 体育生浓度测试：6 题 → 4 种人格图鉴 → 可复制分享文案（增长钩子） |
 | `/en` `/ja` `/ko` | 英 / 日 / 韩首页 |
 | `/en/quiz` `/ja/quiz` `/ko/quiz` | 三语测试页（题库见 `assets/js/quiz.js` 内 I18N） |
+| `/quiz/result/{swim,basketball,gym,allround}` | 人格结果分享页（程序化获客：可索引 + 独立 og 文案 + "测测你的" CTA；四语各 4 页） |
 
-语言切换：顶栏语言胶囊（中 EN JA KO）。SEO：每页 canonical + hreflang 四语互指 + x-default，`sitemap.xml` 同步。
+语言切换：顶栏语言胶囊（中 EN JA KO）。SEO：每页 canonical + hreflang 四语互指 + x-default，`sitemap.xml` 同步（24 URL）。
 
 ## 本地预览
 
@@ -46,8 +47,9 @@ git push -u origin main
 ## PWA / SEO 基建
 
 - `manifest.json` + `sw.js`（stale-while-revalidate，可安装、离线可用）
-- `robots.txt` + `sitemap.xml`（8 URL，含 hreflang）
+- `robots.txt` + `sitemap.xml`（24 URL，含 hreflang）
 - 每页 JSON-LD（WebSite / Organization）
+- 结果分享页由 `tools/gen_result_pages.py` 生成（人格数据与 `quiz.js` I18N 保持一致，改动需两边同步）
 
 ## 设计规范
 
