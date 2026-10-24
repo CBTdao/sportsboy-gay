@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>体育生浓度测试 — SportsBoy.gay</title>
+<meta name="description" content="6 道题，30 秒，测测你的体育生浓度，生成专属人格图鉴。">
+<meta property="og:title" content="我的体育生浓度测试 — SportsBoy.gay">
+<meta property="og:description" content="6 道题，30 秒，生成你的专属体育生人格图鉴。">
+<meta property="og:image" content="assets/img/hero.png">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FF5C2B'/%3E%3Ctext x='32' y='45' font-family='Arial Black,sans-serif' font-size='34' font-weight='900' text-anchor='middle' fill='%230E0D0B'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="page-quiz">
+
+<header class="site-header is-solid" id="siteHeader">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html">SPORTSBOY<span class="brand-tld">.gay</span></a>
+    <nav class="nav-links">
+      <a href="index.html">返回首页</a>
+      <a class="btn btn-primary btn-sm" href="index.html#join">关注爱发电</a>
+    </nav>
+  </div>
+</header>
+
+<main class="quiz-main">
+  <div class="container quiz-shell">
+
+    <section class="quiz-panel is-active" id="quizStart">
+      <p class="kicker">荷尔蒙编辑部出品</p>
+      <h1 class="quiz-title">体育生浓度测试</h1>
+      <p class="quiz-lead">6 道题，30 秒。没有标准答案，只有浓度高低。<br>结果可分享——拉你的队友来对号入座。</p>
+      <div class="quiz-types-preview">
+        <span>泳队体育生</span><span>篮球体育生</span><span>健身房体育生</span><span>全能体育生</span>
+      </div>
+      <button class="btn btn-primary btn-lg" id="startBtn" type="button">开始测试</button>
+    </section>
+
+    <section class="quiz-panel" id="quizPlay" hidden>
+      <div class="quiz-progress"><div class="quiz-progress-bar" id="progressBar"></div></div>
+      <p class="quiz-step" id="quizStep">第 1 / 6 题</p>
+      <h2 class="quiz-question" id="questionText"></h2>
+      <div class="quiz-options" id="optionsBox"></div>
+    </section>
+
+    <section class="quiz-panel" id="quizResult" hidden>
+      <p class="kicker">测试结果</p>
+      <h1 class="quiz-result-title" id="resultTitle"></h1>
+      <p class="quiz-result-desc" id="resultDesc"></p>
+      <div class="quiz-bars" id="resultBars"></div>
+      <div class="quiz-share">
+        <p class="quiz-share-label">分享文案（点击复制）</p>
+        <button class="quiz-share-text" id="shareText" type="button"></button>
+        <p class="quiz-share-hint" id="shareHint" hidden>已复制，去发给你队友</p>
+      </div>
+      <div class="quiz-actions">
+        <a class="btn btn-primary" href="index.html#join">关注爱发电，等《体育生》demo</a>
+        <button class="btn btn-ghost" id="retryBtn" type="button">再测一次</button>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <p>© <span id="year">2026</span> SportsBoy.gay</p>
+      <p>BL 内容 · 角色全部成年设定</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/quiz.js"></script>
+</body>
+</html>
