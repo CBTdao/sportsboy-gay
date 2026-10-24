@@ -1,5 +1,6 @@
 /* SportsBoy.gay Service Worker — stale-while-revalidate 静态资源缓存 */
-var CACHE = "sportsboy-v1";
+/* v2: hero/teaser/og 去水印后全量换图，旧 v1 缓存（含带水印旧图）在 activate 时删除 */
+var CACHE = "sportsboy-v2";
 var SHELL = [
   "/",
   "/quiz",
