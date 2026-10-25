@@ -66,10 +66,10 @@ IMAGES = [
      "暗调淋浴写真 + SPORTSBOY.gay +「汗水、肌肉与骄傲，光明正大。/ 全球体育生文化总部·每周三更新」。文字全部在 1546×423 安全区内，手机/电脑/TV 三端都不会被裁。"),
     ("yt-thumb-template.png", "缩略图母版", "1280×720",
      "以后每条视频的版式。左侧三个文字位（主标题 3-6 字 / 珊瑚钩子 / 落版小字），右侧肖像位。改 tools/gen_first_thumb.py 顶部三行字重跑即可出新图。"),
-    ("yt-thumb-shorts01.png", "Shorts 01 缩略图", "1280×720",
-     "钩子：破防了 / 直男做浓度测试，第三题 / sportsboy.gay/quiz。"),
-    ("yt-thumb-shorts02.png", "Shorts 02 缩略图", "1280×720",
-     "钩子：四条全中 / 你是篮球体育生吗？/ sportsboy.gay/quiz。右侧是成片里的篮球场实拍帧。"),
+    ("yt-thumb-shorts01.png", "Shorts 01 缩略图", "1080×1920 竖版",
+     "Shorts 官方缩略图规范是 9:16（1080×1920，上限 2MB），本图 1.0MB。钩子：破防了 / 直男做浓度测试，第三题 / sportsboy.gay/quiz。文字在中央安全区，避开顶部 UI 与底部标题遮挡。16:9 旧版存为 yt-thumb-shorts01-16x9.png 备用。"),
+    ("yt-thumb-shorts02.png", "Shorts 02 缩略图", "1080×1920 竖版",
+     "同为 9:16 竖版规范。钩子：四条全中 / 你是篮球体育生吗？/ sportsboy.gay/quiz。底图是成片里的篮球场实拍帧。16:9 旧版存为 yt-thumb-shorts02-16x9.png 备用。"),
 ]
 
 # ---------- 脚本参考（已拍完两条，留档） ----------
