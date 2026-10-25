@@ -18,10 +18,18 @@ FIELDS = [
     ("频道名", "channel_name", "SportsBoy.gay"),
     ("用户号 Handle", "handle", "@sportsboygay（被占用就试 @sportsboy-gay）"),
     ("频道口号", "tagline", "汗水、肌肉与骄傲，光明正大。"),
-    ("频道描述", "description",
+    ("频道描述（四语）", "description",
      "全球体育生文化总部。体育生图鉴、直男观察、浓度测试，和一部叫《体育生》的 BL 视觉小说。每周三更新。\n"
-     "官网 → https://www.sportsboy.gay\n"
-     "EN: The global HQ of jock culture, through a gay lens."),
+     "→ https://www.sportsboy.gay\n"
+     "\n"
+     "EN: The global HQ of jock culture, through a gay lens. Almanacs, the gaze, the concentration test, and a BL visual novel called Jocks. New episodes Wednesdays.\n"
+     "→ https://www.sportsboy.gay\n"
+     "\n"
+     "JA: ゲイの目線で見る体育会カルチャー総本部。図鑑、直男観察、濃度テスト、BL ビジュアルノベル『体育生』。毎週水曜更新。\n"
+     "→ https://www.sportsboy.gay\n"
+     "\n"
+     "KO: 게이의 시선으로 보는 스포츠맨 문화 총본부. 도감, 직남 관찰, 농도 테스트, BL 비주얼 노벨 『스포츠맨』. 매주 수요일 업데이트.\n"
+     "→ https://www.sportsboy.gay"),
     ("频道链接", "link", "https://www.sportsboy.gay"),
     ("视频标题", "video_title", "直男做体育生浓度测试，做到第三题破防了 | SportsBoy.gay"),
     ("视频描述（前两行）", "video_desc",
@@ -170,7 +178,7 @@ ol.steps li::before { content: counter(step); position: absolute; left: 0; top: 
   <p class="hint">用法：文字字段点「复制」，图片点「下载图片」或右键另存</p>
 
   <h2>一、频道四要素<span class="en">Channel Setup</span></h2>
-  <p class="lede" style="margin-bottom:1.4rem">注册时逐个粘贴。描述建议中文为主，结尾那行英文是吃 jock 关键词的。</p>
+  <p class="lede" style="margin-bottom:1.4rem">注册时逐个粘贴。描述是四语版，中文打头、英日韩各一段，每段自带官网链接，四种语言的观众都能各取所需。</p>
 __FIELDS__
 
   <h2>二、四张物料<span class="en">Assets</span></h2>
