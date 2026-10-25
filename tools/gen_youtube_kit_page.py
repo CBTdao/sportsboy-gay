@@ -15,7 +15,7 @@ OUT = os.path.normpath(os.path.join(ROOT, "..", "youtube-kit.html"))
 
 # ---------- 可复制字段（页面显示与剪贴板同源，零漂移） ----------
 FIELDS = [
-    ("频道名", "channel_name", "SportsBoy.gay"),
+    ("频道名", "channel_name", "SportsBoy（.gay 落在 handle @sportsboygay、横幅与官网三处，显示名用短名）"),
     ("用户号 Handle", "handle", "@sportsboygay（被占用就试 @sportsboy-gay）"),
     ("频道口号", "tagline", "汗水、肌肉与骄傲，光明正大。"),
     ("频道描述（四语）", "description",
