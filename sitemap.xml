@@ -192,4 +192,9 @@
     <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/quiz/result/allround"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/quiz/result/allround"/>
   </url>
+  <url>
+    <loc>https://www.sportsboy.gay/almanac/swim-jock</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/almanac/swim-jock"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/almanac/swim-jock"/>
+  </url>
 </urlset>
