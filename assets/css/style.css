@@ -451,6 +451,34 @@ img { display: block; max-width: 100%; }
 }
 .article-back:hover { opacity: .75; }
 
+/* ---------- concentration data page ---------- */
+.conc-main { padding-block: 10rem 5rem; min-height: 80svh; }
+.conc-shell { max-width: 46rem; }
+.conc-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  line-height: 1.08; margin: 1.2rem 0 1.4rem;
+}
+.conc-lead { color: var(--muted); font-size: 1.08rem; max-width: 36em; margin-bottom: 3.2rem; line-height: 1.85; }
+.conc-block-title {
+  font-family: var(--font-display);
+  font-size: .82rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--coral); margin-bottom: 1.6rem;
+}
+.conc-chart { display: grid; gap: 1.1rem; margin-bottom: 3.8rem; }
+.conc-chart .quiz-bar-row { grid-template-columns: 7.5em 1fr 3.2em; font-size: 1rem; }
+.conc-chart .quiz-bar-track { height: 14px; }
+.conc-table-wrap { overflow-x: auto; margin-bottom: 3.8rem; }
+.conc-table { width: 100%; border-collapse: collapse; font-size: .95rem; min-width: 32rem; }
+.conc-table th, .conc-table td { text-align: left; padding: .9rem 1rem; border-bottom: 1px solid var(--line-soft); }
+.conc-table th { color: var(--coral); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; }
+.conc-table td { color: var(--text); vertical-align: top; }
+.conc-table td.conc-num { font-family: var(--font-display); color: var(--coral); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.conc-table td.conc-verdict { color: var(--muted); }
+.conc-table-note { font-size: .85rem; color: var(--muted); margin-top: 1.2rem; line-height: 1.75; }
+.conc-method { margin-bottom: 3.8rem; }
+.conc-method p { color: var(--muted); line-height: 1.9; max-width: 38em; }
+
 /* ---------- responsive ---------- */
 @media (max-width: 960px) {
   .work-grid { grid-template-columns: 1fr; }

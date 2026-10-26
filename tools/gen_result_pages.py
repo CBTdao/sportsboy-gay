@@ -48,6 +48,7 @@ DATA = {
             "ctaPrimary": "测测你的浓度",
             "ctaSecondary": "关注等 demo 上线",
             "shareNote": "把这一页链接发给队友，让他也对号入座。",
+            "concLink": "查看四种体育生浓度分布 →",
             "navBack": "返回首页",
             "navCta": "等 demo 上线",
             "footerNote": "BL 内容 · 角色全部成年设定",
@@ -71,6 +72,7 @@ DATA = {
             "ctaPrimary": "Take the test",
             "ctaSecondary": "Get notified at demo launch",
             "shareNote": "Send this page to your teammate and make him check his own type.",
+            "concLink": "See the full concentration report →",
             "navBack": "Back home",
             "navCta": "Demo launch",
             "footerNote": "BL content · all characters are adults",
@@ -94,6 +96,7 @@ DATA = {
             "ctaPrimary": "浓度を测ってみる",
             "ctaSecondary": "デモ上线をお知らせ",
             "shareNote": "このページのリンクを队友に送って、同じテストをさせよう。",
+            "concLink": "4つの体育生の濃度分布を見る →",
             "navBack": "ホームへ戻る",
             "navCta": "デモ上线",
             "footerNote": "BLコンテンツ · キャラ全員成年設定",
@@ -117,6 +120,7 @@ DATA = {
             "ctaPrimary": "농도 측정해보기",
             "ctaSecondary": "데모 출시 알림 받기",
             "shareNote": "이 페이지 링크를 팀메이트에게 보내서 같은 테스트를 하게 하자.",
+            "concLink": "스포츠맨 농도 분포 보기 →",
             "navBack": "홈으로 돌아가기",
             "navCta": "데모 출시",
             "footerNote": "BL 콘텐츠 · 캐릭터 전원 성인 설정",
@@ -256,6 +260,7 @@ def result_section(lang, t):
             % (top, types[key][0], value, value)
         )
     quiz = "/%squiz" % ((LANGS[lang][1] + "/") if LANGS[lang][1] else "")
+    conc = "/%sconcentration" % ((LANGS[lang][1] + "/") if LANGS[lang][1] else "")
     return """
 <main class="quiz-main">
   <div class="container quiz-shell">
@@ -275,6 +280,7 @@ def result_section(lang, t):
         <a class="btn btn-primary" href="%s">%s</a>
         <a class="btn btn-ghost" href="/#join">%s</a>
       </div>
+      <a class="quiz-result-page-link" href="%s">%s</a>
     </section>
 
   </div>
@@ -287,6 +293,7 @@ def result_section(lang, t):
         "\n".join(bars),
         ui["shareNote"],
         quiz, ui["ctaPrimary"], ui["ctaSecondary"],
+        conc, ui["concLink"],
     )
 
 

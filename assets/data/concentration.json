@@ -1,0 +1,140 @@
+{
+  "schema_version": "1.0",
+  "datePublished": "2026-10-26",
+  "zh": {
+    "name": "SportsBoy 体育生浓度分布模型 v1.0",
+    "description": "四种体育生人格（泳队/篮球/健身房/全能）的标定签名浓度与影子浓度，来自 SportsBoy 6 题浓度测试体系。",
+    "types": [
+      {
+        "key": "basketball",
+        "name": "篮球体育生",
+        "signature": 91,
+        "shadow": 74,
+        "verdict": "弹跳与汗碱型。"
+      },
+      {
+        "key": "allround",
+        "name": "全能体育生",
+        "signature": 89,
+        "shadow": 72,
+        "verdict": "什么都玩型。"
+      },
+      {
+        "key": "swim",
+        "name": "泳队体育生",
+        "signature": 87,
+        "shadow": 68,
+        "verdict": "水感天赋型。"
+      },
+      {
+        "key": "gym",
+        "name": "健身房体育生",
+        "signature": 84,
+        "shadow": 65,
+        "verdict": "蛋白粉驱动型。"
+      }
+    ]
+  },
+  "en": {
+    "name": "SportsBoy Jock Concentration Model v1.0",
+    "description": "Calibrated signature and shadow concentrations for four jock types (Swim/Hoop/Gym/All-Round), from the SportsBoy 6-question concentration test.",
+    "types": [
+      {
+        "key": "basketball",
+        "name": "Hoop Jock",
+        "signature": 91,
+        "shadow": 74,
+        "verdict": "Vertical and salt-stained."
+      },
+      {
+        "key": "allround",
+        "name": "All-Round Jock",
+        "signature": 89,
+        "shadow": 72,
+        "verdict": "Plays everything."
+      },
+      {
+        "key": "swim",
+        "name": "Swim Jock",
+        "signature": 87,
+        "shadow": 68,
+        "verdict": "Water-native."
+      },
+      {
+        "key": "gym",
+        "name": "Gym Jock",
+        "signature": 84,
+        "shadow": 65,
+        "verdict": "Protein-powder driven."
+      }
+    ]
+  },
+  "ja": {
+    "name": "SportsBoy 体育生濃度分布モデル v1.0",
+    "description": "4つの体育生人格（水泳部／バスケ／ジム／万能）の标定署名濃度と影濃度。SportsBoy 6問濃度テスト体系から。",
+    "types": [
+      {
+        "key": "basketball",
+        "name": "バスケ体育生",
+        "signature": 91,
+        "shadow": 74,
+        "verdict": "跳跃と汗塩型。"
+      },
+      {
+        "key": "allround",
+        "name": "万能体育生",
+        "signature": 89,
+        "shadow": 72,
+        "verdict": "何でもこなす型。"
+      },
+      {
+        "key": "swim",
+        "name": "水泳部体育生",
+        "signature": 87,
+        "shadow": 68,
+        "verdict": "水感天赋型。"
+      },
+      {
+        "key": "gym",
+        "name": "ジム体育生",
+        "signature": 84,
+        "shadow": 65,
+        "verdict": "プロテイン驱动型。"
+      }
+    ]
+  },
+  "ko": {
+    "name": "SportsBoy 스포츠맨 농도 분포 모델 v1.0",
+    "description": "4가지 스포츠맨 성격(수영부/농구부/헬스/만능)의 보정 서명 농도와 그림자 농도. SportsBoy 6문제 농도 테스트 체계에서.",
+    "types": [
+      {
+        "key": "basketball",
+        "name": "농구부 스포츠맨",
+        "signature": 91,
+        "shadow": 74,
+        "verdict": "점프와 소금 각질형."
+      },
+      {
+        "key": "allround",
+        "name": "만능 스포츠맨",
+        "signature": 89,
+        "shadow": 72,
+        "verdict": "무엇이든 하는형."
+      },
+      {
+        "key": "swim",
+        "name": "수영부 스포츠맨",
+        "signature": 87,
+        "shadow": 68,
+        "verdict": "물속 천재형."
+      },
+      {
+        "key": "gym",
+        "name": "헬스 스포츠맨",
+        "signature": 84,
+        "shadow": 65,
+        "verdict": "프로틴 구동형."
+      }
+    ]
+  }
+}
