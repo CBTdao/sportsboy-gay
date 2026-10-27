@@ -234,6 +234,11 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/almanac/white-sock"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/almanac/white-sock"/>
   </url>
+  <url>
+    <loc>https://www.sportsboy.gay/almanac/locker-room</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/almanac/locker-room"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/almanac/locker-room"/>
+  </url>
 </urlset>
 
 
