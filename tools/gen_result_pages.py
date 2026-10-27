@@ -15,6 +15,7 @@ gen_result_pages.py — 生成 quiz 人格结果分享页（程序化获客）+ 
 数据源与 assets/js/quiz.js 的 I18N.types 保持一致；改动需两边同步。
 """
 import os
+import html
 
 ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 SITE = "https://www.sportsboy.gay"
@@ -47,7 +48,8 @@ DATA = {
             "barsTitle": "浓度分布",
             "ctaPrimary": "测测你的浓度",
             "ctaSecondary": "关注等 demo 上线",
-            "shareNote": "把这一页链接发给队友，让他也对号入座。",
+            "shareNote": "复制下面的链接发给队友，让他也来对号入座：",
+            "shareHint": "已复制，去发给队友吧",
             "concLink": "查看四种体育生浓度分布 →",
             "navBack": "返回首页",
             "navCta": "等 demo 上线",
@@ -71,7 +73,8 @@ DATA = {
             "barsTitle": "Concentration breakdown",
             "ctaPrimary": "Take the test",
             "ctaSecondary": "Get notified at demo launch",
-            "shareNote": "Send this page to your teammate and make him check his own type.",
+            "shareNote": "Copy the link below and send it to your teammate — make him find his type too:",
+            "shareHint": "Copied — go send it to your teammate",
             "concLink": "See the full concentration report →",
             "navBack": "Back home",
             "navCta": "Demo launch",
@@ -95,7 +98,8 @@ DATA = {
             "barsTitle": "浓度分布",
             "ctaPrimary": "浓度を测ってみる",
             "ctaSecondary": "デモ上线をお知らせ",
-            "shareNote": "このページのリンクを队友に送って、同じテストをさせよう。",
+            "shareNote": "下のリンクをコピーして队友に送り、同じテストをさせよう：",
+            "shareHint": "コピーしました — 队友に送ろう",
             "concLink": "4つの体育生の濃度分布を見る →",
             "navBack": "ホームへ戻る",
             "navCta": "デモ上线",
@@ -119,7 +123,8 @@ DATA = {
             "barsTitle": "농도 분포",
             "ctaPrimary": "농도 측정해보기",
             "ctaSecondary": "데모 출시 알림 받기",
-            "shareNote": "이 페이지 링크를 팀메이트에게 보내서 같은 테스트를 하게 하자.",
+            "shareNote": "아래 링크를 복사해 팀메이트에게 보내, 같은 테스트를 하게 하자:",
+            "shareHint": "복사됨 — 팀메이트에게 보내자",
             "concLink": "스포츠맨 농도 분포 보기 →",
             "navBack": "홈으로 돌아가기",
             "navCta": "데모 출시",
@@ -154,6 +159,13 @@ def re_split_sentence(text):
 def page_url(lang, t):
     prefix = LANGS[lang][1]
     return "%s/%squiz/result/%s" % (SITE, (prefix + "/") if prefix else "", t)
+
+
+def share_url(lang, t):
+    """结果页分享链接：指向 quiz 中枢，自动带 share UTM（campaign=人格类型），让分享带来的人也能归因。"""
+    prefix = LANGS[lang][1]
+    path = "/%squiz" % ((prefix + "/") if prefix else "")
+    return "%s%s?utm_source=share&utm_medium=referral&utm_campaign=%s" % (SITE, path, t)
 
 
 def head(lang, t):
@@ -249,6 +261,7 @@ def result_section(lang, t):
     types = DATA[lang]["types"]
     p = SIGNATURE[t]
     name, desc = types[t]
+    surl_esc = html.escape(share_url(lang, t))
     bars = []
     for key in TYPES:
         value = SIGNATURE[key] if key == t else SHADOW[key]
@@ -275,7 +288,31 @@ def result_section(lang, t):
       </div>
       <div class="quiz-share">
         <p class="quiz-share-label">%s</p>
+        <div class="quiz-share-text" id="shareText" role="button" tabindex="0" data-share="%s" title="%s">%s</div>
+        <p class="quiz-share-hint" id="shareHint" hidden>%s</p>
       </div>
+      <script>
+      (function(){
+        var box=document.getElementById('shareText');
+        var hint=document.getElementById('shareHint');
+        if(!box)return;
+        function copy(){
+          var url=box.getAttribute('data-share');
+          function done(){ if(hint){hint.hidden=false; setTimeout(function(){hint.hidden=true;},2600);} }
+          if(navigator.clipboard&&navigator.clipboard.writeText){
+            navigator.clipboard.writeText(url).then(done,function(){fallback(url);done();});
+          } else { fallback(url); done(); }
+        }
+        function fallback(url){
+          try{
+            var ta=document.createElement('textarea');ta.value=url;ta.style.position='fixed';ta.style.opacity='0';
+            document.body.appendChild(ta);ta.focus();ta.select();document.execCommand('copy');document.body.removeChild(ta);
+          }catch(e){}
+        }
+        box.addEventListener('click',copy);
+        box.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();copy();}});
+      })();
+      </script>
       <div class="quiz-actions">
         <a class="btn btn-primary" href="%s">%s</a>
         <a class="btn btn-ghost" href="/#join">%s</a>
@@ -291,7 +328,7 @@ def result_section(lang, t):
         desc,
         ui["barsTitle"],
         "\n".join(bars),
-        ui["shareNote"],
+        ui["shareNote"], surl_esc, surl_esc, surl_esc, ui["shareHint"],
         quiz, ui["ctaPrimary"], ui["ctaSecondary"],
         conc, ui["concLink"],
     )

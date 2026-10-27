@@ -70,8 +70,32 @@
         <div class="quiz-bar-row"><span class="quiz-bar-label">全能体育生</span><div class="quiz-bar-track"><div class="quiz-bar-fill" style="width:72%"></div></div><span class="quiz-bar-value">72%</span></div>
       </div>
       <div class="quiz-share">
-        <p class="quiz-share-label">把这一页链接发给队友，让他也对号入座。</p>
+        <p class="quiz-share-label">复制下面的链接发给队友，让他也来对号入座：</p>
+        <div class="quiz-share-text" id="shareText" role="button" tabindex="0" data-share="https://www.sportsboy.gay/quiz?utm_source=share&amp;utm_medium=referral&amp;utm_campaign=basketball" title="https://www.sportsboy.gay/quiz?utm_source=share&amp;utm_medium=referral&amp;utm_campaign=basketball">https://www.sportsboy.gay/quiz?utm_source=share&amp;utm_medium=referral&amp;utm_campaign=basketball</div>
+        <p class="quiz-share-hint" id="shareHint" hidden>已复制，去发给队友吧</p>
       </div>
+      <script>
+      (function(){
+        var box=document.getElementById('shareText');
+        var hint=document.getElementById('shareHint');
+        if(!box)return;
+        function copy(){
+          var url=box.getAttribute('data-share');
+          function done(){ if(hint){hint.hidden=false; setTimeout(function(){hint.hidden=true;},2600);} }
+          if(navigator.clipboard&&navigator.clipboard.writeText){
+            navigator.clipboard.writeText(url).then(done,function(){fallback(url);done();});
+          } else { fallback(url); done(); }
+        }
+        function fallback(url){
+          try{
+            var ta=document.createElement('textarea');ta.value=url;ta.style.position='fixed';ta.style.opacity='0';
+            document.body.appendChild(ta);ta.focus();ta.select();document.execCommand('copy');document.body.removeChild(ta);
+          }catch(e){}
+        }
+        box.addEventListener('click',copy);
+        box.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();copy();}});
+      })();
+      </script>
       <div class="quiz-actions">
         <a class="btn btn-primary" href="/quiz">测测你的浓度</a>
         <a class="btn btn-ghost" href="/#join">关注等 demo 上线</a>
