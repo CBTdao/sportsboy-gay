@@ -2,24 +2,22 @@
 """gen_videos_page.py — 生成四语 /videos 频道页。
 
 设计：
-- 主播放器 = 具体视频 ID 内嵌（可靠、可播），替代不稳定的 listType=channel。
-- 下方 = 频道视频「并排缩略图画廊」，点缩略图切换主播放器。
-- 「自动轮播」按钮：静音自动循环切换画廊里的视频（浏览器允许静音自动播放）。
+- 顶部：主播放器 = 具体视频 ID 内嵌（可靠、可播）。
+- 下方：频道「上传播放列表」内嵌（listType=playlist），自动显示频道全部公开视频，并排网格、站内直接播放、以后上传自动出现。
+- 「自动轮播」按钮：静音自动循环切换顶部主播放器（已知视频）。
 - 订阅 / 看全部 外链（订阅关系与完整浏览必须在 YouTube 上）。
-频道 ID：UCw0gqeiGnH_vMeSxGQlBwvw
+频道 ID：UCw0gqeiGnH_vMeSxGQlBvw
 放置：/videos, /en/videos, /ja/videos, /ko/videos
 """
 import os
 
 SITE = "https://www.sportsboy.gay"
 CHANNEL = "UCw0gqeiGnH_vMeSxGQlBvw"
+UPLOADS = "UU" + CHANNEL[2:]   # 上传播放列表 ID（自动含频道全部公开视频）
 BASE = r"C:/Users/Administrator/WorkBuddy/2026-10-24-20-20-35/sportsboy-site"
 
-# 频道已发布视频（ZTO: 已知 ID；新增视频在此数组追加 {id,zh,en,ja,ko} 即可）
-VIDEOS = [
-    {"id": "zt0PQeRFJkc", "zh": "浓度测试 Shorts", "en": "Vibe Test Shorts", "ja": "濃度テスト Shorts", "ko": "농도 테스트 Shorts"},
-    {"id": "zjlhX0jBhbE", "zh": "篮球体育生图鉴", "en": "Basketball Jock Guide", "ja": "バスケ体育生図鑑", "ko": "농구 운동선수 가이드"},
-]
+# 已知视频（用于顶部主播放器默认 + 自动轮播；其余频道视频由上传播放列表自动展示）
+FEATURED = ["zt0PQeRFJkc", "zjlhX0jBhbE"]
 
 TPL = """<!DOCTYPE html>
 <html lang="__HTMLLANG__">
@@ -48,10 +46,6 @@ TPL = """<!DOCTYPE html>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/style.css">
 <style>
-.yt-thumb{position:relative;padding:0;border:2px solid transparent;border-radius:12px;overflow:hidden;cursor:pointer;background:#000;aspect-ratio:16/9;transition:border-color .2s}
-.yt-thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.yt-thumb:hover{border-color:#FF5C39}
-.yt-thumb.is-active{border-color:#FF5C39}
 #ytRotate.is-on{background:#FF5C39;border-color:#FF5C39}
 </style>
 <script type="application/ld+json">
@@ -64,13 +58,13 @@ TPL = """<!DOCTYPE html>
   <div class="container nav-inner">
     <a class="brand" href="/">SPORTSBOY<span class="brand-tld">.gay</span></a>
     <nav class="nav-links" id="navLinks">
-      <a href="#columns">王牌栏目</a>
-      <a href="#work">首部作品</a>
-      <a href="#flywheel">宇宙</a>
+      <a href="/#columns">王牌栏目</a>
+      <a href="/#work">首部作品</a>
+      <a href="/#flywheel">宇宙</a>
       <a href="/quiz">浓度测试</a>
       <a href="/concentration">浓度分布</a>
       <a href="/videos" class="is-current">__NAVVID__</a>
-      <a class="btn btn-primary btn-sm" href="#join">等 demo 上线</a>
+      <a class="btn btn-primary btn-sm" href="/#join">等 demo 上线</a>
     </nav>
     <div class="nav-side">
       <div class="lang-menu-wrap">
@@ -117,22 +111,24 @@ TPL = """<!DOCTYPE html>
       </div>
     </div>
 
-    <div id="ytGrid" style="margin-top:36px;display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
-__GRID__
+    <div class="yt-all" style="margin-top:44px">
+      <p class="section-desc" style="text-align:center;margin-bottom:14px">__ALL_TITLE__</p>
+      <div style="position:relative;width:100%;max-width:960px;margin:0 auto;aspect-ratio:16/9;background:#000;border-radius:14px;overflow:hidden">
+        <iframe src="https://www.youtube.com/embed?listType=playlist&amp;list=__UPLOADS__" title="__ALL_TITLE__" loading="lazy"
+          allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen
+          style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+      </div>
     </div>
 
     <script>
     (function(){
       var main=document.getElementById('ytMain');
-      var thumbs=[].slice.call(document.querySelectorAll('.yt-thumb'));
-      var ids=thumbs.map(function(t){return t.getAttribute('data-ytid');});
+      var ids=__IDS_JS__;
       var idx=0, timer=null, btn=document.getElementById('ytRotate');
       function load(i,auto){
         idx=(i%ids.length+ids.length)%ids.length;
         main.src='https://www.youtube.com/embed/'+ids[idx]+'?rel=0'+(auto?'&autoplay=1&mute=1':'');
-        thumbs.forEach(function(t,k){t.classList.toggle('is-active',k===idx);});
       }
-      thumbs.forEach(function(t,k){t.addEventListener('click',function(){stop();load(k,false);});});
       function start(){if(timer)return;btn.classList.add('is-on');timer=setInterval(function(){load(idx+1,true);},22000);}
       function stop(){if(timer){clearInterval(timer);timer=null;}btn.classList.remove('is-on');}
       btn.addEventListener('click',function(){timer?stop():start();});
@@ -165,8 +161,8 @@ __GRID__
       </div>
       <div class="footer-col">
         <h4>站点</h4>
-        <a href="#columns">王牌栏目</a>
-        <a href="#work">首部作品</a>
+        <a href="/#columns">王牌栏目</a>
+        <a href="/#work">首部作品</a>
         <a href="/quiz">浓度测试</a>
         <a href="/concentration">浓度分布</a>
         <a href="/videos">__NAVVID__</a>
@@ -201,8 +197,8 @@ LANGS = {
         "TITLE": "SportsBoy.gay — 视频频道", "VURL": "/videos", "CANON": "/videos",
         "DESC": "在 YouTube 追更 SportsBoy：体育生图鉴、浓度测试、短剧切片，每周新作不漏。",
         "SECTIONIDX": "05 / 视频", "H2": "在 YouTube 追更 SportsBoy",
-        "SECDESC": "体育生图鉴、浓度测试、短剧切片——都先在这里更新。点缩略图切换，或开自动轮播。",
-        "SUB": "订阅频道 @sportsboygay", "ROTATE": "自动轮播", "ALL": "频道全部视频",
+        "SECDESC": "体育生图鉴、浓度测试、短剧切片——都先在这里更新。上面看精选，下面看频道全部。",
+        "SUB": "订阅频道 @sportsboygay", "ROTATE": "自动轮播", "ALL": "频道全部视频", "ALL_TITLE": "频道全部视频",
         "F1T": "浓度测试 Shorts", "F1D": "第一条短片：测测你有多体育生。",
         "F2T": "篮球体育生图鉴", "F2D": "把篮球生从「基圈天菜」模板里请出来。",
         "WATCH": "去 YouTube 看", "AINOTE": "视频由 AI 辅助创作 · 角色均为成年人设定",
@@ -214,8 +210,8 @@ LANGS = {
         "TITLE": "SportsBoy.gay — Videos", "VURL": "/en/videos", "CANON": "/en/videos",
         "DESC": "Follow SportsBoy on YouTube: jock field guides, the vibe test, short-drama clips — updated here first.",
         "SECTIONIDX": "05 / VIDEOS", "H2": "Follow SportsBoy on YouTube",
-        "SECDESC": "Jock field guides, vibe test, short-drama clips — all updated here first. Click a thumb or hit auto-rotate.",
-        "SUB": "Subscribe @sportsboygay", "ROTATE": "Auto rotate", "ALL": "All on YouTube",
+        "SECDESC": "Jock field guides, vibe test, short-drama clips — all updated here first. Featured up top, full channel below.",
+        "SUB": "Subscribe @sportsboygay", "ROTATE": "Auto rotate", "ALL": "All on YouTube", "ALL_TITLE": "All channel videos",
         "F1T": "Vibe Test Shorts", "F1D": "Episode one: how jock are you?",
         "F2T": "Basketball Jock Guide", "F2D": "Take the baller out of the template.",
         "WATCH": "Watch on YouTube", "AINOTE": "Videos AI-assisted · all characters adults",
@@ -227,8 +223,8 @@ LANGS = {
         "TITLE": "SportsBoy.gay — 動画", "VURL": "/ja/videos", "CANON": "/ja/videos",
         "DESC": "SportsBoyをYouTubeで：体育生図鑑、濃度テスト、ショートドラマ。",
         "SECTIONIDX": "05 / 動画", "H2": "SportsBoyをYouTubeでフォロー",
-        "SECDESC": "体育生図鑑、濃度テスト、ショートドラマ——まずここで更新。サムネを押すか自動再生へ。",
-        "SUB": "チャンネル登録 @sportsboygay", "ROTATE": "自動再生", "ALL": "YouTube で見る",
+        "SECDESC": "体育生図鑑、濃度テスト、ショートドラマ——まずここで更新。上は精选、下はチャンネル全動画。",
+        "SUB": "チャンネル登録 @sportsboygay", "ROTATE": "自動再生", "ALL": "YouTube で見る", "ALL_TITLE": "チャンネル全動画",
         "F1T": "濃度テスト Shorts", "F1D": "第1弾：あなたはどれだけ体育生？",
         "F2T": "バスケ体育生図鑑", "F2D": "テンプレートから外すバスケ男子。",
         "WATCH": "YouTubeで見る", "AINOTE": "動画はAI補助制作・全キャラ成人設定",
@@ -240,8 +236,8 @@ LANGS = {
         "TITLE": "SportsBoy.gay — 영상", "VURL": "/ko/videos", "CANON": "/ko/videos",
         "DESC": "SportsBoy를 YouTube에서: 운동선수 필드 가이드, 농도 테스트, 숏드라마 클립.",
         "SECTIONIDX": "05 / 영상", "H2": "YouTube에서 SportsBoy 팔로우",
-        "SECDESC": "운동선수 필드 가이드, 농도 테스트, 숏드라마 클립——모두 여기서 먼저 업데이트. 썸네일을 누르거나 자동 재생.",
-        "SUB": "채널 구독 @sportsboygay", "ROTATE": "자동 재생", "ALL": "YouTube 에서 보기",
+        "SECDESC": "운동선수 필드 가이드, 농도 테스트, 숏드라마 클립——모두 여기서 먼저 업데이트. 위는精选, 아래는 채널 전체.",
+        "SUB": "채널 구독 @sportsboygay", "ROTATE": "자동 재생", "ALL": "YouTube 에서 보기", "ALL_TITLE": "채널 전체 영상",
         "F1T": "농도 테스트 Shorts", "F1D": "첫 에피소드: 당신은 얼마나 운동선수형?",
         "F2T": "농구 운동선수 가이드", "F2D": "템플릿에서 꺼내는 농구 선수.",
         "WATCH": "YouTube에서 보기", "AINOTE": "영상은 AI 보조 제작 · 모든 캐릭터 성인 설정",
@@ -250,33 +246,16 @@ LANGS = {
     },
 }
 
-
-def build_grid(code, d):
-    items = []
-    for v in VIDEOS:
-        vid = v["id"]
-        title = v[code]
-        items.append(
-            '      <button class="yt-thumb%(active)s" data-ytid="%(id)s" type="button">\n'
-            '        <img src="https://i.ytimg.com/vi/%(id)s/hqdefault.jpg" alt="%(t)s" loading="lazy">\n'
-            '        <span style="position:absolute;left:0;right:0;bottom:0;padding:6px 8px;font-size:13px;font-weight:700;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.78))">%(t)s</span>\n'
-            '      </button>' % {
-                "active": ' is-active' if vid == VIDEOS[0]["id"] else '',
-                "id": vid, "t": title,
-            }
-        )
-    return "\n".join(items)
-
-
 for code, d in LANGS.items():
     t = TPL
     for k, v in d.items():
         t = t.replace("__%s__" % k, v)
     t = t.replace("__CHANNEL__", CHANNEL)
+    t = t.replace("__UPLOADS__", UPLOADS)
     t = t.replace("__SITE__", SITE)
     t = t.replace("__OGURL__", SITE + d["CANON"])
-    t = t.replace("__GRID__", build_grid(code, d))
-    t = t.replace("__FIRSTID__", VIDEOS[0]["id"])
+    t = t.replace("__IDS_JS__", str(FEATURED))
+    t = t.replace("__FIRSTID__", FEATURED[0])
     t = t.replace("__ACTIVE_ZH__", "is-active" if code == "zh" else "")
     t = t.replace("__ACTIVE_EN__", "is-active" if code == "en" else "")
     t = t.replace("__ACTIVE_JA__", "is-active" if code == "ja" else "")

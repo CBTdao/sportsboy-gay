@@ -25,10 +25,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/style.css">
 <style>
-.yt-thumb{position:relative;padding:0;border:2px solid transparent;border-radius:12px;overflow:hidden;cursor:pointer;background:#000;aspect-ratio:16/9;transition:border-color .2s}
-.yt-thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.yt-thumb:hover{border-color:#FF5C39}
-.yt-thumb.is-active{border-color:#FF5C39}
 #ytRotate.is-on{background:#FF5C39;border-color:#FF5C39}
 </style>
 <script type="application/ld+json">
@@ -41,13 +37,13 @@
   <div class="container nav-inner">
     <a class="brand" href="/">SPORTSBOY<span class="brand-tld">.gay</span></a>
     <nav class="nav-links" id="navLinks">
-      <a href="#columns">王牌栏目</a>
-      <a href="#work">首部作品</a>
-      <a href="#flywheel">宇宙</a>
+      <a href="/#columns">王牌栏目</a>
+      <a href="/#work">首部作品</a>
+      <a href="/#flywheel">宇宙</a>
       <a href="/quiz">浓度测试</a>
       <a href="/concentration">浓度分布</a>
       <a href="/videos" class="is-current">動画</a>
-      <a class="btn btn-primary btn-sm" href="#join">等 demo 上线</a>
+      <a class="btn btn-primary btn-sm" href="/#join">等 demo 上线</a>
     </nav>
     <div class="nav-side">
       <div class="lang-menu-wrap">
@@ -78,7 +74,7 @@
     <div class="section-head reveal">
       <p class="section-index">05 / 動画</p>
       <h2>SportsBoyをYouTubeでフォロー</h2>
-      <p class="section-desc">体育生図鑑、濃度テスト、ショートドラマ——まずここで更新。サムネを押すか自動再生へ。</p>
+      <p class="section-desc">体育生図鑑、濃度テスト、ショートドラマ——まずここで更新。上は精选、下はチャンネル全動画。</p>
     </div>
 
     <div class="yt-showcase" style="max-width:760px;margin:24px auto 0">
@@ -94,29 +90,24 @@
       </div>
     </div>
 
-    <div id="ytGrid" style="margin-top:36px;display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
-      <button class="yt-thumb is-active" data-ytid="zt0PQeRFJkc" type="button">
-        <img src="https://i.ytimg.com/vi/zt0PQeRFJkc/hqdefault.jpg" alt="濃度テスト Shorts" loading="lazy">
-        <span style="position:absolute;left:0;right:0;bottom:0;padding:6px 8px;font-size:13px;font-weight:700;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.78))">濃度テスト Shorts</span>
-      </button>
-      <button class="yt-thumb" data-ytid="zjlhX0jBhbE" type="button">
-        <img src="https://i.ytimg.com/vi/zjlhX0jBhbE/hqdefault.jpg" alt="バスケ体育生図鑑" loading="lazy">
-        <span style="position:absolute;left:0;right:0;bottom:0;padding:6px 8px;font-size:13px;font-weight:700;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.78))">バスケ体育生図鑑</span>
-      </button>
+    <div class="yt-all" style="margin-top:44px">
+      <p class="section-desc" style="text-align:center;margin-bottom:14px">チャンネル全動画</p>
+      <div style="position:relative;width:100%;max-width:960px;margin:0 auto;aspect-ratio:16/9;background:#000;border-radius:14px;overflow:hidden">
+        <iframe src="https://www.youtube.com/embed?listType=playlist&amp;list=UUw0gqeiGnH_vMeSxGQlBvw" title="チャンネル全動画" loading="lazy"
+          allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen
+          style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+      </div>
     </div>
 
     <script>
     (function(){
       var main=document.getElementById('ytMain');
-      var thumbs=[].slice.call(document.querySelectorAll('.yt-thumb'));
-      var ids=thumbs.map(function(t){return t.getAttribute('data-ytid');});
+      var ids=['zt0PQeRFJkc', 'zjlhX0jBhbE'];
       var idx=0, timer=null, btn=document.getElementById('ytRotate');
       function load(i,auto){
         idx=(i%ids.length+ids.length)%ids.length;
         main.src='https://www.youtube.com/embed/'+ids[idx]+'?rel=0'+(auto?'&autoplay=1&mute=1':'');
-        thumbs.forEach(function(t,k){t.classList.toggle('is-active',k===idx);});
       }
-      thumbs.forEach(function(t,k){t.addEventListener('click',function(){stop();load(k,false);});});
       function start(){if(timer)return;btn.classList.add('is-on');timer=setInterval(function(){load(idx+1,true);},22000);}
       function stop(){if(timer){clearInterval(timer);timer=null;}btn.classList.remove('is-on');}
       btn.addEventListener('click',function(){timer?stop():start();});
@@ -149,8 +140,8 @@
       </div>
       <div class="footer-col">
         <h4>站点</h4>
-        <a href="#columns">王牌栏目</a>
-        <a href="#work">首部作品</a>
+        <a href="/#columns">王牌栏目</a>
+        <a href="/#work">首部作品</a>
         <a href="/quiz">浓度测试</a>
         <a href="/concentration">浓度分布</a>
         <a href="/videos">動画</a>
