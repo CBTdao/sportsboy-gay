@@ -2,22 +2,73 @@
 """gen_videos_page.py — 生成四语 /videos 频道页。
 
 设计：
-- 顶部：主播放器 = 具体视频 ID 内嵌（可靠、可播）。
-- 下方：频道「上传播放列表」内嵌（listType=playlist），自动显示频道全部公开视频，并排网格、站内直接播放、以后上传自动出现。
-- 「自动轮播」按钮：静音自动循环切换顶部主播放器（已知视频）。
+- 顶部：主播放器 = 具体视频 ID 内嵌（可靠、可播），支持「自动轮播」静音循环切换已知精选。
+- 下方：构建期从 YouTube RSS 拉取频道全部公开视频，渲染成缩略图画廊（每个卡片 = 具体视频 ID，
+  点击即在站内主播放器播放，不依赖不稳定的 playlist 嵌入）。频道上传新片后，重新生成即更新。
 - 订阅 / 看全部 外链（订阅关系与完整浏览必须在 YouTube 上）。
-频道 ID：UCw0gqeiGnH_vMeSxGQlBvw
+频道 ID：UCw0gqeiGnH_vMeSxGQlBwvw  （注意结尾是 Bwvw，勿漏 w）
 放置：/videos, /en/videos, /ja/videos, /ko/videos
 """
 import os
+import xml.etree.ElementTree as ET
+from html import escape
+import urllib.request
 
 SITE = "https://www.sportsboy.gay"
-CHANNEL = "UCw0gqeiGnH_vMeSxGQlBvw"
-UPLOADS = "UU" + CHANNEL[2:]   # 上传播放列表 ID（自动含频道全部公开视频）
+CHANNEL = "UCw0gqeiGnH_vMeSxGQlBwvw"          # 真实频道 ID（结尾 Bwvw）
+UPLOADS = "UU" + CHANNEL[2:]                   # 上传播放列表 ID（备用）
+RSS = "https://www.youtube.com/feeds/videos.xml?channel_id=" + CHANNEL
 BASE = r"C:/Users/Administrator/WorkBuddy/2026-10-24-20-20-35/sportsboy-site"
 
-# 已知视频（用于顶部主播放器默认 + 自动轮播；其余频道视频由上传播放列表自动展示）
+# 已知精选（用于顶部主播放器默认 + 自动轮播）
 FEATURED = ["zt0PQeRFJkc", "zjlhX0jBhbE"]
+
+# 离线兜底：RSS 拉取失败时使用（当前频道真实视频，避免空白）
+FALLBACK = [
+    ("f3kuAUt8xsw", "更衣室文化考：体育生的第三空间｜SportsBoy 图鉴 03"),
+    ("52KI4WEheo4", "健身房体育生图鉴：练得最狠，话最少｜SportsBoy 图鉴 02"),
+    ("yEs3xaG8o1k", "体育生家族里最安静的一支，靠白袜认领身份"),
+    ("zjlhX0jBhbE", "怎么一眼认出篮球体育生？看这四条 | SportsBoy"),
+    ("zt0PQeRFJkc", "直男做体育生浓度测试，做到第三题破防了 | SportsBoy"),
+]
+
+
+def fetch_videos():
+    """从 YouTube RSS 拉取频道全部公开视频，返回 [(video_id, title), ...]（最新在前）。"""
+    try:
+        req = urllib.request.Request(RSS, headers={"User-Agent": "Mozilla/5.0"})
+        data = urllib.request.urlopen(req, timeout=20).read()
+        root = ET.fromstring(data)
+        ns = {
+            "a": "http://www.w3.org/2005/Atom",
+            "yt": "http://www.youtube.com/xml/schemas/2015",
+        }
+        out = []
+        for e in root.findall("a:entry", ns):
+            vid = e.find("yt:videoId", ns)
+            title = e.find("a:title", ns)
+            if vid is not None and vid.text:
+                out.append((vid.text, title.text if title is not None else ""))
+        if out:
+            print("RSS ok, %d videos" % len(out))
+            return out
+    except Exception as ex:
+        print("RSS fetch failed, use fallback:", ex)
+    return FALLBACK
+
+
+def build_gallery(videos):
+    cards = []
+    for vid, title in videos:
+        t = escape(title or vid)
+        cards.append(
+            '<a class="yt-card" data-vid="%s" href="#ytMainWrap">'
+            '<span class="yt-thumb"><img src="https://i.ytimg.com/vi/%s/hqdefault.jpg" '
+            'alt="%s" loading="lazy"></span>'
+            '<span class="yt-card-title">%s</span></a>' % (vid, vid, t, t)
+        )
+    return "\n".join(cards)
+
 
 TPL = """<!DOCTYPE html>
 <html lang="__HTMLLANG__">
@@ -47,6 +98,14 @@ TPL = """<!DOCTYPE html>
 <link rel="stylesheet" href="/assets/css/style.css">
 <style>
 #ytRotate.is-on{background:#FF5C39;border-color:#FF5C39}
+.yt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;max-width:960px;margin:0 auto}
+.yt-card{display:block;text-decoration:none;color:inherit;background:#16140F;border:1px solid #2a2620;border-radius:12px;overflow:hidden;transition:.18s;cursor:pointer}
+.yt-card:hover{border-color:#FF5C39;transform:translateY(-2px)}
+.yt-thumb{display:block;position:relative;aspect-ratio:16/9;background:#000}
+.yt-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.yt-thumb:after{content:"\\25B6";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;background:rgba(0,0,0,.25);opacity:0;transition:.18s}
+.yt-card:hover .yt-thumb:after{opacity:1}
+.yt-card-title{padding:10px 12px;font-size:13px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 </style>
 <script type="application/ld+json">
 { "@context":"https://schema.org", "@type":"WebSite", "name":"SportsBoy.gay", "url":"__OGURL__", "inLanguage":"__HTMLLANG__", "description":"__DESC__", "publisher":{ "@type":"Organization", "name":"SportsBoy.gay", "url":"__SITE__/" } }
@@ -99,7 +158,7 @@ TPL = """<!DOCTYPE html>
     </div>
 
     <div class="yt-showcase" style="max-width:760px;margin:24px auto 0">
-      <div style="position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:14px;overflow:hidden">
+      <div id="ytMainWrap" style="position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:14px;overflow:hidden">
         <iframe id="ytMain" src="https://www.youtube.com/embed/__FIRSTID__?rel=0" title="__F1T__" loading="lazy"
           allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen
           style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
@@ -113,16 +172,13 @@ TPL = """<!DOCTYPE html>
 
     <div class="yt-all" style="margin-top:44px">
       <p class="section-desc" style="text-align:center;margin-bottom:14px">__ALL_TITLE__</p>
-      <div style="position:relative;width:100%;max-width:960px;margin:0 auto;aspect-ratio:16/9;background:#000;border-radius:14px;overflow:hidden">
-        <iframe src="https://www.youtube.com/embed?listType=playlist&amp;list=__UPLOADS__" title="__ALL_TITLE__" loading="lazy"
-          allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen
-          style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
-      </div>
+      <div class="yt-grid">__GALLERY__</div>
     </div>
 
     <script>
     (function(){
       var main=document.getElementById('ytMain');
+      var wrap=document.getElementById('ytMainWrap');
       var ids=__IDS_JS__;
       var idx=0, timer=null, btn=document.getElementById('ytRotate');
       function load(i,auto){
@@ -132,6 +188,14 @@ TPL = """<!DOCTYPE html>
       function start(){if(timer)return;btn.classList.add('is-on');timer=setInterval(function(){load(idx+1,true);},22000);}
       function stop(){if(timer){clearInterval(timer);timer=null;}btn.classList.remove('is-on');}
       btn.addEventListener('click',function(){timer?stop():start();});
+      document.querySelectorAll('.yt-card').forEach(function(c){
+        c.addEventListener('click',function(ev){
+          ev.preventDefault();
+          stop();
+          main.src='https://www.youtube.com/embed/'+c.getAttribute('data-vid')+'?rel=0';
+          if(wrap) wrap.scrollIntoView({behavior:'smooth',block:'start'});
+        });
+      });
     })();
     </script>
 
@@ -197,7 +261,7 @@ LANGS = {
         "TITLE": "SportsBoy.gay — 视频频道", "VURL": "/videos", "CANON": "/videos",
         "DESC": "在 YouTube 追更 SportsBoy：体育生图鉴、浓度测试、短剧切片，每周新作不漏。",
         "SECTIONIDX": "05 / 视频", "H2": "在 YouTube 追更 SportsBoy",
-        "SECDESC": "体育生图鉴、浓度测试、短剧切片——都先在这里更新。上面看精选，下面看频道全部。",
+        "SECDESC": "体育生图鉴、浓度测试、短剧切片——都先在这里更新。上面看精选，下面点开看全部。",
         "SUB": "订阅频道 @sportsboygay", "ROTATE": "自动轮播", "ALL": "频道全部视频", "ALL_TITLE": "频道全部视频",
         "F1T": "浓度测试 Shorts", "F1D": "第一条短片：测测你有多体育生。",
         "F2T": "篮球体育生图鉴", "F2D": "把篮球生从「基圈天菜」模板里请出来。",
@@ -210,7 +274,7 @@ LANGS = {
         "TITLE": "SportsBoy.gay — Videos", "VURL": "/en/videos", "CANON": "/en/videos",
         "DESC": "Follow SportsBoy on YouTube: jock field guides, the vibe test, short-drama clips — updated here first.",
         "SECTIONIDX": "05 / VIDEOS", "H2": "Follow SportsBoy on YouTube",
-        "SECDESC": "Jock field guides, vibe test, short-drama clips — all updated here first. Featured up top, full channel below.",
+        "SECDESC": "Jock field guides, vibe test, short-drama clips — all updated here first. Featured up top, full list below.",
         "SUB": "Subscribe @sportsboygay", "ROTATE": "Auto rotate", "ALL": "All on YouTube", "ALL_TITLE": "All channel videos",
         "F1T": "Vibe Test Shorts", "F1D": "Episode one: how jock are you?",
         "F2T": "Basketball Jock Guide", "F2D": "Take the baller out of the template.",
@@ -246,6 +310,9 @@ LANGS = {
     },
 }
 
+videos = fetch_videos()
+gallery_html = build_gallery(videos)
+
 for code, d in LANGS.items():
     t = TPL
     for k, v in d.items():
@@ -256,6 +323,7 @@ for code, d in LANGS.items():
     t = t.replace("__OGURL__", SITE + d["CANON"])
     t = t.replace("__IDS_JS__", str(FEATURED))
     t = t.replace("__FIRSTID__", FEATURED[0])
+    t = t.replace("__GALLERY__", gallery_html)
     t = t.replace("__ACTIVE_ZH__", "is-active" if code == "zh" else "")
     t = t.replace("__ACTIVE_EN__", "is-active" if code == "en" else "")
     t = t.replace("__ACTIVE_JA__", "is-active" if code == "ja" else "")
