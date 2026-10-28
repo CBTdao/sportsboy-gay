@@ -217,4 +217,36 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/almanac/basketball"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/almanac/basketball"/>
   </url>
+  <url>
+    <loc>https://www.sportsboy.gay/videos</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/videos"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/videos"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/videos"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/videos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/videos"/>
+  </url>
+  <url>
+    <loc>https://www.sportsboy.gay/en/videos</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/videos"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/videos"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/videos"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/videos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/videos"/>
+  </url>
+  <url>
+    <loc>https://www.sportsboy.gay/ja/videos</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/videos"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/videos"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/videos"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/videos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/videos"/>
+  </url>
+  <url>
+    <loc>https://www.sportsboy.gay/ko/videos</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/videos"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/videos"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/videos"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/videos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/videos"/>
+  </url>
 </urlset>
