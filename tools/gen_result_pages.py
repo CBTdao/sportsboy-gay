@@ -357,9 +357,14 @@ def gen_page(lang, t):
 
 
 def gen_sitemap():
-    """8 个既有 URL + 16 个结果页 URL，每个 URL 带完整 hreflang 簇。"""
+    """8 基础页 + 16 结果页 + N 图鉴栏目文（中文单语），每个 URL 带完整 hreflang 簇。"""
     base_pages = ["/", "/en", "/ja", "/ko", "/quiz", "/en/quiz", "/ja/quiz", "/ko/quiz"]
     result_pages = [page_url(l, t).replace(SITE, "") for l in LANG_ORDER for t in TYPES]
+    # 图鉴栏目文：中文单语，只挂 zh-CN + x-default（无 EN/JA/KO 版本）
+    almanac_pages = [
+        "/almanac/swim-jock", "/almanac/white-sock", "/almanac/locker-room",
+        "/almanac/fake-jock", "/almanac/basketball",
+    ]
 
     def alternates_for(url):
         # 同一 hreflang 簇：基础页按目录聚合，结果页按 type 聚合
@@ -368,6 +373,9 @@ def gen_sitemap():
             cluster = [page_url(l, t).replace(SITE, "") for l in LANG_ORDER]
         elif url.endswith("/quiz"):
             cluster = ["/quiz", "/en/quiz", "/ja/quiz", "/ko/quiz"]
+        elif "/almanac/" in url:
+            return ('    <xhtml:link rel="alternate" hreflang="zh-CN" href="%s%s"/>\n'
+                    '    <xhtml:link rel="alternate" hreflang="x-default" href="%s%s"/>') % (SITE, url, SITE, url)
         else:
             cluster = ["/", "/en", "/ja", "/ko"]
         lines = []
@@ -377,7 +385,7 @@ def gen_sitemap():
         return "\n".join(lines)
 
     blocks = []
-    for url in base_pages + result_pages:
+    for url in base_pages + result_pages + almanac_pages:
         blocks.append("  <url>\n    <loc>%s%s</loc>\n%s\n  </url>" % (SITE, url, alternates_for(url)))
     return (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
