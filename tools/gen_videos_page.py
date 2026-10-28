@@ -97,7 +97,7 @@ TPL = """<!DOCTYPE html>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/style.css">
 <style>
-#ytRotate.is-on{background:#FF5C39;border-color:#FF5C39}
+#ytRotate.is-on{background:#11100c;color:#FF5C39;border-color:#FF5C39}
 .yt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;max-width:960px;margin:0 auto}
 .yt-card{display:block;text-decoration:none;color:inherit;background:#16140F;border:1px solid #2a2620;border-radius:12px;overflow:hidden;transition:.18s;cursor:pointer}
 .yt-card:hover{border-color:#FF5C39;transform:translateY(-2px)}
@@ -179,16 +179,29 @@ TPL = """<!DOCTYPE html>
     (function(){
       var main=document.getElementById('ytMain');
       var wrap=document.getElementById('ytMainWrap');
+      var btn=document.getElementById('ytRotate');
       var ids=__IDS_JS__;
-      var idx=0, timer=null, btn=document.getElementById('ytRotate');
+      var idx=0, timer=null;
+      var LABEL_ON='&#9654; __ROTATE__', LABEL_OFF='&#9632; __STOP__';
       function load(i,auto){
         idx=(i%ids.length+ids.length)%ids.length;
         main.src='https://www.youtube.com/embed/'+ids[idx]+'?rel=0'+(auto?'&autoplay=1&mute=1':'');
       }
-      function start(){if(timer)return;btn.classList.add('is-on');timer=setInterval(function(){load(idx+1,true);},22000);}
-      function stop(){if(timer){clearInterval(timer);timer=null;}btn.classList.remove('is-on');}
-      btn.addEventListener('click',function(){timer?stop():start();});
-      document.querySelectorAll('.yt-card').forEach(function(c){
+      function start(){
+        if(timer) return;
+        btn.classList.add('is-on');
+        btn.innerHTML=LABEL_OFF;
+        load(idx+1,true);                       // 立即切到下一支，给出即时反馈
+        timer=setInterval(function(){load(idx+1,true);},22000);
+      }
+      function stop(){
+        if(timer){clearInterval(timer);timer=null;}
+        btn.classList.remove('is-on');
+        btn.innerHTML=LABEL_ON;
+      }
+      if(btn){ btn.addEventListener('click',function(){ timer?stop():start(); }); }
+      var cards=document.querySelectorAll('.yt-card');
+      Array.prototype.forEach.call(cards,function(c){
         c.addEventListener('click',function(ev){
           ev.preventDefault();
           stop();
@@ -262,7 +275,7 @@ LANGS = {
         "DESC": "在 YouTube 追更 SportsBoy：体育生图鉴、浓度测试、短剧切片，每周新作不漏。",
         "SECTIONIDX": "05 / 视频", "H2": "在 YouTube 追更 SportsBoy",
         "SECDESC": "体育生图鉴、浓度测试、短剧切片——都先在这里更新。上面看精选，下面点开看全部。",
-        "SUB": "订阅频道 @sportsboygay", "ROTATE": "自动轮播", "ALL": "频道全部视频", "ALL_TITLE": "频道全部视频",
+        "SUB": "订阅频道 @sportsboygay", "ROTATE": "自动轮播", "STOP": "停止轮播", "ALL": "频道全部视频", "ALL_TITLE": "频道全部视频",
         "F1T": "浓度测试 Shorts", "F1D": "第一条短片：测测你有多体育生。",
         "F2T": "篮球体育生图鉴", "F2D": "把篮球生从「基圈天菜」模板里请出来。",
         "WATCH": "去 YouTube 看", "AINOTE": "视频由 AI 辅助创作 · 角色均为成年人设定",
@@ -275,7 +288,7 @@ LANGS = {
         "DESC": "Follow SportsBoy on YouTube: jock field guides, the vibe test, short-drama clips — updated here first.",
         "SECTIONIDX": "05 / VIDEOS", "H2": "Follow SportsBoy on YouTube",
         "SECDESC": "Jock field guides, vibe test, short-drama clips — all updated here first. Featured up top, full list below.",
-        "SUB": "Subscribe @sportsboygay", "ROTATE": "Auto rotate", "ALL": "All on YouTube", "ALL_TITLE": "All channel videos",
+        "SUB": "Subscribe @sportsboygay", "ROTATE": "Auto rotate", "STOP": "Stop", "ALL": "All on YouTube", "ALL_TITLE": "All channel videos",
         "F1T": "Vibe Test Shorts", "F1D": "Episode one: how jock are you?",
         "F2T": "Basketball Jock Guide", "F2D": "Take the baller out of the template.",
         "WATCH": "Watch on YouTube", "AINOTE": "Videos AI-assisted · all characters adults",
@@ -288,7 +301,7 @@ LANGS = {
         "DESC": "SportsBoyをYouTubeで：体育生図鑑、濃度テスト、ショートドラマ。",
         "SECTIONIDX": "05 / 動画", "H2": "SportsBoyをYouTubeでフォロー",
         "SECDESC": "体育生図鑑、濃度テスト、ショートドラマ——まずここで更新。上は精选、下はチャンネル全動画。",
-        "SUB": "チャンネル登録 @sportsboygay", "ROTATE": "自動再生", "ALL": "YouTube で見る", "ALL_TITLE": "チャンネル全動画",
+        "SUB": "チャンネル登録 @sportsboygay", "ROTATE": "自動再生", "STOP": "停止", "ALL": "YouTube で見る", "ALL_TITLE": "チャンネル全動画",
         "F1T": "濃度テスト Shorts", "F1D": "第1弾：あなたはどれだけ体育生？",
         "F2T": "バスケ体育生図鑑", "F2D": "テンプレートから外すバスケ男子。",
         "WATCH": "YouTubeで見る", "AINOTE": "動画はAI補助制作・全キャラ成人設定",
@@ -301,7 +314,7 @@ LANGS = {
         "DESC": "SportsBoy를 YouTube에서: 운동선수 필드 가이드, 농도 테스트, 숏드라마 클립.",
         "SECTIONIDX": "05 / 영상", "H2": "YouTube에서 SportsBoy 팔로우",
         "SECDESC": "운동선수 필드 가이드, 농도 테스트, 숏드라마 클립——모두 여기서 먼저 업데이트. 위는精选, 아래는 채널 전체.",
-        "SUB": "채널 구독 @sportsboygay", "ROTATE": "자동 재생", "ALL": "YouTube 에서 보기", "ALL_TITLE": "채널 전체 영상",
+        "SUB": "채널 구독 @sportsboygay", "ROTATE": "자동 재생", "STOP": "정지", "ALL": "YouTube 에서 보기", "ALL_TITLE": "채널 전체 영상",
         "F1T": "농도 테스트 Shorts", "F1D": "첫 에피소드: 당신은 얼마나 운동선수형?",
         "F2T": "농구 운동선수 가이드", "F2D": "템플릿에서 꺼내는 농구 선수.",
         "WATCH": "YouTube에서 보기", "AINOTE": "영상은 AI 보조 제작 · 모든 캐릭터 성인 설정",

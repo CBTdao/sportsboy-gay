@@ -25,7 +25,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/style.css">
 <style>
-#ytRotate.is-on{background:#FF5C39;border-color:#FF5C39}
+#ytRotate.is-on{background:#11100c;color:#FF5C39;border-color:#FF5C39}
 .yt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;max-width:960px;margin:0 auto}
 .yt-card{display:block;text-decoration:none;color:inherit;background:#16140F;border:1px solid #2a2620;border-radius:12px;overflow:hidden;transition:.18s;cursor:pointer}
 .yt-card:hover{border-color:#FF5C39;transform:translateY(-2px)}
@@ -111,16 +111,29 @@
     (function(){
       var main=document.getElementById('ytMain');
       var wrap=document.getElementById('ytMainWrap');
+      var btn=document.getElementById('ytRotate');
       var ids=['zt0PQeRFJkc', 'zjlhX0jBhbE'];
-      var idx=0, timer=null, btn=document.getElementById('ytRotate');
+      var idx=0, timer=null;
+      var LABEL_ON='&#9654; 自动轮播', LABEL_OFF='&#9632; 停止轮播';
       function load(i,auto){
         idx=(i%ids.length+ids.length)%ids.length;
         main.src='https://www.youtube.com/embed/'+ids[idx]+'?rel=0'+(auto?'&autoplay=1&mute=1':'');
       }
-      function start(){if(timer)return;btn.classList.add('is-on');timer=setInterval(function(){load(idx+1,true);},22000);}
-      function stop(){if(timer){clearInterval(timer);timer=null;}btn.classList.remove('is-on');}
-      btn.addEventListener('click',function(){timer?stop():start();});
-      document.querySelectorAll('.yt-card').forEach(function(c){
+      function start(){
+        if(timer) return;
+        btn.classList.add('is-on');
+        btn.innerHTML=LABEL_OFF;
+        load(idx+1,true);                       // 立即切到下一支，给出即时反馈
+        timer=setInterval(function(){load(idx+1,true);},22000);
+      }
+      function stop(){
+        if(timer){clearInterval(timer);timer=null;}
+        btn.classList.remove('is-on');
+        btn.innerHTML=LABEL_ON;
+      }
+      if(btn){ btn.addEventListener('click',function(){ timer?stop():start(); }); }
+      var cards=document.querySelectorAll('.yt-card');
+      Array.prototype.forEach.call(cards,function(c){
         c.addEventListener('click',function(ev){
           ev.preventDefault();
           stop();
