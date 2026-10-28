@@ -24,6 +24,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/style.css">
+<style>
+.yt-thumb{position:relative;padding:0;border:2px solid transparent;border-radius:12px;overflow:hidden;cursor:pointer;background:#000;aspect-ratio:16/9;transition:border-color .2s}
+.yt-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.yt-thumb:hover{border-color:#FF5C39}
+.yt-thumb.is-active{border-color:#FF5C39}
+#ytRotate.is-on{background:#FF5C39;border-color:#FF5C39}
+</style>
 <script type="application/ld+json">
 { "@context":"https://schema.org", "@type":"WebSite", "name":"SportsBoy.gay", "url":"https://www.sportsboy.gay/ko/videos", "inLanguage":"ko", "description":"SportsBoy를 YouTube에서: 운동선수 필드 가이드, 농도 테스트, 숏드라마 클립.", "publisher":{ "@type":"Organization", "name":"SportsBoy.gay", "url":"https://www.sportsboy.gay/" } }
 </script>
@@ -39,7 +46,7 @@
       <a href="#flywheel">宇宙</a>
       <a href="/quiz">浓度测试</a>
       <a href="/concentration">浓度分布</a>
-      <a href="/ko/videos" class="is-current">영상</a>
+      <a href="/videos" class="is-current">영상</a>
       <a class="btn btn-primary btn-sm" href="#join">等 demo 上线</a>
     </nav>
     <div class="nav-side">
@@ -71,38 +78,51 @@
     <div class="section-head reveal">
       <p class="section-index">05 / 영상</p>
       <h2>YouTube에서 SportsBoy 팔로우</h2>
-      <p class="section-desc">운동선수 필드 가이드, 농도 테스트, 숏드라마 클립——모두 여기서 먼저 업데이트. 구독하고 새 작품 놓치지 마세요.</p>
+      <p class="section-desc">운동선수 필드 가이드, 농도 테스트, 숏드라마 클립——모두 여기서 먼저 업데이트. 썸네일을 누르거나 자동 재생.</p>
     </div>
-    <div style="position:relative;width:100%;max-width:960px;margin:24px auto 0;aspect-ratio:16/9;background:#000;border-radius:14px;overflow:hidden">
-      <iframe src="https://www.youtube.com/embed?listType=channel&amp;list=UCw0gqeiGnH_vMeSxGQlBwvw" title="SportsBoy YouTube channel" loading="lazy"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
-        style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+
+    <div class="yt-showcase" style="max-width:760px;margin:24px auto 0">
+      <div style="position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:14px;overflow:hidden">
+        <iframe id="ytMain" src="https://www.youtube.com/embed/zt0PQeRFJkc?rel=0" title="농도 테스트 Shorts" loading="lazy"
+          allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen
+          style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+      </div>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:14px">
+        <button id="ytRotate" class="btn btn-primary btn-sm" type="button">&#9654; 자동 재생</button>
+        <a class="btn btn-ghost btn-sm" href="https://www.youtube.com/@sportsboygay?sub_confirmation=1" target="_blank" rel="noopener">&#9654; 채널 구독 @sportsboygay</a>
+        <a class="btn btn-ghost btn-sm" href="https://www.youtube.com/@sportsboygay/videos" target="_blank" rel="noopener">YouTube 에서 보기</a>
+      </div>
     </div>
-    <div class="hero-ctas" style="justify-content:center;margin-top:24px">
-      <a class="btn btn-primary" href="https://www.youtube.com/@sportsboygay?sub_confirmation=1" target="_blank" rel="noopener">&#9654; 채널 구독 @sportsboygay</a>
+
+    <div id="ytGrid" style="margin-top:36px;display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+      <button class="yt-thumb is-active" data-ytid="zt0PQeRFJkc" type="button">
+        <img src="https://i.ytimg.com/vi/zt0PQeRFJkc/hqdefault.jpg" alt="농도 테스트 Shorts" loading="lazy">
+        <span style="position:absolute;left:0;right:0;bottom:0;padding:6px 8px;font-size:13px;font-weight:700;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.78))">농도 테스트 Shorts</span>
+      </button>
+      <button class="yt-thumb" data-ytid="zjlhX0jBhbE" type="button">
+        <img src="https://i.ytimg.com/vi/zjlhX0jBhbE/hqdefault.jpg" alt="농구 운동선수 가이드" loading="lazy">
+        <span style="position:absolute;left:0;right:0;bottom:0;padding:6px 8px;font-size:13px;font-weight:700;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.78))">농구 운동선수 가이드</span>
+      </button>
     </div>
-    <div class="video-grid" style="margin-top:48px;display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
-      <figure class="reveal" style="margin:0">
-        <div style="position:relative;width:100%;aspect-ratio:9/16;background:#000;border-radius:12px;overflow:hidden">
-          <iframe src="https://www.youtube.com/embed/zt0PQeRFJkc?rel=0" title="농도 테스트 Shorts" loading="lazy"
-            allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen
-            style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
-        </div>
-        <figcaption style="margin-top:10px;font-weight:700;color:#fff">농도 테스트 Shorts</figcaption>
-        <p style="margin:4px 0 0;font-size:14px;color:#b9b4ab">첫 에피소드: 당신은 얼마나 운동선수형?</p>
-        <a class="card-go" style="display:inline-block;margin-top:6px;font-size:13px" href="https://www.youtube.com/watch?v=zt0PQeRFJkc&amp;utm_source=sportsboy&amp;utm_medium=site&amp;utm_campaign=videos" target="_blank" rel="noopener">YouTube에서 보기 &rarr;</a>
-      </figure>
-      <figure class="reveal" style="margin:0">
-        <div style="position:relative;width:100%;aspect-ratio:9/16;background:#000;border-radius:12px;overflow:hidden">
-          <iframe src="https://www.youtube.com/embed/zjlhX0jBhbE?rel=0" title="농구 운동선수 가이드" loading="lazy"
-            allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen
-            style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
-        </div>
-        <figcaption style="margin-top:10px;font-weight:700;color:#fff">농구 운동선수 가이드</figcaption>
-        <p style="margin:4px 0 0;font-size:14px;color:#b9b4ab">템플릿에서 꺼내는 농구 선수.</p>
-        <a class="card-go" style="display:inline-block;margin-top:6px;font-size:13px" href="https://www.youtube.com/watch?v=zjlhX0jBhbE&amp;utm_source=sportsboy&amp;utm_medium=site&amp;utm_campaign=videos" target="_blank" rel="noopener">YouTube에서 보기 &rarr;</a>
-      </figure>
-    </div>
+
+    <script>
+    (function(){
+      var main=document.getElementById('ytMain');
+      var thumbs=[].slice.call(document.querySelectorAll('.yt-thumb'));
+      var ids=thumbs.map(function(t){return t.getAttribute('data-ytid');});
+      var idx=0, timer=null, btn=document.getElementById('ytRotate');
+      function load(i,auto){
+        idx=(i%ids.length+ids.length)%ids.length;
+        main.src='https://www.youtube.com/embed/'+ids[idx]+'?rel=0'+(auto?'&autoplay=1&mute=1':'');
+        thumbs.forEach(function(t,k){t.classList.toggle('is-active',k===idx);});
+      }
+      thumbs.forEach(function(t,k){t.addEventListener('click',function(){stop();load(k,false);});});
+      function start(){if(timer)return;btn.classList.add('is-on');timer=setInterval(function(){load(idx+1,true);},22000);}
+      function stop(){if(timer){clearInterval(timer);timer=null;}btn.classList.remove('is-on');}
+      btn.addEventListener('click',function(){timer?stop():start();});
+    })();
+    </script>
+
     <p class="hero-meta" style="text-align:center;margin-top:32px">영상은 AI 보조 제작 · 모든 캐릭터 성인 설정</p>
   </div>
 </section>
@@ -133,7 +153,7 @@
         <a href="#work">首部作品</a>
         <a href="/quiz">浓度测试</a>
         <a href="/concentration">浓度分布</a>
-        <a href="/ko/videos">영상</a>
+        <a href="/videos">영상</a>
       </div>
       <div class="footer-col">
         <h4>社区</h4>
