@@ -93,19 +93,27 @@ TPL = """<!DOCTYPE html>
     <div class="hero-ctas" style="justify-content:center;margin-top:24px">
       <a class="btn btn-primary" href="https://www.youtube.com/@sportsboygay?sub_confirmation=1" target="_blank" rel="noopener">&#9654; __SUB__</a>
     </div>
-    <div class="cards" style="margin-top:48px">
-      <a class="card reveal" href="https://www.youtube.com/watch?v=zt0PQeRFJkc&amp;utm_source=sportsboy&amp;utm_medium=site&amp;utm_campaign=videos" target="_blank" rel="noopener">
-        <p class="card-num">01</p>
-        <h3>__F1T__</h3>
-        <p>__F1D__</p>
-        <p class="card-go">__WATCH__ &rarr;</p>
-      </a>
-      <a class="card reveal" href="https://www.youtube.com/watch?v=zjlhX0jBhbE&amp;utm_source=sportsboy&amp;utm_medium=site&amp;utm_campaign=videos" target="_blank" rel="noopener">
-        <p class="card-num">02</p>
-        <h3>__F2T__</h3>
-        <p>__F2D__</p>
-        <p class="card-go">__WATCH__ &rarr;</p>
-      </a>
+    <div class="video-grid" style="margin-top:48px;display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+      <figure class="reveal" style="margin:0">
+        <div style="position:relative;width:100%;aspect-ratio:9/16;background:#000;border-radius:12px;overflow:hidden">
+          <iframe src="https://www.youtube.com/embed/zt0PQeRFJkc?rel=0" title="__F1T__" loading="lazy"
+            allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen
+            style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+        </div>
+        <figcaption style="margin-top:10px;font-weight:700;color:#fff">__F1T__</figcaption>
+        <p style="margin:4px 0 0;font-size:14px;color:#b9b4ab">__F1D__</p>
+        <a class="card-go" style="display:inline-block;margin-top:6px;font-size:13px" href="https://www.youtube.com/watch?v=zt0PQeRFJkc&amp;utm_source=sportsboy&amp;utm_medium=site&amp;utm_campaign=videos" target="_blank" rel="noopener">__WATCH__ &rarr;</a>
+      </figure>
+      <figure class="reveal" style="margin:0">
+        <div style="position:relative;width:100%;aspect-ratio:9/16;background:#000;border-radius:12px;overflow:hidden">
+          <iframe src="https://www.youtube.com/embed/zjlhX0jBhbE?rel=0" title="__F2T__" loading="lazy"
+            allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen
+            style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+        </div>
+        <figcaption style="margin-top:10px;font-weight:700;color:#fff">__F2T__</figcaption>
+        <p style="margin:4px 0 0;font-size:14px;color:#b9b4ab">__F2D__</p>
+        <a class="card-go" style="display:inline-block;margin-top:6px;font-size:13px" href="https://www.youtube.com/watch?v=zjlhX0jBhbE&amp;utm_source=sportsboy&amp;utm_medium=site&amp;utm_campaign=videos" target="_blank" rel="noopener">__WATCH__ &rarr;</a>
+      </figure>
     </div>
     <p class="hero-meta" style="text-align:center;margin-top:32px">__AINOTE__</p>
   </div>
