@@ -111,6 +111,9 @@ TPL = """<!DOCTYPE html>
 <script type="application/ld+json">
 { "@context":"https://schema.org", "@type":"WebSite", "name":"SportsBoy.gay", "url":"__OGURL__", "inLanguage":"__HTMLLANG__", "description":"__DESC__", "publisher":{ "@type":"Organization", "name":"SportsBoy.gay", "url":"__SITE__/" } }
 </script>
+<script type="application/ld+json">
+{ "@context":"https://schema.org", "@type":"VideoObject", "name":"直男做体育生浓度测试，做到第三题破防了 | SportsBoy", "description":"SportsBoy 浓度测试 Shorts——6 道题测测你有多体育生。", "thumbnailUrl":"https://i.ytimg.com/vi/zt0PQeRFJkc/hqdefault.jpg", "uploadDate":"2026-01-01", "contentUrl":"https://www.youtube.com/watch?v=zt0PQeRFJkc", "embedUrl":"https://www.youtube.com/embed/zt0PQeRFJkc", "publisher":{ "@type":"Organization", "name":"SportsBoy.gay", "url":"__SITE__/" } }
+</script>
 </head>
 <body>
 

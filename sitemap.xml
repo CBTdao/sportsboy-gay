@@ -195,26 +195,41 @@
   <url>
     <loc>https://www.sportsboy.gay/almanac/swim-jock</loc>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/almanac/swim-jock"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/almanac/swim-jock"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/almanac/swim-jock"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/almanac/swim-jock"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/almanac/swim-jock"/>
   </url>
   <url>
     <loc>https://www.sportsboy.gay/almanac/white-sock</loc>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/almanac/white-sock"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/almanac/white-sock"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/almanac/white-sock"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/almanac/white-sock"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/almanac/white-sock"/>
   </url>
   <url>
     <loc>https://www.sportsboy.gay/almanac/locker-room</loc>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/almanac/locker-room"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/almanac/locker-room"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/almanac/locker-room"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/almanac/locker-room"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/almanac/locker-room"/>
   </url>
   <url>
     <loc>https://www.sportsboy.gay/almanac/fake-jock</loc>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/almanac/fake-jock"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/almanac/fake-jock"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/almanac/fake-jock"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/almanac/fake-jock"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/almanac/fake-jock"/>
   </url>
   <url>
     <loc>https://www.sportsboy.gay/almanac/basketball</loc>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/almanac/basketball"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/almanac/basketball"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/almanac/basketball"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/almanac/basketball"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/almanac/basketball"/>
   </url>
   <url>
@@ -252,6 +267,9 @@
   <url>
     <loc>https://www.sportsboy.gay/privacy</loc>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/privacy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/privacy"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/privacy"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/privacy"/>
   </url>
 </urlset>
