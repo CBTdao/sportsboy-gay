@@ -249,4 +249,9 @@
     <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/videos"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/videos"/>
   </url>
+  <url>
+    <loc>https://www.sportsboy.gay/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/privacy"/>
+  </url>
 </urlset>

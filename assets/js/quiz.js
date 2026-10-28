@@ -437,6 +437,7 @@
       resultPageLink.hidden = false;
     }
     shareHint.hidden = true;
+    if (window.va) { try { window.va("event", "quiz_complete", { type: top.key, percent: displayPercent }); } catch (e) {} }
     show(resultPanel);
   }
 
