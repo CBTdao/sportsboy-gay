@@ -4,7 +4,7 @@
 修复首页 #columns 五个卡片的死链（/almanac/* 此前未建 → 404），并消除非中文用户掉进中文页的缺口：
 - 图鉴 5 篇 × 4 语：/almanac/{slug}.html, /en/almanac/{slug}.html, /ja/almanac/{slug}.html, /ko/almanac/{slug}.html
 - 隐私页 × 4 语：/privacy, /en/privacy, /ja/privacy, /ko/privacy
-页面复用站点 style.css / nav / footer（合规 footer：无爱发电，海外站品牌隔离），
+页面复用站点 style.css / nav / footer（合规 footer：含爱发电完整版解锁、itch.io、X、YouTube 四入口），
 含 canonical + hreflang 四语互指、语言菜单链向同 slug 兄弟页、Vercel Insights 分析 snippet、隐私链接。
 """
 import os
@@ -27,7 +27,7 @@ UI = {
         nav_quiz="浓度测试", nav_conc="浓度分布", nav_vid="视频", nav_join="等 demo 上线",
         foot_site="站点", foot_comm="社区", foot_note="说明",
         foot_cols_a="王牌栏目", foot_work="首部作品", foot_quiz="浓度测试",
-        foot_conc="浓度分布", foot_vid="视频", foot_priv="隐私政策",
+        foot_conc="浓度分布", foot_vid="视频", foot_priv="隐私政策", foot_afdian="爱发电（完整版解锁）",
         note1="本站含 BL 向内容，角色均为成年人设定。",
         note2="内容为虚构创作。",
         cta_p="看完图鉴，测测你属于哪一种？",
@@ -40,7 +40,7 @@ UI = {
         nav_quiz="Vibe Test", nav_conc="Concentration", nav_vid="Videos", nav_join="demo soon",
         foot_site="Site", foot_comm="Community", foot_note="Note",
         foot_cols_a="Columns", foot_work="The Work", foot_quiz="Vibe Test",
-        foot_conc="Concentration", foot_vid="Videos", foot_priv="Privacy",
+        foot_conc="Concentration", foot_vid="Videos", foot_priv="Privacy", foot_afdian="Afdian (full version)",
         note1="This site contains BL (boy-love) content; all characters are adults.",
         note2="All content is fictional.",
         cta_p="Finished the almanac? Find out which type you are.",
@@ -53,7 +53,7 @@ UI = {
         nav_quiz="濃度テスト", nav_conc="濃度分布", nav_vid="動画", nav_join="demo 近日",
         foot_site="サイト", foot_comm="コミュニティ", foot_note="説明",
         foot_cols_a="栏目", foot_work="作品", foot_quiz="濃度テスト",
-        foot_conc="濃度分布", foot_vid="動画", foot_priv="プライバシー",
+        foot_conc="濃度分布", foot_vid="動画", foot_priv="プライバシー", foot_afdian="Afdian（完全版）",
         note1="本サイトはBL（ボーイズラブ）向け。全キャラ成人設定。",
         note2="すべてフィクションです。",
         cta_p="図鑑を読んだら、あなたはどの型？",
@@ -66,7 +66,7 @@ UI = {
         nav_quiz="농도 테스트", nav_conc="농도 분포", nav_vid="영상", nav_join="demo 곧",
         foot_site="사이트", foot_comm="커뮤니티", foot_note="설명",
         foot_cols_a="栏目", foot_work="작품", foot_quiz="농도 테스트",
-        foot_conc="농도 분포", foot_vid="영상", foot_priv="개인정보",
+        foot_conc="농도 분포", foot_vid="영상", foot_priv="개인정보", foot_afdian="아쥐발전（풀버전）",
         note1="이 사이트는 BL(보이즈러브) 콘텐츠를 포함. 모든 캐릭터는 성인.",
         note2="모든 콘텐츠는 허구입니다.",
         cta_p="도감을 읽었으면, 당신은 어느 형?",
@@ -435,6 +435,146 @@ CONTENT = {
             """,
         ),
     },
+    "coach-jock": {
+        "zh": dict(
+            tag="图鉴 06 · The Almanac",
+            title="教练体育生图鉴：纪律是出厂设置，哨声是情话",
+            lede="教练不是「凶一点的体育老师」。他是被纪律打磨过的人形边界，是场边权威和私下底线的活体反差。",
+            desc="教练体育生图鉴：口令即情话、哨声划边界、场边权威与私下底线的反差——体育生宇宙里最上头的 authority 型。",
+            tags=["纪律型性感", "权威反差", "慢热压场"],
+            body="""
+      <p>判定一个教练，别看他的腹肌（虽然通常在线），看他在场边说「再来一组」时的语气。那不是命令，是仪式。他把纪律活成了一种性感，你以为是压迫，其实是被打磨过的专注在发光。</p>
+      <h2>口令即情话</h2>
+      <p>「看我」「跟上」「别松」——教练的口令短、准、不带废话。听久了你会发现，这些词在另一种语境里全是情话。他不是在管教，他是在用最低成本把一群人拧成一股绳。这种把权威压成关心的本事，是这个物种最致命的出厂设置。</p>
+      <div class="alm-quote">哨声一响是边界，哨声停下才是人。教练最性感的那一刻，永远是摘下哨子之后。</div>
+      <h2>哨声划边界</h2>
+      <p>教练的哨子不是乐器，是分寸。场上他是规则本身，场下他比谁都清楚那条线在哪。追教练的人最容易栽的坑，就是把场上的权威当成私下的态度——错。真正的教练，权威和温柔是分开关的，你得分清哪盏灯亮着。</p>
+      <h2>场边权威 vs 私下底线的反差</h2>
+      <p>这是 coach-jock 让人上头的核。他在三十个人面前能压住全场，关上门却可能是那个默默帮你收好护具的人。反差不是人设，是被纪律训练出来的克制：能掌控自己的人，才显得性感。看完这篇，去 quiz 测测你是被压的那个，还是压人的那个。</p>
+            """,
+        ),
+        "en": dict(
+            tag="Almanac 06 · The Almanac",
+            title="Coach Field Guide: discipline is the factory setting, the whistle is a love line",
+            lede="A coach isn't 'a PE teacher who's a bit strict.' He's a human-shaped boundary honed by discipline — the live contradiction of sideline authority and private softness.",
+            desc="Coach field guide: the command as a love line, the whistle drawing the line, sideline authority vs private softness — the most addictive authority type in the jock universe.",
+            tags=["Discipline as seduction", "Authority contrast", "Slow-burn, commanding"],
+            body="""
+      <p>To size up a coach, don't look at his abs (usually on point) — look at the tone when he says 'one more set' from the sideline. That's not an order, it's a ritual. He's turned discipline into something seductive; what reads as pressure is actually focus, polished.</p>
+      <h2>The command is a love line</h2>
+      <p>'Watch me.' 'Keep up.' 'Don't drop.' — a coach's commands are short, precise, no filler. Listen long enough and you realize those words are love lines in another context. He isn't disciplining; he's binding a group into one rope at the lowest cost. That knack for compressing authority into care is this species' deadliest factory setting.</p>
+      <div class="alm-quote">The whistle blowing is the boundary; the whistle off is the human. A coach is hottest precisely in the moment he takes the whistle off.</div>
+      <h2>The whistle draws the line</h2>
+      <p>A coach's whistle isn't an instrument, it's proportion. On the field he is the rule itself; off it he knows exactly where that line sits. The trap chasers fall into: reading sideline authority as private attitude. Wrong. A real coach keeps authority and tenderness on separate switches — you have to tell which light is on.</p>
+      <h2>Sideline authority vs private softness</h2>
+      <p>This is the core that makes coach-jock addictive. He can hold a whole squad of thirty from the touchline, yet behind a closed door he might be the one quietly packing your pads away. The contrast isn't a persona — it's restraint trained by discipline: the man who controls himself is the one who looks seductive. Finished this piece? Take the quiz and find out whether you're the one pressed, or the one pressing.</p>
+            """,
+        ),
+        "ja": dict(
+            tag="図鑑 06 · The Almanac",
+            title="コーチ体育生図鑑：規律は初期装備、ホイッスルは愛の言葉",
+            lede="コーチは「少し厳しい体育の先生」ではない。規律に鍛えられた人型の境界線、つまり傍線の権威と私の裏側のギャップそのもの。",
+            desc="コーチ体育生図鑑：号令は愛の言葉、ホイッスルが引く一線、傍線の権威と私の裏のギャップ——体育生宇宙で最もハマる authority 型。",
+            tags=["規律という性感", "権威のギャップ", "緩やかで圧がある"],
+            body="""
+      <p>コーチを見る目安は腹筋ではない（それはたいてい完備）。傍線で「もう一回」と言う時のトーンだ。それは命令ではなく儀式。彼は規律を性感に変えていて、あなたが圧力だと思うのは、研ぎ澄まされた集中が光っているだけ。</p>
+      <h2>号令は愛の言葉</h2>
+      <p>「見て」「ついてこい」「離すな」——コーチの号令は短く、的確で、無駄がない。聞いていると気づく。これらの言葉は別の文脈では愛の言葉だ。彼は説教しているのではない。最小コストで一群を一本の縄に編んでいる。権威を慈しみに圧縮する才能が、この種の最も致命的な初期装備。</p>
+      <div class="alm-quote">ホイッスルが鳴るのは境界、鳴りやむのは人間。コーチが最も色っぽいのは、ホイッスルを外した瞬間だ。</div>
+      <h2>ホイッスルが引く一線</h2>
+      <p>コーチのホイッスルは楽器ではなく分寸。フィールド上では彼が規則そのもの、下ではその線がどこかを誰より知っている。追う側が陥る罠は、傍線の権威を私の態度だと読むこと。違う。本物のコーチは権威と優しさを別のスイッチにしていて、どちらの灯が点いているかを見極めないといけない。</p>
+      <h2>傍線の権威と私の裏のギャップ</h2>
+      <p>これが coach-jock をハマらせる核。三十人の前で全体を押さえつつ、ドアの裏では黙ってあなたの防具を片づけるかもしれない。ギャップはペルソナではなく、規律で鍛えた抑制だ。自分をコントロールできる者こそ性感に見える。この図鑑を読んだら、quiz で測ってみよう。あなたは押される側か、押す側か。</p>
+            """,
+        ),
+        "ko": dict(
+            tag="도감 06 · The Almanac",
+            title="코치 운동선수 도감: 규율은 기본 사양, 휘슬은 사랑의 한마디",
+            lede="코치는 '조금 엄격한 체육 선생'이 아니다. 규율로 다듬어진 인간형 경계선, 즉 옆선의 권위와 사적인 부드러움의 살아있는 대비다.",
+            desc="코치 운동선수 도감: 구호는 사랑의 한마디, 휘슬이 긋는 선, 옆선의 권위와 사적인 부드러움의 대비——스포츠맨 유니버스에서 가장 중독적인 authority형.",
+            tags=["규율型 섹시함", "권위 대비", "천천히 압도"],
+            body="""
+      <p>코치를 보는 척도는 복근이 아니다(보통은 충분하다). 옆선에서 '한 세트 더'라고 할 때의 톤을 봐라. 그것은 명령이 아니라 의식이다. 그는 규율을 섹시함으로 바꿨고, 당신이 압력이라 생각하는 것은 다듬어진 집중이 빛나는 것뿐.</p>
+      <h2>구호는 사랑의 한마디</h2>
+      <p>'봐' '따라와' '놓치 마'——코치의 구호는 짧고, 정확하고, 잡담이 없다. 듣다 보면 깨닫는다. 이 말들은 다른 맥락에선 사랑의 한마디다. 그는 훈계하는 게 아니라 최소 비용으로 무리를 한 줄기로 묶고 있다. 권위를 보살핌으로 압축하는 재주가 이 종의 가장 치명적인 기본 사양.</p>
+      <div class="alm-quote">휘슬이 울리는 건 경계, 울림이 멈추는 건 인간. 코치가 가장 섹시한 건 휘슬을 푸는 순간이다.</div>
+      <h2>휘슬이 긋는 선</h2>
+      <p>코치의 휘슬은 악기가 아니라 분수. 필드 위에선 그가 규칙 그 자체, 밑에선 그 선이 어딘지 누구보다 잘 안다. 쫓는 이가 빠지는 함정: 옆선의 권위를 사적인 태도로 읽는 것. 틀렸다. 진짜 코치는 권위와 부드러움을 따로 놓는 스위치라, 어떤 불이 켜졌는지 가려야 한다.</p>
+      <h2>옆선의 권위 vs 사적인 부드러움</h2>
+      <p>이것이 coach-jock을 중독시키는 핵심. 서른 명 앞에선 전체를 누르면서, 문 뒤에선 묵묵히 당신 보호구를 정리하는 이일 수 있다. 대비는 페르소나가 아니라 규율로 단련된 절제다. 자신을 통제하는 자만이 섹시해 보인다. 이 도감을 읽었으면 quiz로 측정해 봐라. 당신은 눌리는 쪽인가, 누르는 쪽인가.</p>
+            """,
+        ),
+    },
+    "gym-bro": {
+        "zh": dict(
+            tag="图鉴 07 · The Almanac",
+            title="健身房撸铁怪图鉴：泵感是信仰，镜子是圣坛",
+            lede="撸铁怪不是「爱健身的肌肉男」。他是把重量房过成修道院的人——泵感是他的高潮，镜子是他和自己的私会。",
+            desc="健身房撸铁怪图鉴：泵感哲学、训练餐苦行、镜子前的自我凝视——体育生宇宙里最虔诚的 gains 型。",
+            tags=["泵感信仰", "训练餐苦行", "自我凝视"],
+            body="""
+      <p>判定一个撸铁怪，不看他卧推多少，看他练完照镜子时的眼神。那不是自恋，是确认。他刚和重量谈了一场恋爱，现在要亲眼看看战利品。镜子对他而言不是 Narcissus 的池塘，是复盘用的圣坛。</p>
+      <h2>泵感是信仰</h2>
+      <p>撸铁怪说的「泵」不是物理名词，是宗教体验。一组力竭之后血液涌进肌腹的那两分钟，他觉得自己无所不能。这种短暂的神性，是他扛着生活里所有破事还能笑出来的秘密燃料。你笑他上头，他笑你没体验过。</p>
+      <div class="alm-quote">训练餐不是节食，是苦行。能把鸡胸和水煮蛋吃成仪式的人，意志力本身就是性感。</div>
+      <h2>训练餐的苦行</h2>
+      <p>外人看训练餐是受罪，撸铁怪看它是修行。七分吃三分练，他比谁都信。能把一辈子的鸡胸、燕麦、西兰花吃出纪律感的人，对欲望的掌控力远超你的想象。这种「对自己狠」的克制，恰恰是圈里最杀的荷尔蒙。</p>
+      <h2>镜子前的自我凝视</h2>
+      <p>撸铁怪和镜子的关系，比和大多数人都深。那不是自恋，是长期的、诚实的对视：今天掉了围度吗，线条更利了吗。他在镜前完成的和自己的谈判，比很多关系都认真。看懂这点，你就懂了为什么 gym 是体育生宇宙里最安静也最烈的那块场域。</p>
+            """,
+        ),
+        "en": dict(
+            tag="Almanac 07 · The Almanac",
+            title="Gym-Bro Field Guide: the pump is faith, the mirror is the altar",
+            lede="A gym bro isn't 'a muscular guy who likes fitness.' He's someone who runs the weight room like a monastery — the pump is his climax, the mirror his private meeting with himself.",
+            desc="Gym-bro field guide: the philosophy of the pump, the asceticism of the training diet, the self-gaze before the mirror — the most devout gains type in the jock universe.",
+            tags=["Pump as faith", "Ascetic training diet", "Self-gaze"],
+            body="""
+      <p>To size up a gym bro, don't look at his bench press — look at his eyes when he checks the mirror post-set. That isn't vanity, it's confirmation. He just made love to the weights and now wants to see the trophy. The mirror isn't Narcissus' pool to him; it's an altar for review.</p>
+      <h2>The pump is faith</h2>
+      <p>When a gym bro says 'the pump,' he doesn't mean a physics term — he means a religious experience. Those two minutes after a failure set, when blood floods the muscle belly, he feels capable of anything. That brief divinity is the secret fuel that lets him laugh through every shitty thing life throws. You mock his devotion; he pities you for never feeling it.</p>
+      <div class="alm-quote">The training diet isn't restriction, it's asceticism. Whoever turns chicken breast and boiled eggs into ritual — their willpower alone is seductive.</div>
+      <h2>The asceticism of the training diet</h2>
+      <p>Outsiders see the training diet as suffering; the gym bro sees it as practice. 'Diet is seven parts, training three' — he believes it more than anyone. The man who can eat a lifetime of chicken, oats and broccoli with discipline has a grip on desire you can't imagine. That 'hard on himself' restraint is exactly the hormone that kills in this scene.</p>
+      <h2>The self-gaze before the mirror</h2>
+      <p>A gym bro's relationship with the mirror runs deeper than with most people. It isn't vanity, it's a long, honest stare: did the circumference drop today, are the lines sharper. The negotiation he completes with himself before the glass is more serious than many relationships. Get this and you understand why the gym is the quietest yet most intense field in the jock universe.</p>
+            """,
+        ),
+        "ja": dict(
+            tag="図鑑 07 · The Almanac",
+            title="ジムバカ体育生図鑑：パンプは信仰、鏡は祭壇",
+            lede="ジムバカは「筋トレ好きの筋肉男」ではない。ウェイトルームを修道院のように生きる者——パンプは絶頂、鏡は自分との密会だ。",
+            desc="ジムバカ体育生図鑑：パンプの哲学、トレーニング食の苦行、鏡前の自己凝視——体育生宇宙で最も敬虔な gains 型。",
+            tags=["パンプ信仰", "トレ食苦行", "自己凝視"],
+            body="""
+      <p>ジムバカを見る目安はベンチプレスではない。セット後の鏡の眼だ。それはナルシシズムではなく確認。彼はさっき重量と恋をして、今その戦利品を見たい。鏡は彼にとってナルキッソスの池ではなく、見直しの祭壇。</p>
+      <h2>パンプは信仰</h2>
+      <p>ジムバカが「パンプ」と言う時、物理用語ではなく宗教体験を指す。力竭後の二分間、血液が筋腹に溢れる時、彼は何でもできる気がする。その一瞬の神性が、人生のあらゆるクソつまらないことを笑って乗り越える秘密の燃料。あなたは熱狂を笑い、彼は経験のないあなたを憐れむ。</p>
+      <div class="alm-quote">トレーニング食は制限ではなく苦行。鶏胸肉とゆで卵を儀式に変える者、その意志力こそが性感だ。</div>
+      <h2>トレーニング食の苦行</h2>
+      <p>部外者にはトレーニング食は苦痛だが、ジムバカには修行。『食事七割、トレ三割』——彼は誰より信じている。鶏肉とオートミールとブロッコリーを一生、規律を持って食べられる者は、欲望への統制力が想像を超える。その『自分に厳しい』抑制こそが、このシーンで最も殺すホルモン。</p>
+      <h2>鏡前の自己凝視</h2>
+      <p>ジムバカと鏡の関係は、たいていの人より深い。ナルシシズムではなく、長く正直なにらみ合いだ。今日囲みは落ちたか、線は鋭くなったか。ガラスの前で自分と完遂する交渉は、多くの関係より真剣。これがわかれば、なぜジムが体育生宇宙で最も静かで最も激しい場かがわかる。</p>
+            """,
+        ),
+        "ko": dict(
+            tag="도감 07 · The Almanac",
+            title="헬창 운동선수 도감: 펌프는 신앙, 거울은 제단",
+            lede="헬창은 '운동 좋아하는 근육남'이 아니다. 웨이트룸을 수도원처럼 사는 자——펌프는 절정, 거울은 자신과의 밀회다.",
+            desc="헬창 운동선수 도감: 펌프의 철학, 식단의 고행, 거울 앞 자기 응시——스포츠맨 유니버스에서 가장 경건한 gains형.",
+            tags=["펌프 신앙", "식단 고행", "자기 응시"],
+            body="""
+      <p>헬창을 보는 척도는 벤치프레스가 아니다. 세트 후 거울을 보는 눈을 봐라. 그것은 자기애가 아니라 확인. 그는 방금 중량과 사랑을 나눴고, 이제 전리품을 보고 싶어 한다. 거울은 그에게 나르시소스의 못이 아니라 점검의 제단.</p>
+      <h2>펌프는 신앙</h2>
+      <p>헬창이 '펌프'라 할 때 그것은 물리 용어가 아니라 종교적 경험이다. 렙을 채운 후 이분간, 피가 근육 속으로 밀려들 때 그는 뭐든 할 수 있을 것 같다. 그 잠깐의 신성함이 인생의 온갖 빌어먹을 일을 웃어넘기는 비밀 연료. 너는 열광을 비웃고, 그는 느껴본 적 없는 너를 불쌍히 여긴다.</p>
+      <div class="alm-quote">식단은 제한이 아니라 고행. 닭가슴살과 삶은 계란을 의식으로 바꾸는 자, 그 의지력 자체가 섹시하다.</div>
+      <h2>식단의 고행</h2>
+      <p>남에겐 식단이 고통이지만 헬창에겐 수행이다. '식단이 칠할, 운동이 삼할'——그는 누구보다 믿는다. 닭가슴과 오트밀과 브로콜리를 평생 규율로 먹는 자는 욕망에 대한 통제력이 상상 그 이상. 그 '자신에게 매운' 절제야말로 이 씬에서 가장 치명적인 호르몬.</p>
+      <h2>거울 앞 자기 응시</h2>
+      <p>헬창과 거울의 관계는 대개 사람보다 깊다. 자기애가 아니라 길고 정직한 눈싸움이다. 오늘 둘레가 빠졌나, 선이 더 날카로워졌나. 유리 앞에서 자신과 끝내는 협상은 많은 관계보다 진지하다. 이것을 알면 왜 짐이 스포츠맨 유니버스에서 가장 조용하면서도 가장 뜨거운 장인지 이해하게 된다.</p>
+            """,
+        ),
+    },
 }
 
 # 隐私政策正文（4 语）
@@ -628,9 +768,10 @@ __CTA_SECTION__
       </div>
       <div class="footer-col">
         <h4>__FOOT_COMM__</h4>
+        <a href="https://afdian.com/a/sportsboy" target="_blank" rel="noopener">__FOOT_AFD__</a>
         <a href="https://www.youtube.com/@sportsboygay" target="_blank" rel="noopener">YouTube</a>
-        <a href="#" data-todo="itch.io 页面待 demo 上线后开通">itch.io</a>
-        <a href="#" data-todo="社交账号待开通">TikTok / X</a>
+        <a href="https://cbtdao.itch.io/sportsboy" target="_blank" rel="noopener">itch.io</a>
+        <a href="https://x.com/sportsboygay" target="_blank" rel="noopener">X</a>
       </div>
       <div class="footer-col">
         <h4>__FOOT_NOTE__</h4>
@@ -713,6 +854,7 @@ def build(lang, base, d, cta=True):
     t = t.replace("__FOOT_VID__", ui["foot_vid"])
     t = t.replace("__FOOT_PRIV__", ui["foot_priv"])
     t = t.replace("__FOOT_COMM__", ui["foot_comm"])
+    t = t.replace("__FOOT_AFD__", ui["foot_afdian"])
     t = t.replace("__FOOT_NOTE__", ui["foot_note"])
     t = t.replace("__NOTE1__", ui["note1"])
     t = t.replace("__NOTE2__", ui["note2"])

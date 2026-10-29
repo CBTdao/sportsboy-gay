@@ -233,6 +233,22 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/almanac/basketball"/>
   </url>
   <url>
+    <loc>https://www.sportsboy.gay/almanac/coach-jock</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/almanac/coach-jock"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/almanac/coach-jock"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/almanac/coach-jock"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/almanac/coach-jock"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/almanac/coach-jock"/>
+  </url>
+  <url>
+    <loc>https://www.sportsboy.gay/almanac/gym-bro</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/almanac/gym-bro"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/almanac/gym-bro"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/almanac/gym-bro"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/almanac/gym-bro"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/almanac/gym-bro"/>
+  </url>
+  <url>
     <loc>https://www.sportsboy.gay/videos</loc>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/videos"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/videos"/>
