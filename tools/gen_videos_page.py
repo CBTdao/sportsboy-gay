@@ -10,6 +10,7 @@
 放置：/videos, /en/videos, /ja/videos, /ko/videos
 """
 import os
+import json
 import xml.etree.ElementTree as ET
 from html import escape
 import urllib.request
@@ -25,11 +26,12 @@ FEATURED = ["zt0PQeRFJkc", "zjlhX0jBhbE"]
 
 # 离线兜底：RSS 拉取失败时使用（当前频道真实视频，避免空白）
 FALLBACK = [
-    ("f3kuAUt8xsw", "更衣室文化考：体育生的第三空间｜SportsBoy 图鉴 03"),
-    ("52KI4WEheo4", "健身房体育生图鉴：练得最狠，话最少｜SportsBoy 图鉴 02"),
-    ("yEs3xaG8o1k", "体育生家族里最安静的一支，靠白袜认领身份"),
-    ("zjlhX0jBhbE", "怎么一眼认出篮球体育生？看这四条 | SportsBoy"),
     ("zt0PQeRFJkc", "直男做体育生浓度测试，做到第三题破防了 | SportsBoy"),
+    ("zjlhX0jBhbE", "怎么一眼认出篮球体育生？看这四条 | SportsBoy"),
+    ("yEs3xaG8o1k", "体育生家族里最安静的一支，靠白袜认领身份"),
+    ("52KI4WEheo4", "健身房体育生图鉴：练得最狠，话最少｜SportsBoy 图鉴 02"),
+    ("f3kuAUt8xsw", "更衣室文化考：体育生的第三空间｜SportsBoy 图鉴 03"),
+    ("3-40xFAVEZU", "篮球体育生图鉴｜球鞋护踝一身汗，模板拼不出活的他"),
 ]
 
 
@@ -174,13 +176,14 @@ TPL = """<!DOCTYPE html>
 
     <div class="yt-all" style="margin-top:44px">
       <p class="section-desc" style="text-align:center;margin-bottom:14px">__ALL_TITLE__</p>
-      <div class="yt-grid">__GALLERY__</div>
+      <div class="yt-grid" id="ytGrid">__GALLERY__</div>
     </div>
 
     <script>
     (function(){
       var wrap=document.getElementById('ytMainWrap');
       var btn=document.getElementById('ytRotate');
+      var grid=document.getElementById('ytGrid');
       var ids=__IDS_JS__;
       var idx=0, timer=null, player=null, ready=false;
       var LABEL_ON='&#9654; __ROTATE__', LABEL_OFF='&#9632; __STOP__';
@@ -210,15 +213,34 @@ TPL = """<!DOCTYPE html>
       }
       if(btn){ btn.addEventListener('click',function(){ timer?stop():start(); }); }
 
-      var cards=document.querySelectorAll('.yt-card');
-      Array.prototype.forEach.call(cards,function(c){
-        c.addEventListener('click',function(ev){
-          ev.preventDefault();
-          stop();
-          apiPlay(c.getAttribute('data-vid'));   // 用户点击手势 → 带声播放
-          if(wrap) wrap.scrollIntoView({behavior:'smooth',block:'start'});
+      function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+      function buildGallery(videos){
+        if(!grid || !videos || !videos.length) return;
+        grid.innerHTML = videos.map(function(v){
+          var t=esc(v.title||v.id);
+          return '<a class="yt-card" data-vid="'+v.id+'" href="#ytMainWrap">'
+            +'<span class="yt-thumb"><img src="https://i.ytimg.com/vi/'+v.id+'/hqdefault.jpg" alt="'+t+'" loading="lazy"></span>'
+            +'<span class="yt-card-title">'+t+'</span></a>';
+        }).join('');
+        Array.prototype.forEach.call(grid.querySelectorAll('.yt-card'), function(c){
+          c.addEventListener('click', function(ev){
+            ev.preventDefault(); stop(); apiPlay(c.getAttribute('data-vid'));
+            if(wrap) wrap.scrollIntoView({behavior:'smooth',block:'start'});
+          });
         });
-      });
+      }
+      function setFeatured(videos){
+        if(videos && videos.length){ ids = videos.slice(0,8).map(function(v){return v.id;}); }
+      }
+      buildGallery(__GALLERY_JSON__);   // 构建期静态快照（首屏即时可见，无需等待 API）
+      setFeatured(__GALLERY_JSON__);
+      // 运行时拉取最新频道视频，自动同步 YouTube 上传（/api/videos 服务端代理 RSS）
+      fetch('/api/videos').then(function(r){return r.json();}).then(function(j){
+        if(j && j.videos && j.videos.length){
+          buildGallery(j.videos); setFeatured(j.videos);
+          if(ready && player && !timer) player.cueVideoById(ids[0]);
+        }
+      }).catch(function(){});
 
       window.onYouTubeIframeAPIReady=function(){
         player=new YT.Player('ytMain',{
@@ -350,6 +372,7 @@ LANGS = {
 
 videos = fetch_videos()
 gallery_html = build_gallery(videos)
+gallery_json = json.dumps([{"id": v, "title": t} for v, t in videos], ensure_ascii=False)
 
 for code, d in LANGS.items():
     t = TPL
@@ -362,6 +385,7 @@ for code, d in LANGS.items():
     t = t.replace("__IDS_JS__", str(FEATURED))
     t = t.replace("__FIRSTID__", FEATURED[0])
     t = t.replace("__GALLERY__", gallery_html)
+    t = t.replace("__GALLERY_JSON__", gallery_json)
     t = t.replace("__ACTIVE_ZH__", "is-active" if code == "zh" else "")
     t = t.replace("__ACTIVE_EN__", "is-active" if code == "en" else "")
     t = t.replace("__ACTIVE_JA__", "is-active" if code == "ja" else "")
