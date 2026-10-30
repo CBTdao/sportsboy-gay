@@ -265,7 +265,7 @@ def index_main(lang, section_key, items):
     cards = []
     for it in reversed(items):  # 最新在前
         cards.append(
-            '<a class="serial-card reveal" href="/%s/%s.html">'
+            '<a class="serial-card reveal" href="/%s/%s">'
             '<h3>%s</h3>'
             '<p class="serial-meta">%s%s</p>'
             '<p>%s</p></a>'
@@ -318,6 +318,8 @@ def update_sitemap(new_urls):
     blocks = []
     for zh, en, ja, ko in new_urls:
         if zh in existing:
+            continue
+        if zh.endswith(".html"):  # cleanUrls serves extensionless; never index .html
             continue
         if en and ja and ko:
             alts = (
@@ -481,7 +483,7 @@ def main():
         # 详情页（仅中文）
         for it in items:
             main_html = detail_main("zh", key, it) + cta_band("zh", key)
-            canon = SITE + "/%s/%s.html" % (key, it["slug"])
+            canon = SITE + "/%s/%s" % (key, it["slug"])
             ld = article_ldjson(canon, it["title"], it["date"], it["summary"])
             html = build_page("zh", key, it["title"], it["summary"], SECTIONS[key]["h2"],
                               SECTIONS[key]["secdesc"], SECTIONS[key]["section_idx"],

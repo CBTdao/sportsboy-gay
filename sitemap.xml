@@ -305,18 +305,6 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/novel"/><xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/novel"/><xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/novel"/><xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/novel"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/novel"/>
   </url>
   <url>
-    <loc>https://www.sportsboy.gay/novel/2026-10-31-ch1.html</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/novel/2026-10-31-ch1.html"/>
-  </url>
-  <url>
-    <loc>https://www.sportsboy.gay/novel/2026-11-01-ch2.html</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/novel/2026-11-01-ch2.html"/>
-  </url>
-  <url>
-    <loc>https://www.sportsboy.gay/novel/2026-11-02-ch3.html</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/novel/2026-11-02-ch3.html"/>
-  </url>
-  <url>
     <loc>https://www.sportsboy.gay/vn</loc>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/vn"/><xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/vn"/><xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/vn"/><xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/vn"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/vn"/>
   </url>
@@ -333,11 +321,23 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.sportsboy.gay/vn"/><xhtml:link rel="alternate" hreflang="en" href="https://www.sportsboy.gay/en/vn"/><xhtml:link rel="alternate" hreflang="ja" href="https://www.sportsboy.gay/ja/vn"/><xhtml:link rel="alternate" hreflang="ko" href="https://www.sportsboy.gay/ko/vn"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/vn"/>
   </url>
   <url>
-    <loc>https://www.sportsboy.gay/vn/2026-10-31-scene1.html</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/vn/2026-10-31-scene1.html"/>
+    <loc>https://www.sportsboy.gay/novel/2026-10-31-ch1</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/novel/2026-10-31-ch1"/>
   </url>
   <url>
-    <loc>https://www.sportsboy.gay/vn/2026-11-01-scene2.html</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/vn/2026-11-01-scene2.html"/>
+    <loc>https://www.sportsboy.gay/novel/2026-11-01-ch2</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/novel/2026-11-01-ch2"/>
+  </url>
+  <url>
+    <loc>https://www.sportsboy.gay/novel/2026-11-02-ch3</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/novel/2026-11-02-ch3"/>
+  </url>
+  <url>
+    <loc>https://www.sportsboy.gay/vn/2026-10-31-scene1</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/vn/2026-10-31-scene1"/>
+  </url>
+  <url>
+    <loc>https://www.sportsboy.gay/vn/2026-11-01-scene2</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsboy.gay/vn/2026-11-01-scene2"/>
   </url>
 </urlset>
