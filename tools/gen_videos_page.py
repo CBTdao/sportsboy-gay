@@ -77,6 +77,7 @@ TPL = """<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="msvalidate.01" content="83a632faa92c4ae0bd1086de9dc2902a" />
 <title>__TITLE__</title>
 <meta name="description" content="__DESC__">
 <meta property="og:title" content="__TITLE__">

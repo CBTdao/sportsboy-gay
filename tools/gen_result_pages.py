@@ -185,6 +185,7 @@ def head(lang, t):
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="msvalidate.01" content="83a632faa92c4ae0bd1086de9dc2902a" />
 <title>%s</title>
 <meta name="description" content="%s">
 <meta name="robots" content="index,follow">
