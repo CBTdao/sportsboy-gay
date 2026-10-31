@@ -90,6 +90,9 @@ NAV = {
     "conc": {"zh": "浓度分布", "en": "Vibe Map", "ja": "分布", "ko": "분포"},
     "videos": {"zh": "视频", "en": "Videos", "ja": "動画", "ko": "영상"},
     "back": {"zh": "← 返回栏目", "en": "← Back", "ja": "← 戻る", "ko": "← 돌아가기"},
+    "serial": {"zh": "连载", "en": "Serial", "ja": "連載", "ko": "연재"},
+    "knowledge": {"zh": "认识男同", "en": "About Gay", "ja": "ゲイ入門", "ko": "게이 알기"},
+    "readfree": {"zh": "免费读《体育生》", "en": "Read free", "ja": "無料で読む", "ko": "무료 연재"},
 }
 
 # ----------------------------------------------------------------------------
@@ -198,6 +201,7 @@ def build_page(lang, section_key, title, desc, h2, secdesc, section_idx,
     sec = SECTIONS[section_key]
     nav_novel_cls = "is-current" if active_nav == "novel" else ""
     nav_vn_cls = "is-current" if active_nav == "vn" else ""
+    nav_knowledge_cls = "is-current" if active_nav == "knowledge" else ""
     if is_detail:
         hb = '<link rel="alternate" hreflang="x-default" href="%s">' % canon
     else:
@@ -222,8 +226,12 @@ def build_page(lang, section_key, title, desc, h2, secdesc, section_idx,
         "__NAV_VIDEOS__": NAV["videos"][lang],
         "__NAV_NOVEL__": SECTIONS["novel"]["label"][lang],
         "__NAV_VN__": SECTIONS["vn"]["label"][lang],
+        "__NAV_SERIAL__": NAV["serial"][lang],
+        "__NAV_KNOWLEDGE__": NAV["knowledge"][lang],
+        "__NAV_READFREE__": NAV["readfree"][lang],
         "__ACTIVE_NOVEL__": nav_novel_cls,
         "__ACTIVE_VN__": nav_vn_cls,
+        "__ACTIVE_KNOWLEDGE__": nav_knowledge_cls,
         "__ACTIVE_ZH__": "is-active" if lang == "zh" else "",
         "__ACTIVE_EN__": "is-active" if lang == "en" else "",
         "__ACTIVE_JA__": "is-active" if lang == "ja" else "",
@@ -409,14 +417,17 @@ __LDJSON__
   <div class="container nav-inner">
     <a class="brand" href="/">SPORTSBOY<span class="brand-tld">.gay</span></a>
     <nav class="nav-links" id="navLinks">
-      <a href="/#columns">__NAV_COLUMNS__</a>
-      <a href="/#work">__NAV_WORK__</a>
-      <a href="/#flywheel">__NAV_FLYWHEEL__</a>
       <a href="/quiz">__NAV_QUIZ__</a>
-      <a href="/concentration">__NAV_CONC__</a>
       <a href="/videos">__NAV_VIDEOS__</a>
-      <a href="/novel" class="__ACTIVE_NOVEL__">__NAV_NOVEL__</a>
-      <a href="/vn" class="__ACTIVE_VN__">__NAV_VN__</a>
+      <div class="nav-dropdown">
+        <a href="/vn" class="nav-dropdown-toggle __ACTIVE_VN__" aria-haspopup="true">__NAV_SERIAL__ <span class="caret">▾</span></a>
+        <div class="nav-dropdown-menu">
+          <a href="/vn" class="__ACTIVE_VN__">__NAV_VN__</a>
+          <a href="/novel" class="__ACTIVE_NOVEL__">__NAV_NOVEL__</a>
+        </div>
+      </div>
+      <a href="/knowledge" class="__ACTIVE_KNOWLEDGE__">__NAV_KNOWLEDGE__</a>
+      <a class="btn btn-primary btn-sm" href="/vn">__NAV_READFREE__</a>
     </nav>
     <div class="nav-side">
       <div class="lang-menu-wrap">

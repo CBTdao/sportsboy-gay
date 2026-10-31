@@ -25,6 +25,7 @@ UI = {
         HTMLLANG="zh-CN", LANGLABEL="中文",
         nav_cols="王牌栏目", nav_work="首部作品", nav_fly="宇宙",
         nav_quiz="浓度测试", nav_conc="浓度分布", nav_vid="视频", nav_join="等 demo 上线",
+        nav_serial="连载", nav_know="认识男同", nav_vn="游戏剧本", nav_novel="宇宙散文",
         foot_site="站点", foot_comm="社区", foot_note="说明",
         foot_cols_a="王牌栏目", foot_work="首部作品", foot_quiz="浓度测试",
         foot_conc="浓度分布", foot_vid="视频", foot_priv="隐私政策", foot_afdian="爱发电（完整版解锁）",
@@ -38,6 +39,7 @@ UI = {
         HTMLLANG="en", LANGLABEL="English",
         nav_cols="Columns", nav_work="The Work", nav_fly="Universe",
         nav_quiz="Vibe Test", nav_conc="Concentration", nav_vid="Videos", nav_join="demo soon",
+        nav_serial="Serial", nav_know="About Gay", nav_vn="Visual Novel", nav_novel="Novel",
         foot_site="Site", foot_comm="Community", foot_note="Note",
         foot_cols_a="Columns", foot_work="The Work", foot_quiz="Vibe Test",
         foot_conc="Concentration", foot_vid="Videos", foot_priv="Privacy", foot_afdian="Afdian (full version)",
@@ -51,6 +53,7 @@ UI = {
         HTMLLANG="ja", LANGLABEL="日本語",
         nav_cols="栏目", nav_work="作品", nav_fly="宇宙",
         nav_quiz="濃度テスト", nav_conc="濃度分布", nav_vid="動画", nav_join="demo 近日",
+        nav_serial="連載", nav_know="ゲイ入門", nav_vn="ビジュアルノベル", nav_novel="小説",
         foot_site="サイト", foot_comm="コミュニティ", foot_note="説明",
         foot_cols_a="栏目", foot_work="作品", foot_quiz="濃度テスト",
         foot_conc="濃度分布", foot_vid="動画", foot_priv="プライバシー", foot_afdian="Afdian（完全版）",
@@ -64,6 +67,7 @@ UI = {
         HTMLLANG="ko", LANGLABEL="한국어",
         nav_cols="栏目", nav_work="작품", nav_fly="유니버스",
         nav_quiz="농도 테스트", nav_conc="농도 분포", nav_vid="영상", nav_join="demo 곧",
+        nav_serial="연재", nav_know="게이 알기", nav_vn="비주얼 노벨", nav_novel="소설",
         foot_site="사이트", foot_comm="커뮤니티", foot_note="설명",
         foot_cols_a="栏目", foot_work="작품", foot_quiz="농도 테스트",
         foot_conc="농도 분포", foot_vid="영상", foot_priv="개인정보", foot_afdian="아쥐발전（풀버전）",
@@ -706,12 +710,16 @@ __ALT_LINKS__
   <div class="container nav-inner">
     <a class="brand" href="__HP__/">SPORTSBOY<span class="brand-tld">.gay</span></a>
     <nav class="nav-links" id="navLinks">
-      <a href="__HP__/#columns">__NAV_COLS__</a>
-      <a href="__HP__/#work">__NAV_WORK__</a>
-      <a href="__HP__/#flywheel">__NAV_FLY__</a>
       <a href="__HP__/quiz">__NAV_QUIZ__</a>
-      <a href="__HP__/concentration">__NAV_CONC__</a>
       <a href="__HP__/videos">__NAV_VID__</a>
+      <div class="nav-dropdown">
+        <a href="__HP__/vn" class="nav-dropdown-toggle" aria-haspopup="true">__NAV_SERIAL__ <span class="caret">▾</span></a>
+        <div class="nav-dropdown-menu">
+          <a href="__HP__/vn">__NAV_VN__</a>
+          <a href="__HP__/novel">__NAV_NOVEL__</a>
+        </div>
+      </div>
+      <a href="__HP__/knowledge">__NAV_KNOW__</a>
       <a class="btn btn-primary btn-sm" href="__HP__/#join">__NAV_JOIN__</a>
     </nav>
     <div class="nav-side">
@@ -846,6 +854,10 @@ def build(lang, base, d, cta=True):
     t = t.replace("__NAV_QUIZ__", ui["nav_quiz"])
     t = t.replace("__NAV_CONC__", ui["nav_conc"])
     t = t.replace("__NAV_VID__", ui["nav_vid"])
+    t = t.replace("__NAV_VN__", ui["nav_vn"])
+    t = t.replace("__NAV_NOVEL__", ui["nav_novel"])
+    t = t.replace("__NAV_SERIAL__", ui["nav_serial"])
+    t = t.replace("__NAV_KNOW__", ui["nav_know"])
     t = t.replace("__NAV_JOIN__", ui["nav_join"])
     t = t.replace("__FOOT_SITE__", ui["foot_site"])
     t = t.replace("__FOOT_COLS__", ui["foot_cols_a"])
