@@ -298,7 +298,7 @@ def index_main(lang, section_key, items):
     if section_key == "vn":
         follow = (
             '<div class="serial-follow reveal"><span>%s</span>'
-            '<a class="btn btn-primary btn-sm" href="/vn/feed.xml">%s</a></div>'
+            '<a class="btn btn-primary btn-sm" href="/vn/subscribe.html">%s</a></div>'
             % (NAV["follow"][lang], NAV["rss"][lang])
         )
     cards = []
@@ -334,7 +334,7 @@ def detail_main(lang, section_key, it, prev_slug=None, next_slug=None):
                  '<span class="ch-next is-disabled"></span>'
         nav_html = '<nav class="chapter-nav" aria-label="章节导航">%s%s</nav>' % (prev_a, next_a)
         follow = ('<p class="chapter-follow">'
-                  '<a class="btn btn-primary btn-sm" href="/vn/feed.xml">%s</a></p>'
+                  '<a class="btn btn-primary btn-sm" href="/vn/subscribe.html">%s</a></p>'
                   % NAV["followRss"][lang])
     return (
         '<section class="block" style="padding-top:140px"><div class="container">'

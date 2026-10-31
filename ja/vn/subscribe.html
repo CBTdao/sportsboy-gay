@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="msvalidate.01" content="83a632faa92c4ae0bd1086de9dc2902a" />
+<title>《体育生》を追う · SportsBoy.gay</title>
+<meta name="description" content="下のアドレスを任意の RSS リーダー（Feedly、NetNewsWire、スマホのリーダー等）に追加すれば、新しい場面が公開されるたびに自動で届きます。">
+<meta name="theme-color" content="#0E0D0B">
+<link rel="icon" href="/assets/img/icon-512.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="https://www.sportsboy.gay/ja/vn/subscribe">
+<link rel="alternate" type="application/rss+xml" title="《体育生》连载" href="https://www.sportsboy.gay/vn/feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css">
+<style>
+.page-subscribe{background:#0E0D0B;color:#f3efe6;min-height:100vh}
+.sub-wrap{max-width:760px;margin:0 auto;padding:120px 20px 80px}
+.sub-wrap .kicker{color:#a79f92;font-size:13px;letter-spacing:.08em;margin:0 0 10px}
+.sub-wrap h1{font-size:34px;margin:0 0 14px;color:#FF5C39}
+.sub-wrap .lead{color:#cfc7ba;font-size:16px;line-height:1.8;margin:0 0 28px}
+.sub-box{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:#16140F;border:1px solid #2a2620;border-radius:12px;padding:14px 16px;margin-bottom:14px}
+.sub-box code{flex:1;min-width:200px;color:#FF5C39;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;word-break:break-all}
+.sub-feedly{display:inline-block;margin-bottom:36px}
+.sub-wrap h2{font-size:20px;margin:0 0 16px;border-left:3px solid #FF5C39;padding-left:12px}
+.sub-list{display:grid;gap:14px}
+.sub-ch{display:block;text-decoration:none;color:inherit;background:#16140F;border:1px solid #2a2620;border-radius:14px;padding:18px 20px;transition:.18s}
+.sub-ch:hover{border-color:#FF5C39;transform:translateY(-2px)}
+.sub-ch-meta{color:#a79f92;font-size:12px;margin-bottom:6px}
+.sub-ch h3{margin:0 0 8px;font-size:19px}
+.sub-ch p{margin:0;color:#cfc7ba;font-size:15px;line-height:1.6}
+.sub-back{display:inline-block;margin-top:32px;color:#FF5C39;font-weight:700;text-decoration:none;border-bottom:1px dashed #FF5C39}
+</style>
+</head>
+<body class="page-subscribe">
+<header class="site-header is-solid" id="siteHeader">
+  <div class="container nav-inner">
+    <a class="brand" href="/">SPORTSBOY<span class="brand-tld">.gay</span></a>
+    <nav class="nav-links"><a href="/vn" class="is-current">游戏剧本</a><a href="/quiz">浓度测试</a><a href="/videos">视频</a></nav>
+  </div>
+</header>
+<main>
+  <div class="sub-wrap">
+    <p class="kicker">SPORTSBOY.gay · 追う</p>
+    <h1>《体育生》を追う</h1>
+    <p class="lead">下のアドレスを任意の RSS リーダー（Feedly、NetNewsWire、スマホのリーダー等）に追加すれば、新しい場面が公開されるたびに自動で届きます。</p>
+    <div class="sub-box">
+      <code id="feedUrl">https://www.sportsboy.gay/vn/feed.xml</code>
+      <button class="btn btn-primary btn-sm" id="copyBtn" type="button">フィードURLをコピー</button>
+    </div>
+    <a class="btn btn-ghost sub-feedly" href="https://feedly.com/i/subscription/feed/https://www.sportsboy.gay/vn/feed.xml" target="_blank" rel="noopener">Feedly で購読</a>
+    <h2>公開済みの場面</h2>
+    <div class="sub-list">
+<a class="sub-ch" href="/vn/2026-11-01-scene2"><div class="sub-ch-meta">2026-11-01</div><h3>第一幕 · 滴水</h3><p>老周说省赛六十天，沈一的抬臂视频他全录了。林野只回了两个字——周五。</p></a>
+<a class="sub-ch" href="/vn/2026-10-31-scene1"><div class="sub-ch-meta">2026-10-31</div><h3>第一幕 · 游泳馆夜</h3><p>退役游泳生沈一回到市体育大学游泳馆，肩伤比天气预报还准。一个穿白袜的学弟从他身后走过，水滴落进他的毛巾。</p></a>
+    </div>
+    <a class="sub-back" href="/vn">← 《体育生》トップへ</a>
+  </div>
+</main>
+<script>
+(function(){
+  var btn=document.getElementById('copyBtn');
+  if(!btn)return;
+  var url=document.getElementById('feedUrl').textContent;
+  function done(){btn.textContent='コピー済み ✓';setTimeout(function(){btn.textContent='フィードURLをコピー';},2000);}
+  function fallback(){var ta=document.createElement('textarea');ta.value=url;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');done();}catch(e){}document.body.removeChild(ta);}
+  btn.addEventListener('click',function(){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(done,function(){fallback();});}else{fallback();}});
+})();
+</script>
+</body>
+</html>
