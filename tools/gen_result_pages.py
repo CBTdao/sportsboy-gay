@@ -58,6 +58,8 @@ DATA = {
             "descTpl": "测出你是{name}：{desc_short}来 SportsBoy.gay 做体育生浓度测试，6 道题 30 秒，生成你的人格图鉴。",
             "ogTitleTpl": "我的结果是{name} · 浓度 {p}%",
             "ogDescTpl": "{name}——{desc_short}你来测测自己的浓度。",
+            "shareBtn": "分享我的身份卡",
+            "peersLabel": "你的同型体育生，都在追《体育生》",
             "langLabel": "中文",
         },
     },
@@ -83,6 +85,8 @@ DATA = {
             "descTpl": "You tested as {name}: {desc_short} Take the 6-question, 30-second jock concentration test at SportsBoy.gay.",
             "ogTitleTpl": "My result: {name} · {p}% Concentration",
             "ogDescTpl": "{name} — {desc_short} Come test your own concentration.",
+            "shareBtn": "Share my card",
+            "peersLabel": "Your kind of jock is already reading it",
             "langLabel": "English",
         },
     },
@@ -108,6 +112,8 @@ DATA = {
             "descTpl": "あなたの结果は{name}：{desc_short}SportsBoy.gay の体育生浓度テスト、6问30秒で人格図鉴を生成。",
             "ogTitleTpl": "私の结果は{name} · 浓度 {p}%",
             "ogDescTpl": "{name}——{desc_short}あなたの浓度も测ってみて。",
+            "shareBtn": "身分カードをシェア",
+            "peersLabel": "あなたと同型の体育生はみんな読んでる",
             "langLabel": "日本語",
         },
     },
@@ -133,6 +139,8 @@ DATA = {
             "descTpl": "당신의 결과는 {name}: {desc_short} SportsBoy.gay 에서 6문제 30초 스포츠맨 농도 테스트를 해보세요.",
             "ogTitleTpl": "내 결과는 {name} · 농도 {p}%",
             "ogDescTpl": "{name} — {desc_short} 당신의 농도도 측정해보세요.",
+            "shareBtn": "내 카드 공유",
+            "peersLabel": "같은 타입의 스포츠맨은 이미 읽고 있어",
             "langLabel": "한국어",
         },
     },
@@ -277,49 +285,49 @@ def result_section(lang, t):
     quiz = "/%squiz" % ((LANGS[lang][1] + "/") if LANGS[lang][1] else "")
     conc = "/%sconcentration" % ((LANGS[lang][1] + "/") if LANGS[lang][1] else "")
     vnlink = "/%svn" % ((LANGS[lang][1] + "/") if LANGS[lang][1] else "")
+    conc_label = "浓度" if lang in ("zh", "ja") else ("농도" if lang == "ko" else "Concentration")
     return """
 <main class="quiz-main">
   <div class="container quiz-shell">
 
     <section class="quiz-panel is-active" id="quizResult">
-      <p class="kicker">%s</p>
-      <h1 class="quiz-result-title">%s · %s %d%%</h1>
-      <p class="quiz-result-desc">%s</p>
+      <div class="quiz-card">
+        <p class="kicker">%s</p>
+        <h1 class="quiz-result-title">%s · %s %d%%</h1>
+        <p class="quiz-result-desc">%s</p>
+      </div>
       <p class="quiz-bars-title">%s</p>
       <div class="quiz-bars">
 %s
       </div>
       <div class="quiz-share">
         <p class="quiz-share-label">%s</p>
-        <div class="quiz-share-text" id="shareText" role="button" tabindex="0" data-share="%s" title="%s">%s</div>
+        <div class="quiz-share-row">
+          <button class="btn btn-primary btn-sm" id="shareBtn" type="button" data-share="%s">%s</button>
+          <div class="quiz-share-text" id="shareText" role="button" tabindex="0" data-share="%s" title="%s">%s</div>
+        </div>
         <p class="quiz-share-hint" id="shareHint" hidden>%s</p>
       </div>
       <script>
       (function(){
         var box=document.getElementById('shareText');
+        var btn=document.getElementById('shareBtn');
         var hint=document.getElementById('shareHint');
         if(!box)return;
-        function copy(){
-          var url=box.getAttribute('data-share');
-          function done(){ if(hint){hint.hidden=false; setTimeout(function(){hint.hidden=true;},2600);} }
-          if(navigator.clipboard&&navigator.clipboard.writeText){
-            navigator.clipboard.writeText(url).then(done,function(){fallback(url);done();});
-          } else { fallback(url); done(); }
-        }
-        function fallback(url){
-          try{
-            var ta=document.createElement('textarea');ta.value=url;ta.style.position='fixed';ta.style.opacity='0';
-            document.body.appendChild(ta);ta.focus();ta.select();document.execCommand('copy');document.body.removeChild(ta);
-          }catch(e){}
-        }
-        box.addEventListener('click',copy);
-        box.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();copy();}});
+        function done(){ if(hint){hint.hidden=false; setTimeout(function(){hint.hidden=true;},2600);} }
+        function fallback(url){ try{ var ta=document.createElement('textarea');ta.value=url;ta.style.position='fixed';ta.style.opacity='0'; document.body.appendChild(ta);ta.focus();ta.select();document.execCommand('copy');document.body.removeChild(ta);}catch(e){} }
+        function copy(url){ if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(url).then(done,function(){fallback(url);done();}); } else { fallback(url); done(); } }
+        function share(url){ if(navigator.share){ navigator.share({title:document.title,url:url}).then(function(){},function(){}); } else { copy(url); } }
+        if(btn){ btn.addEventListener('click',function(){ share(btn.getAttribute('data-share')); }); }
+        box.addEventListener('click',function(){ copy(box.getAttribute('data-share')); });
+        box.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); copy(box.getAttribute('data-share')); } });
       })();
       </script>
       <div class="quiz-actions">
         <a class="btn btn-primary" href="%s">%s</a>
         <a class="btn btn-ghost" href="%s">%s</a>
       </div>
+      <p class="quiz-peers">%s <a href="%s">%s</a></p>
       <a class="quiz-result-page-link" href="%s">%s</a>
     </section>
 
@@ -327,12 +335,13 @@ def result_section(lang, t):
 </main>
 """ % (
         ui["kicker"],
-        name, "浓度" if lang in ("zh", "ja") else ("농도" if lang == "ko" else "Concentration"), p,
+        name, conc_label, p,
         desc,
         ui["barsTitle"],
         "\n".join(bars),
-        ui["shareNote"], surl_esc, surl_esc, surl_esc, ui["shareHint"],
+        ui["shareNote"], surl_esc, ui["shareBtn"], surl_esc, surl_esc, surl_esc, ui["shareHint"],
         quiz, ui["ctaPrimary"], vnlink, ui["ctaSecondary"],
+        ui["peersLabel"], vnlink, ui["ctaSecondary"],
         conc, ui["concLink"],
     )
 
@@ -411,11 +420,10 @@ def main():
             count += 1
             print("generated:", os.path.relpath(path, ROOT))
 
-    sitemap_path = os.path.join(ROOT, "sitemap.xml")
-    with open(sitemap_path, "w", encoding="utf-8", newline="\n") as f:
-        f.write(gen_sitemap())
-    print("sitemap rewritten:", os.path.relpath(sitemap_path, ROOT), "(24 URLs)")
-    print("done. %d result pages." % count)
+    # 注意：本脚本不再重写 sitemap.xml —— 旧逻辑会把整份 sitemap 覆盖成仅 29 条，
+    # 丢失 vn/novel/knowledge/almanac/privacy/videos 等 URL。sitemap 由 gen_serial.py
+    # 与已提交的版本统一维护；16 个结果页早已登记在那 55 条 sitemap 中。
+    print("done. %d result pages (sitemap.xml left untouched)." % count)
 
 
 if __name__ == "__main__":

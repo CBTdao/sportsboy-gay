@@ -51,7 +51,7 @@ SECTIONS = {
         "h2": {"zh": "《体育生》· 游戏剧本免费连载", "en": "《体育生》· Free Public Serial",
                "ja": "『体育生』· 無料公開連載", "ko": "『体育生』· 무료 공개 연재"},
         "secdesc": {
-            "zh": "首部视觉小说《体育生》剧本逐场公开、免费阅读——这就是未来的游戏本体。每日更新一场，完整版后续上线。角色全部成年设定。",
+            "zh": "首部视觉小说《体育生》剧本逐场公开、免费阅读——体育生视觉小说，每日更新一场，免费连载。这就是未来的游戏本体，完整版后续上线。角色全部成年设定。",
             "en": "The script of our first visual novel, published scene by scene — free to read. Updated daily.",
             "ja": "処女作ビジュアルノベルの脚本を逐次公開・無料読了。毎日更新。",
             "ko": "첫 비주얼 노벨의 대본을 장면별로 공개·무료 열람. 매일 업데이트.",
@@ -93,6 +93,13 @@ NAV = {
     "serial": {"zh": "连载", "en": "Serial", "ja": "連載", "ko": "연재"},
     "knowledge": {"zh": "认识男同", "en": "About Gay", "ja": "ゲイ入門", "ko": "게이 알기"},
     "readfree": {"zh": "免费读《体育生》", "en": "Read free", "ja": "無料で読む", "ko": "무료 연재"},
+    "prev": {"zh": "← 上一场", "en": "← Prev", "ja": "← 前へ", "ko": "← 이전"},
+    "next": {"zh": "下一场 →", "en": "Next →", "ja": "次へ →", "ko": "다음 →"},
+    "follow": {"zh": "每日更新一场 · 免费追更《体育生》", "en": "New scene daily · follow free",
+               "ja": "毎日更新 · 無料で追う", "ko": "매일 업데이트 · 무료 연재"},
+    "rss": {"zh": "追更（RSS）", "en": "Follow (RSS)", "ja": "追う（RSS）", "ko": "팔로우(RSS)"},
+    "followRss": {"zh": "追更《体育生》· 每日更新", "en": "Follow · new scene daily",
+                  "ja": "無料で追う · 毎日更新", "ko": "무료 연재 · 매일 업데이트"},
 }
 
 # ----------------------------------------------------------------------------
@@ -197,7 +204,7 @@ def hreflang_block(zh, en, ja, ko, xdefault=None):
 
 def build_page(lang, section_key, title, desc, h2, secdesc, section_idx,
                canon, zh_path, en_path, ja_path, ko_path, main_html,
-               is_detail=False, ld_json="", active_nav=""):
+               is_detail=False, ld_json="", active_nav="", rss_head=""):
     sec = SECTIONS[section_key]
     nav_novel_cls = "is-current" if active_nav == "novel" else ""
     nav_vn_cls = "is-current" if active_nav == "vn" else ""
@@ -218,6 +225,7 @@ def build_page(lang, section_key, title, desc, h2, secdesc, section_idx,
         "__OGTYPE__": "article" if is_detail else "website",
         "__HREFLANG__": hb,
         "__LDJSON__": ld_json,
+        "__RSS_HEAD__": rss_head,
         "__NAV_COLUMNS__": NAV["columns"][lang],
         "__NAV_WORK__": NAV["work"][lang],
         "__NAV_FLYWHEEL__": NAV["flywheel"][lang],
@@ -286,6 +294,13 @@ def load_items(section_key):
 
 def index_main(lang, section_key, items):
     sec = SECTIONS[section_key]
+    follow = ""
+    if section_key == "vn":
+        follow = (
+            '<div class="serial-follow reveal"><span>%s</span>'
+            '<a class="btn btn-primary btn-sm" href="/vn/feed.xml">%s</a></div>'
+            % (NAV["follow"][lang], NAV["rss"][lang])
+        )
     cards = []
     for it in reversed(items):  # 最新在前
         cards.append(
@@ -301,23 +316,39 @@ def index_main(lang, section_key, items):
         '<section class="block" style="padding-top:140px"><div class="container">'
         '<div class="section-head reveal"><p class="section-index">__SECTIONIDX__</p>'
         '<h2>__H2__</h2><p class="section-desc">__SECDESC__</p></div>'
+        + follow +
         '<div class="serial-list">%s</div></div></section>' % "\n".join(cards)
     )
 
 
-def detail_main(lang, section_key, it):
+def detail_main(lang, section_key, it, prev_slug=None, next_slug=None):
     sec = SECTIONS[section_key]
+    nav_html = ""
+    follow = ""
+    if section_key == "vn":
+        prev_a = ('<a class="ch-prev" href="/%s/%s">%s</a>'
+                  % (section_key, prev_slug, NAV["prev"][lang])) if prev_slug else \
+                 '<span class="ch-prev is-disabled"></span>'
+        next_a = ('<a class="ch-next" href="/%s/%s">%s</a>'
+                  % (section_key, next_slug, NAV["next"][lang])) if next_slug else \
+                 '<span class="ch-next is-disabled"></span>'
+        nav_html = '<nav class="chapter-nav" aria-label="章节导航">%s%s</nav>' % (prev_a, next_a)
+        follow = ('<p class="chapter-follow">'
+                  '<a class="btn btn-primary btn-sm" href="/vn/feed.xml">%s</a></p>'
+                  % NAV["followRss"][lang])
     return (
         '<section class="block" style="padding-top:140px"><div class="container">'
         '<article class="serial-article"><div class="post-head">'
         '<span class="sec-badge">__BADGE__</span>'
         '<h1>%s</h1><p class="post-meta">%s%s</p></div>'
         '%s'
+        '%s'
         '<p style="margin-top:30px"><a href="/%s">__BACK__</a></p>'
+        '%s'
         '</article></div></section>'
         % (escape(it["title"]), escape(it["date"]),
            (" · EP%s" % escape(str(it["episode"]))) if it["episode"] else "",
-           it["html"], section_key)
+           it["html"], nav_html, section_key, follow)
     ).replace("__BADGE__", sec["badge"][lang]).replace("__BACK__", NAV["back"][lang])
 
 
@@ -329,6 +360,23 @@ def article_ldjson(canon, title, date, desc):
         "mainEntityOfPage": {"@type": "WebPage", "@id": canon},
         "publisher": {"@type": "Organization", "name": "SportsBoy.gay",
                       "url": SITE + "/"},
+    }
+    return '<script type="application/ld+json">%s</script>' % json.dumps(obj, ensure_ascii=False)
+
+
+def series_ldjson():
+    """《体育生》连载系列的结构化数据，挂在 vn 索引页，助力「体育生」富结果。"""
+    obj = {
+        "@context": "https://schema.org",
+        "@type": "CreativeWorkSeries",
+        "name": "《体育生》",
+        "alternateName": "SportsBoy Visual Novel",
+        "url": SITE + "/vn",
+        "inLanguage": "zh-CN",
+        "author": {"@type": "Organization", "name": "SportsBoy.gay", "url": SITE + "/"},
+        "publisher": {"@type": "Organization", "name": "SportsBoy.gay", "url": SITE + "/"},
+        "genre": "视觉小说 / 体育生",
+        "description": "首部视觉小说《体育生》剧本逐场公开、免费连载。每日更新一场，角色全部成年设定。",
     }
     return '<script type="application/ld+json">%s</script>' % json.dumps(obj, ensure_ascii=False)
 
@@ -387,6 +435,7 @@ TPL = r"""<!DOCTYPE html>
 <link rel="manifest" href="/manifest.json">
 <link rel="canonical" href="__CANON__">
 __HREFLANG__
+__RSS_HEAD__
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -409,6 +458,12 @@ __HREFLANG__
 .serial-article .speaker{color:#FF5C39;font-weight:700;margin-right:6px}
 .serial-article hr{border:none;border-top:1px solid #2a2620;margin:28px 0}
 .sec-badge{display:inline-block;font-size:12px;letter-spacing:.08em;color:#FF5C39;border:1px solid #FF5C39;border-radius:999px;padding:3px 10px;margin-bottom:14px}
+.serial-follow{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:16px 0 6px;color:#cfc7ba;font-size:15px}
+.serial-follow .btn{margin-left:auto}
+.chapter-nav{display:flex;justify-content:space-between;gap:12px;margin:10px 0 26px}
+.chapter-nav a{display:inline-block;padding:10px 16px;border:1px solid #2a2620;border-radius:10px;color:#e9e3d8;text-decoration:none;font-size:14px;transition:.18s}
+.chapter-nav a:hover{border-color:#FF5C39;color:#FF5C39}
+.chapter-follow{margin:26px 0 10px}
 </style>
 __LDJSON__
 </head>
@@ -495,24 +550,32 @@ def main():
             canon = SITE + zh_p
             title = SECTIONS[key]["h2"][lang]
             desc = SECTIONS[key]["secdesc"][lang]
+            rss_head = ('<link rel="alternate" type="application/rss+xml" '
+                        'title="《体育生》连载" href="/vn/feed.xml">') if key == "vn" else ""
+            ld = series_ldjson() if key == "vn" else ""
             html = build_page(lang, key, title, desc, SECTIONS[key]["h2"],
                               SECTIONS[key]["secdesc"], SECTIONS[key]["section_idx"],
                               canon, zh_p, en_p, ja_p, ko_p, main_html,
-                              active_nav=key)
+                              active_nav=key, ld_json=ld, rss_head=rss_head)
             outdir = os.path.join(BASE, lang, key) if lang != "zh" else os.path.join(BASE, key)
             os.makedirs(outdir, exist_ok=True)
             with open(os.path.join(outdir, "index.html"), "w", encoding="utf-8") as f:
                 f.write(html)
             new_sitemap.append((SITE + zh_p, SITE + en_p, SITE + ja_p, SITE + ko_p))
         # 详情页（仅中文）
-        for it in items:
-            main_html = detail_main("zh", key, it) + cta_band("zh", key)
+        for idx, it in enumerate(items):
+            prev_slug = items[idx - 1]["slug"] if idx > 0 else None
+            next_slug = items[idx + 1]["slug"] if idx < len(items) - 1 else None
+            main_html = detail_main("zh", key, it, prev_slug, next_slug) + cta_band("zh", key)
             canon = SITE + "/%s/%s" % (key, it["slug"])
             ld = article_ldjson(canon, it["title"], it["date"], it["summary"])
+            rss_head = ('<link rel="alternate" type="application/rss+xml" '
+                        'title="《体育生》连载" href="/vn/feed.xml">') if key == "vn" else ""
             html = build_page("zh", key, it["title"], it["summary"], SECTIONS[key]["h2"],
                               SECTIONS[key]["secdesc"], SECTIONS[key]["section_idx"],
                               canon, "/%s" % key, "/en/%s" % key, "/ja/%s" % key, "/ko/%s" % key,
-                              main_html, is_detail=True, ld_json=ld, active_nav=key)
+                              main_html, is_detail=True, ld_json=ld, active_nav=key,
+                              rss_head=rss_head)
             out = os.path.join(BASE, key, it["slug"] + ".html")
             with open(out, "w", encoding="utf-8") as f:
                 f.write(html)

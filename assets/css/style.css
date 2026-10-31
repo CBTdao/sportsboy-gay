@@ -401,6 +401,15 @@ img { display: block; max-width: 100%; }
 }
 .quiz-share-text:hover { border-color: var(--coral); color: var(--text); }
 .quiz-share-hint { margin-top: .6rem; font-size: .82rem; color: var(--coral); font-weight: 700; }
+.quiz-card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+  padding: 1.8rem 1.6rem; margin-bottom: 2rem;
+  box-shadow: 0 18px 50px -28px rgba(0,0,0,.7);
+}
+.quiz-share-row { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; }
+.quiz-share-row .quiz-share-text { flex: 1; min-width: 14rem; }
+.quiz-peers { color: var(--muted); font-size: .9rem; margin: 1.6rem 0; }
+.quiz-peers a { color: var(--coral); font-weight: 700; text-decoration: none; border-bottom: 1px dashed var(--coral); }
 .quiz-bars-title { font-size: .8rem; color: var(--muted); margin: -1rem auto .8rem; max-width: 26rem; text-align: left; }
 .quiz-result-page-link {
   display: inline-block; margin-bottom: 2.2rem; font-size: .88rem; font-weight: 700;

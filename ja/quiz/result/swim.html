@@ -60,9 +60,11 @@
   <div class="container quiz-shell">
 
     <section class="quiz-panel is-active" id="quizResult">
-      <p class="kicker">ホルモン编集部 · 浓度テスト结果</p>
-      <h1 class="quiz-result-title">水泳部体育生 · 浓度 87%</h1>
-      <p class="quiz-result-desc">水感天赋型。他人は汗を流して鍛える、あなたは水に入って汗をかく。競パンの干し場所、白ソックスに合わせる靴——真面目に研究する学问だ。プールはあなたの主场、濡れるのは被动スキル。</p>
+      <div class="quiz-card">
+        <p class="kicker">ホルモン编集部 · 浓度テスト结果</p>
+        <h1 class="quiz-result-title">水泳部体育生 · 浓度 87%</h1>
+        <p class="quiz-result-desc">水感天赋型。他人は汗を流して鍛える、あなたは水に入って汗をかく。競パンの干し場所、白ソックスに合わせる靴——真面目に研究する学问だ。プールはあなたの主场、濡れるのは被动スキル。</p>
+      </div>
       <p class="quiz-bars-title">浓度分布</p>
       <div class="quiz-bars">
         <div class="quiz-bar-row is-top"><span class="quiz-bar-label">水泳部体育生</span><div class="quiz-bar-track"><div class="quiz-bar-fill" style="width:87%"></div></div><span class="quiz-bar-value">87%</span></div>
@@ -72,35 +74,32 @@
       </div>
       <div class="quiz-share">
         <p class="quiz-share-label">下のリンクをコピーして队友に送り、同じテストをさせよう：</p>
-        <div class="quiz-share-text" id="shareText" role="button" tabindex="0" data-share="https://www.sportsboy.gay/ja/quiz?utm_source=share&amp;utm_medium=referral&amp;utm_campaign=swim" title="https://www.sportsboy.gay/ja/quiz?utm_source=share&amp;utm_medium=referral&amp;utm_campaign=swim">https://www.sportsboy.gay/ja/quiz?utm_source=share&amp;utm_medium=referral&amp;utm_campaign=swim</div>
+        <div class="quiz-share-row">
+          <button class="btn btn-primary btn-sm" id="shareBtn" type="button" data-share="https://www.sportsboy.gay/ja/quiz?utm_source=share&amp;utm_medium=referral&amp;utm_campaign=swim">身分カードをシェア</button>
+          <div class="quiz-share-text" id="shareText" role="button" tabindex="0" data-share="https://www.sportsboy.gay/ja/quiz?utm_source=share&amp;utm_medium=referral&amp;utm_campaign=swim" title="https://www.sportsboy.gay/ja/quiz?utm_source=share&amp;utm_medium=referral&amp;utm_campaign=swim">https://www.sportsboy.gay/ja/quiz?utm_source=share&amp;utm_medium=referral&amp;utm_campaign=swim</div>
+        </div>
         <p class="quiz-share-hint" id="shareHint" hidden>コピーしました — 队友に送ろう</p>
       </div>
       <script>
       (function(){
         var box=document.getElementById('shareText');
+        var btn=document.getElementById('shareBtn');
         var hint=document.getElementById('shareHint');
         if(!box)return;
-        function copy(){
-          var url=box.getAttribute('data-share');
-          function done(){ if(hint){hint.hidden=false; setTimeout(function(){hint.hidden=true;},2600);} }
-          if(navigator.clipboard&&navigator.clipboard.writeText){
-            navigator.clipboard.writeText(url).then(done,function(){fallback(url);done();});
-          } else { fallback(url); done(); }
-        }
-        function fallback(url){
-          try{
-            var ta=document.createElement('textarea');ta.value=url;ta.style.position='fixed';ta.style.opacity='0';
-            document.body.appendChild(ta);ta.focus();ta.select();document.execCommand('copy');document.body.removeChild(ta);
-          }catch(e){}
-        }
-        box.addEventListener('click',copy);
-        box.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();copy();}});
+        function done(){ if(hint){hint.hidden=false; setTimeout(function(){hint.hidden=true;},2600);} }
+        function fallback(url){ try{ var ta=document.createElement('textarea');ta.value=url;ta.style.position='fixed';ta.style.opacity='0'; document.body.appendChild(ta);ta.focus();ta.select();document.execCommand('copy');document.body.removeChild(ta);}catch(e){} }
+        function copy(url){ if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(url).then(done,function(){fallback(url);done();}); } else { fallback(url); done(); } }
+        function share(url){ if(navigator.share){ navigator.share({title:document.title,url:url}).then(function(){},function(){}); } else { copy(url); } }
+        if(btn){ btn.addEventListener('click',function(){ share(btn.getAttribute('data-share')); }); }
+        box.addEventListener('click',function(){ copy(box.getAttribute('data-share')); });
+        box.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); copy(box.getAttribute('data-share')); } });
       })();
       </script>
       <div class="quiz-actions">
         <a class="btn btn-primary" href="/ja/quiz">濃度を测ってみる</a>
         <a class="btn btn-ghost" href="/ja/vn">無料で読む</a>
       </div>
+      <p class="quiz-peers">あなたと同型の体育生はみんな読んでる <a href="/ja/vn">無料で読む</a></p>
       <a class="quiz-result-page-link" href="/ja/concentration">4つの体育生の濃度分布を見る →</a>
     </section>
 
