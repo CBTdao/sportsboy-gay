@@ -419,14 +419,10 @@ __LDJSON__
     <nav class="nav-links" id="navLinks">
       <a href="/quiz">__NAV_QUIZ__</a>
       <a href="/videos">__NAV_VIDEOS__</a>
-      <div class="nav-dropdown">
-        <a href="/vn" class="nav-dropdown-toggle __ACTIVE_VN__" aria-haspopup="true">__NAV_SERIAL__ <span class="caret">▾</span></a>
-        <div class="nav-dropdown-menu">
-          <a href="/vn" class="__ACTIVE_VN__">__NAV_VN__</a>
-          <a href="/novel" class="__ACTIVE_NOVEL__">__NAV_NOVEL__</a>
-        </div>
-      </div>
+      <a href="/vn" class="__ACTIVE_VN__">__NAV_VN__</a>
+      <a href="/novel" class="__ACTIVE_NOVEL__">__NAV_NOVEL__</a>
       <a href="/knowledge" class="__ACTIVE_KNOWLEDGE__">__NAV_KNOWLEDGE__</a>
+      <a href="/#columns">__NAV_COLUMNS__</a>
       <a class="btn btn-primary btn-sm" href="/vn">__NAV_READFREE__</a>
     </nav>
     <div class="nav-side">

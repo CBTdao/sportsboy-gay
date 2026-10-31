@@ -24,7 +24,7 @@ UI = {
     "zh": dict(
         HTMLLANG="zh-CN", LANGLABEL="中文",
         nav_cols="王牌栏目", nav_work="首部作品", nav_fly="宇宙",
-        nav_quiz="浓度测试", nav_conc="浓度分布", nav_vid="视频", nav_join="等 demo 上线",
+        nav_quiz="浓度测试", nav_conc="浓度分布", nav_vid="视频", nav_readfree="免费读《体育生》",
         nav_serial="连载", nav_know="认识男同", nav_vn="游戏剧本", nav_novel="宇宙散文",
         foot_site="站点", foot_comm="社区", foot_note="说明",
         foot_cols_a="王牌栏目", foot_work="首部作品", foot_quiz="浓度测试",
@@ -38,7 +38,7 @@ UI = {
     "en": dict(
         HTMLLANG="en", LANGLABEL="English",
         nav_cols="Columns", nav_work="The Work", nav_fly="Universe",
-        nav_quiz="Vibe Test", nav_conc="Concentration", nav_vid="Videos", nav_join="demo soon",
+        nav_quiz="Vibe Test", nav_conc="Concentration", nav_vid="Videos", nav_readfree="Read free",
         nav_serial="Serial", nav_know="About Gay", nav_vn="Visual Novel", nav_novel="Novel",
         foot_site="Site", foot_comm="Community", foot_note="Note",
         foot_cols_a="Columns", foot_work="The Work", foot_quiz="Vibe Test",
@@ -51,11 +51,11 @@ UI = {
     ),
     "ja": dict(
         HTMLLANG="ja", LANGLABEL="日本語",
-        nav_cols="栏目", nav_work="作品", nav_fly="宇宙",
-        nav_quiz="濃度テスト", nav_conc="濃度分布", nav_vid="動画", nav_join="demo 近日",
+        nav_cols="コラム", nav_work="作品", nav_fly="宇宙",
+        nav_quiz="濃度テスト", nav_conc="濃度分布", nav_vid="動画", nav_readfree="無料で読む",
         nav_serial="連載", nav_know="ゲイ入門", nav_vn="ビジュアルノベル", nav_novel="小説",
         foot_site="サイト", foot_comm="コミュニティ", foot_note="説明",
-        foot_cols_a="栏目", foot_work="作品", foot_quiz="濃度テスト",
+        foot_cols_a="コラム", foot_work="作品", foot_quiz="濃度テスト",
         foot_conc="濃度分布", foot_vid="動画", foot_priv="プライバシー", foot_afdian="Afdian（完全版）",
         note1="本サイトはBL（ボーイズラブ）向け。全キャラ成人設定。",
         note2="すべてフィクションです。",
@@ -65,11 +65,11 @@ UI = {
     ),
     "ko": dict(
         HTMLLANG="ko", LANGLABEL="한국어",
-        nav_cols="栏目", nav_work="작품", nav_fly="유니버스",
-        nav_quiz="농도 테스트", nav_conc="농도 분포", nav_vid="영상", nav_join="demo 곧",
+        nav_cols="칼럼", nav_work="작품", nav_fly="유니버스",
+        nav_quiz="농도 테스트", nav_conc="농도 분포", nav_vid="영상", nav_readfree="무료 연재",
         nav_serial="연재", nav_know="게이 알기", nav_vn="비주얼 노벨", nav_novel="소설",
         foot_site="사이트", foot_comm="커뮤니티", foot_note="설명",
-        foot_cols_a="栏目", foot_work="작품", foot_quiz="농도 테스트",
+        foot_cols_a="칼럼", foot_work="작품", foot_quiz="농도 테스트",
         foot_conc="농도 분포", foot_vid="영상", foot_priv="개인정보", foot_afdian="아쥐발전（풀버전）",
         note1="이 사이트는 BL(보이즈러브) 콘텐츠를 포함. 모든 캐릭터는 성인.",
         note2="모든 콘텐츠는 허구입니다.",
@@ -712,15 +712,11 @@ __ALT_LINKS__
     <nav class="nav-links" id="navLinks">
       <a href="__HP__/quiz">__NAV_QUIZ__</a>
       <a href="__HP__/videos">__NAV_VID__</a>
-      <div class="nav-dropdown">
-        <a href="__HP__/vn" class="nav-dropdown-toggle" aria-haspopup="true">__NAV_SERIAL__ <span class="caret">▾</span></a>
-        <div class="nav-dropdown-menu">
-          <a href="__HP__/vn">__NAV_VN__</a>
-          <a href="__HP__/novel">__NAV_NOVEL__</a>
-        </div>
-      </div>
+      <a href="__HP__/vn">__NAV_VN__</a>
+      <a href="__HP__/novel">__NAV_NOVEL__</a>
       <a href="__HP__/knowledge">__NAV_KNOW__</a>
-      <a class="btn btn-primary btn-sm" href="__HP__/#join">__NAV_JOIN__</a>
+      <a href="__HP__/#columns">__NAV_COLS__</a>
+      <a class="btn btn-primary btn-sm" href="__HP__/vn">__NAV_READFREE__</a>
     </nav>
     <div class="nav-side">
       <div class="lang-menu-wrap">
@@ -858,7 +854,7 @@ def build(lang, base, d, cta=True):
     t = t.replace("__NAV_NOVEL__", ui["nav_novel"])
     t = t.replace("__NAV_SERIAL__", ui["nav_serial"])
     t = t.replace("__NAV_KNOW__", ui["nav_know"])
-    t = t.replace("__NAV_JOIN__", ui["nav_join"])
+    t = t.replace("__NAV_READFREE__", ui["nav_readfree"])
     t = t.replace("__FOOT_SITE__", ui["foot_site"])
     t = t.replace("__FOOT_COLS__", ui["foot_cols_a"])
     t = t.replace("__FOOT_WORK__", ui["foot_work"])

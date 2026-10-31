@@ -47,12 +47,12 @@ DATA = {
             "kicker": "荷尔蒙编辑部出品 · 浓度测试结果",
             "barsTitle": "浓度分布",
             "ctaPrimary": "测测你的浓度",
-            "ctaSecondary": "关注等 demo 上线",
+            "ctaSecondary": "免费读《体育生》",
             "shareNote": "复制下面的链接发给队友，让他也来对号入座：",
             "shareHint": "已复制，去发给队友吧",
             "concLink": "查看四种体育生浓度分布 →",
             "navBack": "返回首页",
-            "navCta": "等 demo 上线",
+            "navCta": "免费读《体育生》",
             "footerNote": "BL 内容 · 角色全部成年设定",
             "titleTpl": "{name} · 浓度 {p}% — 体育生浓度测试 | SportsBoy.gay",
             "descTpl": "测出你是{name}：{desc_short}来 SportsBoy.gay 做体育生浓度测试，6 道题 30 秒，生成你的人格图鉴。",
@@ -72,12 +72,12 @@ DATA = {
             "kicker": "By the Hormone Desk · Test Result",
             "barsTitle": "Concentration breakdown",
             "ctaPrimary": "Take the test",
-            "ctaSecondary": "Get notified at demo launch",
+            "ctaSecondary": "Read free",
             "shareNote": "Copy the link below and send it to your teammate — make him find his type too:",
             "shareHint": "Copied — go send it to your teammate",
             "concLink": "See the full concentration report →",
             "navBack": "Back home",
-            "navCta": "Demo launch",
+            "navCta": "Read free",
             "footerNote": "BL content · all characters are adults",
             "titleTpl": "{name} · {p}% Concentration — Jock Concentration Test | SportsBoy.gay",
             "descTpl": "You tested as {name}: {desc_short} Take the 6-question, 30-second jock concentration test at SportsBoy.gay.",
@@ -96,13 +96,13 @@ DATA = {
         "ui": {
             "kicker": "ホルモン编集部 · 浓度テスト结果",
             "barsTitle": "浓度分布",
-            "ctaPrimary": "浓度を测ってみる",
-            "ctaSecondary": "デモ上线をお知らせ",
+            "ctaPrimary": "濃度を测ってみる",
+            "ctaSecondary": "無料で読む",
             "shareNote": "下のリンクをコピーして队友に送り、同じテストをさせよう：",
             "shareHint": "コピーしました — 队友に送ろう",
             "concLink": "4つの体育生の濃度分布を見る →",
             "navBack": "ホームへ戻る",
-            "navCta": "デモ上线",
+            "navCta": "無料で読む",
             "footerNote": "BLコンテンツ · キャラ全員成年設定",
             "titleTpl": "{name} · 浓度 {p}% — 体育生浓度テスト | SportsBoy.gay",
             "descTpl": "あなたの结果は{name}：{desc_short}SportsBoy.gay の体育生浓度テスト、6问30秒で人格図鉴を生成。",
@@ -122,12 +122,12 @@ DATA = {
             "kicker": "호르몬 편집부 · 농도 테스트 결과",
             "barsTitle": "농도 분포",
             "ctaPrimary": "농도 측정해보기",
-            "ctaSecondary": "데모 출시 알림 받기",
+            "ctaSecondary": "무료 연재",
             "shareNote": "아래 링크를 복사해 팀메이트에게 보내, 같은 테스트를 하게 하자:",
             "shareHint": "복사됨 — 팀메이트에게 보내자",
             "concLink": "스포츠맨 농도 분포 보기 →",
             "navBack": "홈으로 돌아가기",
-            "navCta": "데모 출시",
+            "navCta": "무료 연재",
             "footerNote": "BL 콘텐츠 · 캐릭터 전원 성인 설정",
             "titleTpl": "{name} · 농도 {p}% — 스포츠맨 농도 테스트 | SportsBoy.gay",
             "descTpl": "당신의 결과는 {name}: {desc_short} SportsBoy.gay 에서 6문제 30초 스포츠맨 농도 테스트를 해보세요.",
@@ -222,6 +222,7 @@ def header(lang, t):
     ui = DATA[lang]["ui"]
     home = "/%s" % LANGS[lang][1] if LANGS[lang][1] else "/"
     quiz = "/%squiz" % ((LANGS[lang][1] + "/") if LANGS[lang][1] else "")
+    vnlink = home.rstrip("/") + "/vn"
     opts = []
     for l in LANG_ORDER:
         active = " is-active" if l == lang else ""
@@ -236,7 +237,7 @@ def header(lang, t):
     <a class="brand" href="%s">SPORTSBOY<span class="brand-tld">.gay</span></a>
     <nav class="nav-links">
       <a href="%s">%s</a>
-      <a class="btn btn-primary btn-sm" href="/#join">%s</a>
+      <a class="btn btn-primary btn-sm" href="%s">%s</a>
     </nav>
     <div class="nav-side">
       <div class="lang-menu-wrap">
@@ -254,7 +255,7 @@ def header(lang, t):
     </div>
   </div>
 </header>
-""" % (home, home, ui["navBack"], ui["navCta"], ui["langLabel"], "\n".join(opts))
+""" % (home, home, ui["navBack"], vnlink, ui["navCta"], ui["langLabel"], "\n".join(opts))
 
 
 def result_section(lang, t):
@@ -275,6 +276,7 @@ def result_section(lang, t):
         )
     quiz = "/%squiz" % ((LANGS[lang][1] + "/") if LANGS[lang][1] else "")
     conc = "/%sconcentration" % ((LANGS[lang][1] + "/") if LANGS[lang][1] else "")
+    vnlink = "/%svn" % ((LANGS[lang][1] + "/") if LANGS[lang][1] else "")
     return """
 <main class="quiz-main">
   <div class="container quiz-shell">
@@ -316,7 +318,7 @@ def result_section(lang, t):
       </script>
       <div class="quiz-actions">
         <a class="btn btn-primary" href="%s">%s</a>
-        <a class="btn btn-ghost" href="/#join">%s</a>
+        <a class="btn btn-ghost" href="%s">%s</a>
       </div>
       <a class="quiz-result-page-link" href="%s">%s</a>
     </section>
@@ -330,7 +332,7 @@ def result_section(lang, t):
         ui["barsTitle"],
         "\n".join(bars),
         ui["shareNote"], surl_esc, surl_esc, surl_esc, ui["shareHint"],
-        quiz, ui["ctaPrimary"], ui["ctaSecondary"],
+        quiz, ui["ctaPrimary"], vnlink, ui["ctaSecondary"],
         conc, ui["concLink"],
     )
 

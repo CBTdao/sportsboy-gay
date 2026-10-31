@@ -37,7 +37,7 @@ NARR = {
         "ctaSub": "6 道题，30 秒，生成你的人格图鉴。",
         "ctaBtn": "开始测试",
         "quizLabel": "浓度测试",
-        "navCta": "等 demo 上线",
+        "navCta": "免费读《体育生》",
         "footerNote": "BL 内容 · 角色全部成年设定",
         "langLabel": "中文",
         "datasetName": "SportsBoy 体育生浓度分布模型 v1.0",
@@ -57,7 +57,7 @@ NARR = {
         "ctaSub": "6 questions, 30 seconds, your own personality profile.",
         "ctaBtn": "Take the test",
         "quizLabel": "Take the test",
-        "navCta": "Demo launch",
+        "navCta": "Read free",
         "footerNote": "BL content · all characters are adults",
         "langLabel": "English",
         "datasetName": "SportsBoy Jock Concentration Model v1.0",
@@ -77,7 +77,7 @@ NARR = {
         "ctaSub": "6問30秒で、あなた専用の人格図鑑を。",
         "ctaBtn": "テストする",
         "quizLabel": "濃度テスト",
-        "navCta": "デモ上線",
+        "navCta": "無料で読む",
         "footerNote": "BLコンテンツ · キャラ全員成年設定",
         "langLabel": "日本語",
         "datasetName": "SportsBoy 体育生濃度分布モデル v1.0",
@@ -97,7 +97,7 @@ NARR = {
         "ctaSub": "6문제 30초면, 당신 전용 성격 도감이.",
         "ctaBtn": "테스트하기",
         "quizLabel": "농도 테스트",
-        "navCta": "데모 출시",
+        "navCta": "무료 연재",
         "footerNote": "BL 콘텐츠 · 캐릭터 전원 성인 설정",
         "langLabel": "한국어",
         "datasetName": "SportsBoy 스포츠맨 농도 분포 모델 v1.0",
@@ -194,10 +194,26 @@ def head(lang):
     )
 
 
+NAV = {
+    "zh": dict(quiz="浓度测试", videos="视频", vn="游戏剧本", novel="宇宙散文",
+               know="认识男同", cols="王牌栏目", readfree="免费读《体育生》"),
+    "en": dict(quiz="Vibe Test", videos="Videos", vn="Visual Novel", novel="Novel",
+               know="About Gay", cols="Columns", readfree="Read free"),
+    "ja": dict(quiz="濃度テスト", videos="動画", vn="ビジュアルノベル", novel="小説",
+               know="ゲイ入門", cols="コラム", readfree="無料で読む"),
+    "ko": dict(quiz="농도 테스트", videos="영상", vn="비주얼 노벨", novel="소설",
+               know="게이 알기", cols="칼럼", readfree="무료 연재"),
+}
+
+
 def header(lang):
     n = NARR[lang]
     home = "/%s" % LANGS[lang][1] if LANGS[lang][1] else "/"
-    quiz = "/%squiz" % ((LANGS[lang][1] + "/") if LANGS[lang][1] else "")
+    nv = NAV[lang]
+    vnlink = home.rstrip("/") + "/vn"
+    novellink = home.rstrip("/") + "/novel"
+    knowlink = home.rstrip("/") + "/knowledge"
+    colslink = home.rstrip("/") + "/#columns"
     opts = []
     for l in LANG_ORDER:
         active = " is-active" if l == lang else ""
@@ -206,15 +222,26 @@ def header(lang):
             '          <a class="lang-opt%s" href="%s" hreflang="%s" lang="%s"%s>%s<span class="lang-opt-tag">%s</span></a>'
             % (active, conc_url(l), LANG_TAGS[l], LANG_TAGS[l], aria, NARR[l]["langLabel"], LANG_TAGS[l].upper()[:2])
         )
+    nav_html = (
+        '    <nav class="nav-links">\n'
+        '      <a href="%s/quiz">%s</a>\n'
+        '      <a href="%s/videos">%s</a>\n'
+        '      <a href="%s">%s</a>\n'
+        '      <a href="%s">%s</a>\n'
+        '      <a href="%s">%s</a>\n'
+        '      <a href="%s">%s</a>\n'
+        '      <a class="btn btn-primary btn-sm" href="%s">%s</a>\n'
+        '    </nav>'
+        % (home, nv["quiz"], home, nv["videos"], vnlink, nv["vn"],
+           novellink, nv["novel"], knowlink, nv["know"],
+           colslink, nv["cols"], vnlink, nv["readfree"])
+    )
     return """
 <header class="site-header is-solid" id="siteHeader">
   <div class="container nav-inner">
     <a class="brand" href="%s">SPORTSBOY<span class="brand-tld">.gay</span></a>
-    <nav class="nav-links">
-      <a href="%s">%s</a>
-      <a href="%s">%s</a>
-      <a class="btn btn-primary btn-sm" href="/#join">%s</a>
-    </nav>
+%s
+    <div class="nav-side">
     <div class="nav-side">
       <div class="lang-menu-wrap">
         <button class="lang-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu">
@@ -231,7 +258,7 @@ def header(lang):
     </div>
   </div>
 </header>
-""" % (home, home, n["langLabel"], quiz, n["quizLabel"], n["navCta"], n["langLabel"], "\n".join(opts))
+""" % (home, nav_html, n["langLabel"], "\n".join(opts))
 
 
 def body(lang):

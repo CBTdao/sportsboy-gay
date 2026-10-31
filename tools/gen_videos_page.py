@@ -124,13 +124,13 @@ TPL = """<!DOCTYPE html>
   <div class="container nav-inner">
     <a class="brand" href="/">SPORTSBOY<span class="brand-tld">.gay</span></a>
     <nav class="nav-links" id="navLinks">
-      <a href="/#columns">王牌栏目</a>
-      <a href="/#work">首部作品</a>
-      <a href="/#flywheel">宇宙</a>
       <a href="/quiz">浓度测试</a>
-      <a href="/concentration">浓度分布</a>
       <a href="/videos" class="is-current">__NAVVID__</a>
-      <a class="btn btn-primary btn-sm" href="/#join">等 demo 上线</a>
+      <a href="/vn">游戏剧本</a>
+      <a href="/novel">宇宙散文</a>
+      <a href="/knowledge">认识男同</a>
+      <a href="/#columns">王牌栏目</a>
+      <a class="btn btn-primary btn-sm" href="/vn">免费读《体育生》</a>
     </nav>
     <div class="nav-side">
       <div class="lang-menu-wrap">
@@ -281,11 +281,12 @@ TPL = """<!DOCTYPE html>
       </div>
       <div class="footer-col">
         <h4>站点</h4>
-        <a href="/#columns">王牌栏目</a>
-        <a href="/#work">首部作品</a>
         <a href="/quiz">浓度测试</a>
-        <a href="/concentration">浓度分布</a>
         <a href="/videos">__NAVVID__</a>
+        <a href="/vn">游戏剧本</a>
+        <a href="/novel">宇宙散文</a>
+        <a href="/knowledge">认识男同</a>
+        <a href="/#columns">王牌栏目</a>
       </div>
       <div class="footer-col">
         <h4>社区</h4>
