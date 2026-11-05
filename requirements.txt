@@ -1,0 +1,4 @@
+# Content-generation toolchain (runtime site itself has zero dependencies).
+# Pin exactly so pip-audit in CI has a deterministic target.
+# Pillow >= 10.0.1 is required to be clear of the libwebp CVE-2023-4863 class.
+Pillow==13.0.0

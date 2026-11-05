@@ -4,4 +4,23 @@ node_modules/
 *.log
 
 # python cache
-api/__pycache__/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# secrets: this repository is public
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+*.keystore
+
+# local agent state / generated scratch
+.workbuddy/
+_analysis/
+*.local

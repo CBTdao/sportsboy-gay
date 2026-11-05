@@ -145,8 +145,13 @@
       if(btn){ btn.addEventListener('click',function(){ timer?stop():start(); }); }
 
       function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+      var VID_RE=/^[A-Za-z0-9_-]{11}$/;
+      function safeVideos(list){
+        return (list||[]).filter(function(v){ return v && VID_RE.test(String(v.id||'')); });
+      }
       function buildGallery(videos){
-        if(!grid || !videos || !videos.length) return;
+        videos = safeVideos(videos);
+        if(!grid || !videos.length) return;
         grid.innerHTML = videos.map(function(v){
           var t=esc(v.title||v.id);
           return '<a class="yt-card" data-vid="'+v.id+'" href="#ytMainWrap">'
@@ -161,7 +166,8 @@
         });
       }
       function setFeatured(videos){
-        if(videos && videos.length){ ids = videos.slice(0,8).map(function(v){return v.id;}); }
+        videos = safeVideos(videos);
+        if(videos.length){ ids = videos.slice(0,8).map(function(v){return v.id;}); }
       }
       buildGallery([{"id": "3-40xFAVEZU", "title": "篮球体育生图鉴｜球鞋护踝一身汗，模板拼不出活的他"}, {"id": "f3kuAUt8xsw", "title": "更衣室文化考：体育生的第三空间｜SportsBoy 图鉴 03 #ai创作 #健身房 #视觉小说"}, {"id": "52KI4WEheo4", "title": "健身房体育生图鉴：练得最狠，话最少｜SportsBoy 图鉴 02"}, {"id": "yEs3xaG8o1k", "title": "体育生家族里最安静的一支，靠白袜认领身份"}, {"id": "zjlhX0jBhbE", "title": "怎么一眼认出篮球体育生？看这四条 | SportsBoy"}, {"id": "zt0PQeRFJkc", "title": "直男做体育生浓度测试，做到第三题破防了 | SportsBoy"}]);   // 构建期静态快照（首屏即时可见，无需等待 API）
       setFeatured([{"id": "3-40xFAVEZU", "title": "篮球体育生图鉴｜球鞋护踝一身汗，模板拼不出活的他"}, {"id": "f3kuAUt8xsw", "title": "更衣室文化考：体育生的第三空间｜SportsBoy 图鉴 03 #ai创作 #健身房 #视觉小说"}, {"id": "52KI4WEheo4", "title": "健身房体育生图鉴：练得最狠，话最少｜SportsBoy 图鉴 02"}, {"id": "yEs3xaG8o1k", "title": "体育生家族里最安静的一支，靠白袜认领身份"}, {"id": "zjlhX0jBhbE", "title": "怎么一眼认出篮球体育生？看这四条 | SportsBoy"}, {"id": "zt0PQeRFJkc", "title": "直男做体育生浓度测试，做到第三题破防了 | SportsBoy"}]);
