@@ -92,10 +92,13 @@ class handler(BaseHTTPRequestHandler):
         self.send_response(code)
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("X-Content-Type-Options", "nosniff")
+        # Always vary on Origin: a response generated for a disallowed origin
+        # carries no ACAO header, and must never be replayed from the Vercel
+        # edge cache to a request carrying an allowed Origin (or vice versa).
+        self.send_header("Vary", "Origin")
         origin = allowed_origin(self.headers.get("Origin"))
         if origin:
             self.send_header("Access-Control-Allow-Origin", origin)
-            self.send_header("Vary", "Origin")
         # Vercel 边缘缓存 10 分钟；上传后最迟 10 分钟官网自动同步
         self.send_header("Cache-Control", "s-maxage=600, stale-while-revalidate=86400")
         self.end_headers()

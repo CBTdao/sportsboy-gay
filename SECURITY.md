@@ -7,7 +7,9 @@
 ## 架构与威胁模型
 
 - 站点为 Vercel 上的纯静态 HTML/CSS/原生 JS，**无登录、无表单、无数据库、无用户数据落库**。
-- 唯一的动态端点是 `/api/videos`（Python serverless）：抓取**固定**的 YouTube 频道 RSS，不接受任何用户输入，因此无 SSRF / 注入面。
+- 动态端点共两个（Python serverless）：
+  - `/api/videos`：抓取**固定**的 YouTube 频道 RSS，不接受任何用户输入，因此无 SSRF / 注入面。
+  - `/api/csp_report`：接收 CSP Report-Only 违规上报，请求体上限 64KB，不落库，只打印违规指令与来源域名，不记录完整 URL。
 - 主要风险面是：第三方内容与脚本（YouTube / Google Fonts）、构建工具链依赖、公开仓库中的敏感文档。
 
 ## 已实施的基线
@@ -20,16 +22,16 @@
 | CSP 第二阶段（Report-Only，严格策略） | `vercel.json` + `api/csp_report.py` |
 | RSS 体积上限 1MB、拒绝 DTD/ENTITY、`videoId` 白名单 `^[A-Za-z0-9_-]{11}$` | `api/videos.py` |
 | 前端二次校验 `videoId`、标题 `esc()` 转义后才写入 `innerHTML` | `*/videos/index.html` |
-| CORS 收紧为生产域 / localhost / Vercel 预览域 | `api/videos.py` |
+| CORS 收紧为生产域 / localhost / Vercel 预览域，且**无条件**发送 `Vary: Origin` | `api/videos.py` |
 | 密钥忽略规则 | `.gitignore`（`.env*` / `*.pem` / `*.key` / `.workbuddy/`） |
-| 依赖锁定 + `pip-audit` + 死链 / sitemap / 红线卡点 | `requirements.txt`、`.github/workflows/ci.yml` |
+| 依赖锁定 + `pip-audit` + 死链 / sitemap / 红线 / API 路由卡点 | `requirements.txt`、`.github/workflows/ci.yml` |
 
 ## CSP 分阶段上线（重要）
 
 全站有 **64 处内联 `<script>` 与大量内联 `<style>`**，直接上严格 `script-src 'self'` 会导致白屏。当前配置：
 
 1. **强制策略**保留 `'unsafe-inline'`，先锁定 `object-src`、帧来源、图片/字体/连接来源，防止外部脚本注入与数据外带。
-2. **Report-Only 严格策略**同时下发，违规上报到 `/api/csp-report`（只记录指令与来源域名，不记录完整 URL）。
+2. **Report-Only 严格策略**同时下发，违规上报到 `/api/csp_report`（只记录指令与来源域名，不记录完整 URL）。Vercel 按文件名路由 serverless 函数，因此该路径必须与 `api/csp_report.py` **逐字一致**；CI 中的「API routes in vercel.json map to real serverless files」步骤会拦截此类拼写不一致。
 3. 观察 1-2 周报告后，把内联脚本改为外链或为每个内联块计算 `sha256-*` hash，再从强制策略中移除 `'unsafe-inline'`。此为唯一仍需人工完成的安全项。
 
 ## 依赖与密钥
@@ -45,3 +47,4 @@
 2. **公开仓库包含 `VN-ROADMAP.md`**（变现、支付通道尽调、平台审核对策）。建议迁至私有文档；注意仅删除当前文件**不能**清除 git 历史，需另行评估。
 3. **尚无 LICENSE**：原创图文/剧本的授权状态未声明，商业化前请与版权方确认许可类型后补充。
 4. **静态资源无内容哈希**：已把 `/assets/*` 从 `immutable` 一年改为 `max-age=300, must-revalidate`。后续若引入 `<name>.<hash>.<ext>` 命名，可恢复长缓存。
+5. **Vercel 平台对静态文件默认下发 `Access-Control-Allow-Origin: *`**，该头不在本仓库 `vercel.json` 中，属平台默认行为。因静态站无凭证接口、无用户数据，风险可接受；如需收紧须在平台层配置，不宜在 `vercel.json` 里追加同名头（重复 ACAO 值会导致浏览器 CORS 校验失败）。

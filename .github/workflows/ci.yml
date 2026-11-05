@@ -45,3 +45,16 @@ jobs:
 
       - name: Content red-line (no internal jargon on public pages)
         run: bash tools/check_redline.sh $(find . -name '*.html' -not -path './.git/*')
+
+      - name: API routes in vercel.json map to real serverless files
+        run: |
+          python - <<'PY'
+          import json, pathlib, re, sys
+          cfg = json.loads(pathlib.Path("vercel.json").read_text(encoding="utf-8"))
+          routes = set(re.findall(r"/api/[A-Za-z0-9_-]+", json.dumps(cfg)))
+          missing = sorted(r for r in routes
+                           if not (pathlib.Path("api") / (r.rsplit("/", 1)[1] + ".py")).is_file())
+          if missing:
+              sys.exit("API routes without a matching serverless file: " + ", ".join(missing))
+          print("OK: API routes:", ", ".join(sorted(routes)))
+          PY
