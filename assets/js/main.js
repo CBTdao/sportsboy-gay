@@ -82,34 +82,64 @@
   }
 })();
 
-/* 18+ 年龄确认：首次访问弹出，确认后 localStorage 记忆，全站生效 */
+/* 18+ 年龄确认：状态由服务端判定，确认动作签发 HttpOnly Cookie（见 SECURITY.md）。
+   前端无法自行标记已确认；敏感正文页另由 vercel.json 的边缘规则门控。 */
 (function () {
-  var KEY = "sb_age_ok";
-  try { if (localStorage.getItem(KEY) === "1") return; } catch (e) { return; }
+  if (location.pathname.indexOf("/age-check") === 0) return;
   var css = document.createElement("style");
   css.textContent =
     "#sbAge{position:fixed;inset:0;z-index:9999;background:rgba(8,7,6,.96);" +
     "display:flex;align-items:center;justify-content:center;padding:20px;" +
     "font-family:var(--font-sans,system-ui,sans-serif}" +
-    "#sbAge .card{max-width:440px;background:#16140F;border:1px solid #2a2620;border-radius:16px;" +
+    "#sbAge .card{max-width:460px;background:#16140F;border:1px solid #2a2620;border-radius:16px;" +
     "padding:28px 26px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5)}" +
     "#sbAge h2{font-size:22px;margin:0 0 12px;color:#fff}" +
-    "#sbAge p{font-size:15px;line-height:1.7;color:#cfc9bf;margin:0 0 20px}" +
+    "#sbAge p{font-size:15px;line-height:1.7;color:#cfc9bf;margin:0 0 16px}" +
     "#sbAge .acts{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}" +
-    "#sbAge a.leave{color:#888;font-size:13px;text-decoration:underline;margin-top:16px;display:inline-block}";
+    "#sbAge a.leave{color:#888;font-size:13px;text-decoration:underline;margin-top:16px;display:inline-block}" +
+    "#sbAge .err{color:#FF9B7A;font-size:13px;margin:12px 0 0;min-height:18px}";
   document.head.appendChild(css);
-  var ov = document.createElement("div");
-  ov.id = "sbAge";
-  ov.innerHTML =
-    '<div class="card"><h2>18+ 内容提示</h2>' +
-    '<p>SportsBoy.gay 含 BL（男男）向虚构内容，仅限成年人访问。进入即代表你确认已年满 18 岁，并理解本站内容均为虚构创作。</p>' +
-    '<div class="acts"><button id="sbEnter" class="btn btn-primary">我已满 18 岁，进入</button></div>' +
-    '<a class="leave" id="sbLeave" href="https://www.google.com" target="_blank" rel="noopener">未满 18 岁，离开</a></div>';
-  document.body.appendChild(ov);
-  document.body.style.overflow = "hidden";
-  document.getElementById("sbEnter").addEventListener("click", function () {
-    try { localStorage.setItem(KEY, "1"); } catch (e) {}
-    if (ov.parentNode) ov.parentNode.removeChild(ov);
-    document.body.style.overflow = "";
-  });
+
+  function show() {
+    var ov = document.createElement("div");
+    ov.id = "sbAge";
+    ov.innerHTML =
+      '<div class="card"><h2>18+ 内容提示</h2>' +
+      '<p>本站部分栏目含面向成年人的虚构创作内容（BL 向连载与剧本），仅限成年人阅读。' +
+      '全部角色均为成年人设定，情节纯属虚构；本站不向未成年人推送相关内容。</p>' +
+      '<div class="acts"><button id="sbEnter" class="btn btn-primary">我已满 18 岁，进入</button></div>' +
+      '<p class="err" id="sbAgeErr" role="status" aria-live="polite"></p>' +
+      '<a class="leave" href="https://www.google.com" target="_blank" rel="noopener">未满 18 岁，离开</a></div>';
+    document.body.appendChild(ov);
+    document.body.style.overflow = "hidden";
+    var btn = document.getElementById("sbEnter");
+    var err = document.getElementById("sbAgeErr");
+    btn.addEventListener("click", function () {
+      btn.disabled = true;
+      err.textContent = "";
+      fetch("/api/age_verify", {
+        method: "POST",
+        credentials: "same-origin",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ confirm: "adult" })
+      }).then(function (r) { return r.json(); })
+        .then(function (d) {
+          if (d && d.verified) {
+            if (ov.parentNode) ov.parentNode.removeChild(ov);
+            document.body.style.overflow = "";
+          } else {
+            err.textContent = "确认失败，请稍后重试。";
+            btn.disabled = false;
+          }
+        }).catch(function () {
+          err.textContent = "确认失败，请稍后重试。";
+          btn.disabled = false;
+        });
+    });
+  }
+
+  fetch("/api/age_verify", { credentials: "same-origin", cache: "no-store" })
+    .then(function (r) { return r.json(); })
+    .then(function (d) { if (!d.verified) show(); })
+    .catch(function () { /* 端点不可用时保持页面可用；敏感页仍由边缘规则拦截 */ });
 })();

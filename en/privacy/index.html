@@ -91,10 +91,10 @@
       <p>SportsBoy.gay (hereinafter "the Site") is an adult-oriented jock-culture content site. The Site contains BL (boys' love) fiction; by accessing it you confirm you are at least 18 or the age of majority in your jurisdiction.</p>
       <h2>What we collect</h2>
       <p><b>Vibe test (quiz):</b> your score and result type are computed and shown in your browser locally and are generally not uploaded to our servers; result-share pages are public. We do not tie your specific answers to your identity.</p>
-      <p><b>Contact &amp; subscription:</b> if we later enable subscriptions or email notices, we will state so clearly and only collect your email when you provide it voluntarily.</p>
+      <p><b>Email subscription:</b> when you enter your address in the subscribe box, we use it only to send serial and almanac updates. Delivery is handled by an external mailing service; <b>we keep no subscriber list in this repository, write no address to logs, and never sell data</b>. You can unsubscribe at any time. If the mailing service is not enabled yet, the form says so and offers the public RSS feed instead of pretending a signup succeeded.</p>
       <p><b>Anonymous analytics:</b> we use a privacy-friendly analytics service (Vercel Web Analytics) that counts only anonymous visits, dwell time, and events (e.g. completing the test). <b>No cookies, no cross-site tracking, no data sold.</b></p>
       <h2>Cookies &amp; local storage</h2>
-      <p>The Site may store a small amount of data in your browser locally, to remember your age-confirmation state and language preference. This stays on your device and involves no identity tracking.</p>
+      <p>Age acknowledgement is issued server-side as an <code>HttpOnly; Secure; SameSite=Lax</code> cookie (<code>sb_age_verified</code>, 180 days). It prevents repeat prompts and lets the edge rule allow adult sections; <b>browser scripts cannot set this cookie themselves</b>. Language preference stays on your device. Anonymous analytics uses no cookies and no cross-site tracking.</p>
       <h2>Third-party content</h2>
       <p>The Site embeds YouTube videos; YouTube may process playback-related data under its own policy. Such content is governed by YouTube's privacy policy.</p>
       <h2>Your rights</h2>

@@ -1,6 +1,6 @@
 # SportsBoy.gay
 
-全球体育生文化总部——荷尔蒙编辑部官网。**运行时**为零依赖、零构建的静态站（HTML + CSS + 原生 JS）+ 一个 `/api/videos` serverless 函数，部署到 Vercel。内容生成脚本（`tools/`）依赖 Pillow，版本锁定在 `requirements.txt`。
+全球体育生文化总部——荷尔蒙编辑部官网。**运行时**为零依赖、零构建的静态站（HTML + CSS + 原生 JS）+ 四个 serverless 函数（`/api/videos`、`/api/csp_report`、`/api/age_verify`、`/api/subscribe`），部署到 Vercel。内容生成脚本（`tools/`）依赖 Pillow，版本锁定在 `requirements.txt`。
 
 ## 页面（四语：中 / EN / JA / KO）
 
@@ -8,6 +8,8 @@
 |---|---|
 | `/` | 中文首页：Hero / 王牌栏目 / 首部作品《体育生》/ 浓度测试入口 / SportsBoy 宇宙（用户视角产品分层）/ 爱发电 CTA |
 | `/quiz` | 体育生浓度测试：6 题 → 4 种人格图鉴 → 可复制分享文案（增长钩子） |
+| `/quiz/result/*` | 四语结果分享页：可索引 + 独立 og 文案 + 邮箱订阅入口 |
+| `/age-check` | 年龄确认页（noindex）：边缘规则的重定向目标，确认后跳回原页 |
 | `/en` `/ja` `/ko` | 英 / 日 / 韩首页 |
 | `/en/quiz` `/ja/quiz` `/ko/quiz` | 三语测试页（题库见 `assets/js/quiz.js` 内 I18N） |
 | `/quiz/result/{swim,basketball,gym,allround}` | 人格结果分享页（可索引 + 独立 og 文案 + "测测你的" CTA；四语各 4 页） |
@@ -25,7 +27,7 @@ python -m http.server 8080
 
 ```bash
 # 1. 推送代码（仓库已初始化为本地 git）
-git remote add origin git@github-sb:CBTdao/sportsboy-gay.git
+git remote add origin https://github.com/CBTdao/sportsboy-gay.git
 git push -u origin main
 
 # 2. Vercel 已绑定本仓库，推 main 自动部署
@@ -44,6 +46,8 @@ python tools/gen_sitemap.py --check     # CI 幂等校验
 
 # 提交前本地自检
 python tools/check_links.py             # 内链 / 协议相对 URL / 缺失资源
+python tools/check_age_gate.py          # 年龄门与邮箱订阅组件覆盖
+python tools/gen_newsletter.py --lang zh-CN   # 从 RSS 生成简报草稿（输出到 ../newsletters/）
 bash tools/check_redline.sh             # 公开页面不得出现内部术语
 ```
 
@@ -53,6 +57,7 @@ bash tools/check_redline.sh             # 公开页面不得出现内部术语
 
 ## 上线前待办（替换占位链接）
 
+- [ ] 在 Vercel 项目环境变量中配置 `AGE_GATE_SECRET`、`SUBSCRIBE_ENDPOINT`、`SUBSCRIBE_TOKEN`（见 `.env.example`）
 - [ ] `index.html` 等页中所有 `data-todo` 占位链接：爱发电主页、itch.io（demo 上线后）、TikTok / X 账号
 - [ ] 角色预告图 `assets/img/teaser.webp`：正式立绘出来后替换（母版 `teaser-src.jpg`，去水印已完成）
 - [ ] 爱发电三档赞助金额确认后更新首页文案

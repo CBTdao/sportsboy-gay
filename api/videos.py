@@ -67,6 +67,7 @@ def fetch_videos():
         }
         root = ET.fromstring(data)
         out = []
+        seen = set()
         for e in root.findall("a:entry", ns):
             vid = e.find("yt:videoId", ns)
             title = e.find("a:title", ns)
@@ -76,6 +77,12 @@ def fetch_videos():
             if not VIDEO_ID_RE.match(video_id):
                 continue
             text = (title.text or "") if title is not None else ""
+            # YouTube occasionally republishes a scene with a trailing "-" or
+            # extra whitespace; collapse those so the gallery stays clean.
+            norm = text[:MAX_TITLE_CHARS].strip().rstrip("- ").strip()
+            if norm in seen:
+                continue
+            seen.add(norm)
             out.append({"id": video_id, "title": text[:MAX_TITLE_CHARS]})
             if len(out) >= 30:
                 break

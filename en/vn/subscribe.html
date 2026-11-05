@@ -60,7 +60,9 @@
     </div>
     <a class="sub-back" href="/vn">← Back to《体育生》</a>
   </div>
-</main>
+
+    <div data-sb-subscribe data-lang="en" data-source="vn-subscribe" data-rss="/en/vn/subscribe" data-privacy="/en/privacy"></div>
+  </main>
 <script>
 (function(){
   var btn=document.getElementById('copyBtn');
@@ -71,5 +73,6 @@
   btn.addEventListener('click',function(){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(done,function(){fallback();});}else{fallback();}});
 })();
 </script>
+  <script src="/assets/js/subscribe.js"></script>
 </body>
 </html>

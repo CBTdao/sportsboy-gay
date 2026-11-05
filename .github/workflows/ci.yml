@@ -40,6 +40,12 @@ jobs:
       - name: sitemap is regenerated and deduplicated
         run: python tools/gen_sitemap.py --check
 
+      - name: Age gate and email capture coverage
+        run: python tools/check_age_gate.py
+
+      - name: Serverless helper unit checks
+        run: python tools/check_api.py
+
       - name: No broken internal links
         run: python tools/check_links.py
 

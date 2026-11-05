@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>年龄确认 · SportsBoy.gay</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="SportsBoy.gay 含面向成年人的虚构内容，进入前请确认年龄。">
+<meta name="theme-color" content="#0E0D0B">
+<link rel="icon" href="/assets/img/icon-512.png">
+<style>
+  body{margin:0;min-height:100vh;background:#0E0D0B;color:#f3efe6;
+    font-family:system-ui,-apple-system,"PingFang SC","Noto Sans CJK SC",sans-serif;
+    display:flex;align-items:center;justify-content:center;padding:24px}
+  .wrap{max-width:520px;width:100%}
+  .kicker{color:#a79f92;font-size:12px;letter-spacing:.14em;margin:0 0 14px}
+  h1{font-size:27px;margin:0 0 18px;color:#FF5C39;line-height:1.35}
+  .notice{background:#16140F;border:1px solid #2a2620;border-left:3px solid #FF5C39;
+    border-radius:10px;padding:18px 20px;margin:0 0 22px;font-size:15px;line-height:1.85;color:#cfc7ba}
+  .notice strong{color:#f3efe6}
+  ul{padding-left:20px;margin:12px 0 0}
+  li{margin:5px 0}
+  .acts{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  button{background:#FF5C39;color:#fff;border:0;border-radius:9px;
+    padding:13px 24px;font-size:15px;font-weight:700;cursor:pointer}
+  button:disabled{opacity:.6;cursor:wait}
+  a.leave{color:#8b8478;font-size:14px;text-decoration:underline}
+  .err{color:#FF9B7A;font-size:14px;margin:14px 0 0;min-height:20px}
+  .fine{color:#8b8478;font-size:12.5px;line-height:1.7;margin:26px 0 0}
+  .fine a{color:#a79f92}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">SPORTSBOY.gay · AGE CHECK</p>
+  <h1 id="title">进入前请确认年龄</h1>
+  <div class="notice" id="notice"></div>
+  <div class="acts">
+    <button type="button" id="enter">我已满 18 岁，进入</button>
+    <a class="leave" id="leave" href="https://www.google.com" rel="noopener">未满 18 岁，离开</a>
+  </div>
+  <p class="err" id="err" role="status" aria-live="polite"></p>
+  <p class="fine" id="fine"></p>
+</div>
+<script>
+(function () {
+  var T = {
+    "zh-CN": {
+      title: "进入前请确认年龄",
+      notice: "本站部分栏目含<strong>面向成年人的虚构创作内容</strong>（BL 向连载与剧本），仅限成年人阅读。继续即表示你确认已年满 18 岁。",
+      points: ["全部角色均为成年人设定，情节纯属虚构。", "本站不向未成年人推送相关内容，也不在首页首屏呈现。", "确认结果由服务端记录，Cookie 仅用于避免重复提示。"],
+      enter: "我已满 18 岁，进入", leave: "未满 18 岁，离开",
+      err: "确认失败，请稍后重试。", busy: "确认中…",
+      fine: "年龄确认仅为内容分级提示，不构成身份核验。详见 <a href='/privacy'>隐私说明</a> 与 <a href='/'>返回首页</a>。"
+    },
+    en: {
+      title: "Please confirm your age",
+      notice: "Some sections contain <strong>fictional content intended for adults</strong> (BL serial and scripts). Please continue only if you are 18 or older.",
+      points: ["All characters are adults; all stories are fictional.", "We do not serve this material to minors or place it in prominent above-the-fold placements.", "Your acknowledgement is recorded server-side; the cookie only prevents repeat prompts."],
+      enter: "I am 18 or older", leave: "I am under 18",
+      err: "Could not confirm. Please try again.", busy: "Confirming…",
+      fine: "This is a content-rating acknowledgement, not identity verification. See our <a href='/en/privacy'>privacy policy</a> or <a href='/en'>home page</a>."
+    },
+    ja: {
+      title: "年齢確認をお願いします",
+      notice: "本サイトの一部には<strong>成人向けのフィクション</strong>（BL 連載・脚本）が含まれます。18 歳以上の方のみご利用ください。",
+      points: ["登場人物は全員成人設定、物語はすべてフィクションです。", "未成年者への配信および首屏での表示は行いません。", "確認はサーバー側で記録し、Cookie は再表示の防止にのみ使用します。"],
+      enter: "18 歳以上です", leave: "18 歳未満です",
+      err: "確認に失敗しました。もう一度お試しください。", busy: "確認中…",
+      fine: "これはコンテンツ区分の確認であり、本人確認ではありません。<a href='/ja/privacy'>プライバシー</a> / <a href='/ja'>トップへ</a>。"
+    },
+    ko: {
+      title: "연령 확인이 필요합니다",
+      notice: "일부 콘텐츠에는 <strong>성인 대상 허구 창작물</strong>(BL 연재·각본)이 포함되어 있습니다. 만 18세 이상만 이용해 주세요.",
+      points: ["모든 등장인물은 성인 설정이며 줄거리는 허구입니다.", "미성년자에게 해당 콘텐츠를 제공하거나 첫 화면에 노출하지 않습니다.", "확인은 서버에 기록되며 쿠키는 반복 안내 방지에만 사용됩니다."],
+      enter: "만 18세 이상입니다", leave: "만 18세 미만입니다",
+      err: "확인에 실패했습니다. 다시 시도해 주세요.", busy: "확인 중…",
+      fine: "본 확인은 콘텐츠 등급 안내이며 신원 확인이 아닙니다. <a href='/ko/privacy'>개인정보</a> / <a href='/ko'>홈으로</a>."
+    }
+  };
+
+  var qs = new URLSearchParams(location.search);
+  var lang = qs.get("lang") || "";
+  if (!T[lang]) {
+    var n = (navigator.language || "zh-CN").toLowerCase();
+    lang = n.indexOf("ja") === 0 ? "ja" : n.indexOf("ko") === 0 ? "ko"
+      : n.indexOf("zh") === 0 ? "zh-CN" : "en";
+  }
+  var t = T[lang];
+  document.documentElement.lang = lang;
+  document.getElementById("title").textContent = t.title;
+  var ul = "<ul>";
+  for (var i = 0; i < t.points.length; i++) ul += "<li>" + t.points[i] + "</li>";
+  ul += "</ul>";
+  document.getElementById("notice").innerHTML = t.notice + ul;
+  var btn = document.getElementById("enter");
+  btn.textContent = t.enter;
+  document.getElementById("leave").textContent = t.leave;
+  document.getElementById("fine").innerHTML = t.fine;
+
+  function nextPath() {
+    var p = qs.get("next") || "/";
+    if (p.charAt(0) !== "/" || p.charAt(1) === "/" || p.indexOf("\\") !== -1) return "/";
+    if (p.indexOf("/age-check") === 0) return "/";
+    return p;
+  }
+
+  btn.addEventListener("click", function () {
+    btn.disabled = true;
+    btn.textContent = t.busy;
+    document.getElementById("err").textContent = "";
+    fetch("/api/age_verify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ confirm: "adult" })
+    }).then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+      .then(function (res) {
+        if (res.ok && res.d.verified) {
+          location.replace(nextPath());
+        } else {
+          throw new Error("not verified");
+        }
+      }).catch(function () {
+        document.getElementById("err").textContent = t.err;
+        btn.disabled = false;
+        btn.textContent = t.enter;
+      });
+  });
+})();
+</script>
+</body>
+</html>

@@ -24,6 +24,8 @@ SITE = "https://www.sportsboy.gay"
 LANG_ORDER = ("zh-CN", "en", "ja", "ko")
 PREFIX = {"zh-CN": "", "en": "en", "ja": "ja", "ko": "ko"}
 EXTRA = ("vn/feed.xml", "en/vn/feed.xml")
+# The age-check page is a noindex interstitial, not a content page.
+EXCLUDE_KEYS = {"age-check"}
 
 
 def url_for(key: str, lang: str) -> str:
@@ -49,6 +51,8 @@ def collect():
         elif name.endswith(".html"):
             key = "/".join(parts[:-1] + [name[:-5]])
         else:
+            continue
+        if key in EXCLUDE_KEYS:
             continue
         pages.setdefault(key, {})[lang] = rel
     return pages

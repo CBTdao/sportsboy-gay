@@ -3,40 +3,279 @@
   "trailingSlash": false,
   "headers": [
     {
+      "source": "/age-check",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
       "source": "/assets/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300, must-revalidate"
+        }
       ]
     },
     {
       "source": "/vn/feed.xml",
       "headers": [
-        { "key": "Content-Type", "value": "application/rss+xml; charset=utf-8" },
-        { "key": "Cache-Control", "value": "no-store, must-revalidate" }
+        {
+          "key": "Content-Type",
+          "value": "application/rss+xml; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store, must-revalidate"
+        }
       ]
     },
     {
       "source": "/en/vn/feed.xml",
       "headers": [
-        { "key": "Content-Type", "value": "application/rss+xml; charset=utf-8" },
-        { "key": "Cache-Control", "value": "no-store, must-revalidate" }
+        {
+          "key": "Content-Type",
+          "value": "application/rss+xml; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store, must-revalidate"
+        }
       ]
     },
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), usb=()" },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), usb=()"
+        },
         {
           "key": "Content-Security-Policy",
           "value": "default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; frame-src https://www.youtube.com https://www.youtube-nocookie.com; script-src 'self' 'unsafe-inline' https://www.youtube.com https://s.ytimg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' https://i.ytimg.com data:; connect-src 'self' https://*.vercel-insights.com"
         },
-        { "key": "Reporting-Endpoints", "value": "csp=\"/api/csp_report\"" },
+        {
+          "key": "Reporting-Endpoints",
+          "value": "csp=\"/api/csp_report\""
+        },
         {
           "key": "Content-Security-Policy-Report-Only",
           "value": "default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; frame-src https://www.youtube.com https://www.youtube-nocookie.com; script-src 'self' https://www.youtube.com https://s.ytimg.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' https://i.ytimg.com data:; connect-src 'self' https://*.vercel-insights.com; report-uri /api/csp_report; report-to csp"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/en/novel",
+      "destination": "/age-check?next=/en/novel",
+      "permanent": false,
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "sb_age_verified"
+        }
+      ]
+    },
+    {
+      "source": "/en/vn",
+      "destination": "/age-check?next=/en/vn",
+      "permanent": false,
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "sb_age_verified"
+        }
+      ]
+    },
+    {
+      "source": "/ja/novel",
+      "destination": "/age-check?next=/ja/novel",
+      "permanent": false,
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "sb_age_verified"
+        }
+      ]
+    },
+    {
+      "source": "/ja/vn",
+      "destination": "/age-check?next=/ja/vn",
+      "permanent": false,
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "sb_age_verified"
+        }
+      ]
+    },
+    {
+      "source": "/ko/novel",
+      "destination": "/age-check?next=/ko/novel",
+      "permanent": false,
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "sb_age_verified"
+        }
+      ]
+    },
+    {
+      "source": "/ko/vn",
+      "destination": "/age-check?next=/ko/vn",
+      "permanent": false,
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "sb_age_verified"
+        }
+      ]
+    },
+    {
+      "source": "/novel",
+      "destination": "/age-check?next=/novel",
+      "permanent": false,
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "sb_age_verified"
+        }
+      ]
+    },
+    {
+      "source": "/novel/2026-10-31-ch1",
+      "destination": "/age-check?next=/novel/2026-10-31-ch1",
+      "permanent": false,
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "sb_age_verified"
+        }
+      ]
+    },
+    {
+      "source": "/novel/2026-11-01-ch2",
+      "destination": "/age-check?next=/novel/2026-11-01-ch2",
+      "permanent": false,
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "sb_age_verified"
+        }
+      ]
+    },
+    {
+      "source": "/novel/2026-11-02-ch3",
+      "destination": "/age-check?next=/novel/2026-11-02-ch3",
+      "permanent": false,
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "sb_age_verified"
+        }
+      ]
+    },
+    {
+      "source": "/novel/2026-11-03-ch4",
+      "destination": "/age-check?next=/novel/2026-11-03-ch4",
+      "permanent": false,
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "sb_age_verified"
+        }
+      ]
+    },
+    {
+      "source": "/vn",
+      "destination": "/age-check?next=/vn",
+      "permanent": false,
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "sb_age_verified"
+        }
+      ]
+    },
+    {
+      "source": "/vn/2026-10-31-scene1",
+      "destination": "/age-check?next=/vn/2026-10-31-scene1",
+      "permanent": false,
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "sb_age_verified"
+        }
+      ]
+    },
+    {
+      "source": "/vn/2026-11-01-scene2",
+      "destination": "/age-check?next=/vn/2026-11-01-scene2",
+      "permanent": false,
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "sb_age_verified"
+        }
+      ]
+    },
+    {
+      "source": "/vn/2026-11-02-scene3",
+      "destination": "/age-check?next=/vn/2026-11-02-scene3",
+      "permanent": false,
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "sb_age_verified"
+        }
+      ]
+    },
+    {
+      "source": "/vn/2026-11-03-scene4",
+      "destination": "/age-check?next=/vn/2026-11-03-scene4",
+      "permanent": false,
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "sb_age_verified"
+        }
+      ]
+    },
+    {
+      "source": "/vn/2026-11-04-scene5",
+      "destination": "/age-check?next=/vn/2026-11-04-scene5",
+      "permanent": false,
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "sb_age_verified"
+        }
+      ]
+    },
+    {
+      "source": "/vn/2026-11-05-scene6",
+      "destination": "/age-check?next=/vn/2026-11-05-scene6",
+      "permanent": false,
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "sb_age_verified"
         }
       ]
     }
